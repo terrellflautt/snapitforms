@@ -1,0 +1,331 @@
+/* ============================================================================
+   ENHANCED BILLING BUTTONS - Modern Interactive Design
+   ============================================================================ */
+
+/* Primary Action Buttons (Upgrade, Subscribe, etc.) */
+.upgrade-btn,
+.pricing-btn.btn-primary,
+.billing-action-btn {
+    position: relative;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    
+    /* Gradient background with animation */
+    background: linear-gradient(135deg, #aa336a 0%, #ff0077 50%, #aa336a 100%);
+    background-size: 200% 200%;
+    color: white;
+    
+    /* Enhanced shadow with glow effect */
+    box-shadow: 
+        0 4px 15px rgba(170, 51, 106, 0.3),
+        0 0 0 0 rgba(170, 51, 106, 0.4);
+    
+    /* Subtle inner shine */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.2), 
+            transparent
+        );
+        transition: left 0.6s ease;
+    }
+}
+
+.upgrade-btn:hover,
+.pricing-btn.btn-primary:hover,
+.billing-action-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    background-position: 100% 0;
+    box-shadow: 
+        0 8px 25px rgba(170, 51, 106, 0.4),
+        0 0 0 3px rgba(170, 51, 106, 0.1);
+    
+    &::before {
+        left: 100%;
+    }
+}
+
+.upgrade-btn:active,
+.pricing-btn.btn-primary:active,
+.billing-action-btn:active {
+    transform: translateY(-1px) scale(1.01);
+    transition: all 0.1s ease;
+}
+
+/* Secondary Action Buttons (Cancel, Contact Sales, etc.) */
+.pricing-btn.contact-sales,
+.billing-secondary-btn {
+    position: relative;
+    padding: 14px 32px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    
+    /* Gradient border effect */
+    background: 
+        linear-gradient(white, white) padding-box,
+        linear-gradient(135deg, #6366f1, #8b5cf6) border-box;
+    color: #6366f1;
+    
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+}
+
+.pricing-btn.contact-sales:hover,
+.billing-secondary-btn:hover {
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    
+    &::before {
+        opacity: 1;
+    }
+}
+
+/* Outlined Buttons (View Details, etc.) */
+.billing-outline-btn,
+.pricing-btn.btn-outline {
+    position: relative;
+    padding: 12px 28px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    background: white;
+    color: #374151;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #aa336a, #ff0077);
+        transition: left 0.4s ease;
+        z-index: -1;
+    }
+}
+
+.billing-outline-btn:hover,
+.pricing-btn.btn-outline:hover {
+    border-color: #aa336a;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(170, 51, 106, 0.2);
+    
+    &::before {
+        left: 0;
+    }
+}
+
+/* Disabled State */
+.upgrade-btn:disabled,
+.pricing-btn:disabled,
+.billing-action-btn:disabled {
+    background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    
+    &::before {
+        display: none;
+    }
+    
+    &:hover {
+        transform: none;
+        box-shadow: none;
+        background-position: 0 0;
+    }
+}
+
+/* Current Plan Badge Button */
+.current-plan-btn {
+    position: relative;
+    padding: 12px 24px;
+    border: 2px solid #10b981;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    color: #065f46;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: default;
+    
+    &::after {
+        content: '✓';
+        margin-left: 8px;
+        font-weight: bold;
+    }
+}
+
+/* Danger/Cancel Buttons */
+.billing-danger-btn,
+.cancel-subscription-btn {
+    position: relative;
+    padding: 12px 28px;
+    border: 2px solid #fecaca;
+    border-radius: 10px;
+    background: white;
+    color: #dc2626;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: #fef2f2;
+        border-color: #dc2626;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+    }
+    
+    &:active {
+        transform: translateY(0);
+        background: #fee2e2;
+    }
+}
+
+/* Button Groups */
+.billing-button-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.billing-button-group .btn {
+    margin: 0;
+}
+
+/* Small Action Buttons */
+.billing-btn-sm {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+/* Loading State */
+.billing-btn-loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+        border: 2px solid transparent;
+        border-top: 2px solid currentColor;
+        border-radius: 50%;
+        animation: billing-btn-spin 1s linear infinite;
+        color: white;
+    }
+}
+
+@keyframes billing-btn-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Pulse Animation for Important Actions */
+.billing-btn-pulse {
+    animation: billing-pulse 2s infinite;
+}
+
+@keyframes billing-pulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(170, 51, 106, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 15px rgba(170, 51, 106, 0.5);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(170, 51, 106, 0.3);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .upgrade-btn,
+    .pricing-btn,
+    .billing-action-btn {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+    
+    .billing-button-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .billing-button-group .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Focus States for Accessibility */
+.upgrade-btn:focus,
+.pricing-btn:focus,
+.billing-action-btn:focus,
+.billing-outline-btn:focus {
+    outline: none;
+    box-shadow: 
+        0 4px 15px rgba(170, 51, 106, 0.3),
+        0 0 0 3px rgba(170, 51, 106, 0.2);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .upgrade-btn,
+    .pricing-btn.btn-primary,
+    .billing-action-btn {
+        border: 2px solid #000;
+    }
+    
+    .billing-outline-btn,
+    .pricing-btn.btn-outline {
+        border-width: 3px;
+    }
+}

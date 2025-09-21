@@ -1,0 +1,151 @@
+/* /css/url-shortener.css */
+
+.url-item {
+    background: white;
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.url-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.url-info {
+    flex: 1;
+}
+
+.short-url {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.short-url a {
+    color: var(--primary-pink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.short-url a:hover {
+    text-decoration: underline;
+}
+
+.copy-btn {
+    background: var(--light-gray);
+    border: none;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: var(--border-gray);
+    transform: scale(1.1);
+}
+
+.original-url {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 500px;
+}
+
+.url-stats {
+    display: flex;
+    gap: var(--spacing-lg);
+    font-size: 0.85rem;
+    color: var(--gray-text);
+}
+
+.url-stats .stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.stat-icon {
+    font-size: 1rem;
+}
+
+.url-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* URL Analytics Modal */
+.url-analytics-modal {
+    max-width: 800px;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.analytics-card {
+    background: var(--light-gray);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.analytics-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-pink);
+    margin-bottom: var(--spacing-xs);
+}
+
+.analytics-label {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+}
+
+.click-chart-container {
+    height: 300px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.referrers-list {
+    background: white;
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.referrer-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.referrer-item:last-child {
+    border-bottom: none;
+}
+
+.referrer-name {
+    font-weight: 500;
+}
+
+.referrer-count {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+}

@@ -1,0 +1,35 @@
+/* css/dashboard.css */
+/* ---------- Saved Codes & Dashboard Items ---------- */
+.saved-codes {
+  margin-top: 40px;
+  background: #f0e6d2; /* Creamy background */
+  border: 2px dashed #c5b299;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.saved-codes h2 {
+  margin-bottom: 20px;
+}
+
+.dashboard-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+/* Dashboard Item Styles */
+.dashboard-item {
+  background: #fff8f0;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.dashboard-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

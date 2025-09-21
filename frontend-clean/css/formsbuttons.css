@@ -1,0 +1,105 @@
+/* General Button Styles */
+button {
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius, 8px);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000; /* Black text */
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ccc; /* Subtle border */
+  background-color: #fdf5e6; /* Cream background */
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Hover and Active States */
+button:hover {
+  background-color: #000; /* Black background */
+  color: #ff79c6; /* Pink text */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Ripple Effect */
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.5); /* Light ripple effect */
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+button:active::after {
+  transform: translate(-50%, -50%) scale(4);
+  opacity: 0;
+}
+
+/* Floating Support Button Specifics */
+#supportBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(45deg, #f8c4d1, #fdf5e6); /* Pastel pink and cream */
+  box-shadow: 0 4px 10px rgba(170, 51, 106, 0.3);
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 50px;
+  color: #000;
+  border: none;
+  transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#supportBtn:hover {
+  background-color: #000; /* Black background */
+  color: #ff79c6; /* Pink text */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(170, 51, 106, 0.4);
+}
+/* Custom Google Sign-In Button Styles */
+.custom-google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  background: linear-gradient(45deg, #4285F4, #34A853, #FBBC05, #EA4335);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-google-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.custom-google-btn .google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  /* Optional: add a subtle drop-shadow on the logo */
+  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));
+}

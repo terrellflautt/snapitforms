@@ -1,0 +1,14 @@
+/* Settings sections */
+.settings-section {
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid var(--border-gray);
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+}
+
+.settings-section h3 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--dark-text);
+}

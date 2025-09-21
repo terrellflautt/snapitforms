@@ -1,0 +1,88 @@
+/* Template Card Enhancements */
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+  }
+  
+  .template-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .template-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #aa336a, #ff0077);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.4s ease-out;
+  }
+  
+  .template-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(170, 51, 106, 0.15);
+    border-color: rgba(170, 51, 106, 0.1);
+  }
+  
+  .template-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .template-icon {
+    font-size: 36px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .template-card:hover .template-icon {
+    transform: scale(1.1) rotate(10deg);
+    background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+  }
+  
+  .template-card p {
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .template-card:hover p {
+    color: #aa336a;
+  }
+  
+  .template-card::after {
+    content: 'Use Template';
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    background: rgba(170, 51, 106, 0.9);
+    color: white;
+    padding: 10px 0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .template-card:hover::after {
+    bottom: 0;
+  }

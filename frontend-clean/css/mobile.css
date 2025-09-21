@@ -1,0 +1,23 @@
+/* css/mobile.css */
+/* ---------- Responsive: Mobile (max-width: 767px) ---------- */
+@media (max-width: 767px) {
+    .container {
+      padding: 15px;
+    }
+    .logo-grid {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    .dashboard-items {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    h1 {
+      font-size: 24px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    input, button {
+      font-size: 14px;
+    }
+  }
+  

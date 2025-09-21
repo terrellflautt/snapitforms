@@ -1,0 +1,180 @@
+/* /css/dark-mode.css */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-pink: #d946ef;
+        --secondary-blue: #3b82f6;
+        --dark-text: #f9fafb;
+        --gray-text: #9ca3af;
+        --light-gray: #1f2937;
+        --border-gray: #374151;
+        --cream: #111827;
+        --gradient-primary: linear-gradient(135deg, #d946ef 0%, #a855f7 100%);
+        --gradient-secondary: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        --gradient-card: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+        background: #0f172a;
+        color: var(--dark-text);
+    }
+
+    .modal-container {
+        background: #1e293b;
+        border: 1px solid var(--border-gray);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        background: #374151;
+        border-color: #4b5563;
+        color: var(--dark-text);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+        border-color: var(--primary-pink);
+        box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.1);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--dark-text);
+        border-color: var(--border-gray);
+    }
+
+    .btn-outline:hover {
+        background: var(--light-gray);
+        border-color: var(--primary-pink);
+        color: var(--primary-pink);
+    }
+
+    .chart-card,
+    .stat-card,
+    .qr-dashboard-card,
+    .team-member-card {
+        background: #1e293b;
+        border-color: var(--border-gray);
+    }
+
+    .csv-table {
+        background: #1e293b;
+    }
+
+    .csv-table th {
+        background: #374151;
+        color: var(--dark-text);
+    }
+
+    .csv-table td {
+        border-color: var(--border-gray);
+        color: var(--dark-text);
+    }
+
+    .template-card {
+        background: #1e293b;
+        border-color: var(--border-gray);
+    }
+
+    .template-card:hover {
+        border-color: var(--primary-pink);
+    }
+
+    .notification {
+        background: #1e293b;
+        border-color: var(--border-gray);
+        color: var(--dark-text);
+    }
+
+    .notification-success {
+        border-left-color: #10b981;
+    }
+
+    .notification-error {
+        border-left-color: #ef4444;
+    }
+
+    .notification-warning {
+        border-left-color: #f59e0b;
+    }
+
+    .notification-info {
+        border-left-color: #3b82f6;
+    }
+}
+
+/* /css/print.css */
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+
+    .modal,
+    .nav-container,
+    .btn,
+    .modal-overlay,
+    .modal-close,
+    .notification-container {
+        display: none !important;
+    }
+
+    .qr-dashboard-card {
+        break-inside: avoid;
+        margin-bottom: 20pt;
+        border: 1px solid #ccc;
+        padding: 10pt;
+    }
+
+    .qr-preview-img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    .chart-container {
+        break-inside: avoid;
+    }
+
+    .team-member-card {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+        margin-bottom: 10pt;
+        padding: 10pt;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10pt;
+    }
+
+    .stat-card {
+        border: 1px solid #ccc;
+        padding: 10pt;
+        text-align: center;
+    }
+
+    .analytics-charts {
+        break-before: page;
+    }
+
+    h1, h2, h3 {
+        break-after: avoid;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}

@@ -1,0 +1,61 @@
+
+/* Generic Button Styling */
+button {
+    background-color: #fff8f0;  /* Cream base */
+    color: #2d3748;             /* Dark text for contrast */
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hover and Focus State */
+  button:hover,
+  button:focus {
+    background-color: #000000;  /* Black background */
+    color: #ff0077;             /* Pink text */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* Active State */
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Specific Button Variants (Edit and Delete) */
+  .btn-edit,
+  .btn-delete {
+    background-color: #fff8f0;
+    color: #2d3748;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-edit:hover,
+  .btn-edit:focus,
+  .btn-delete:hover,
+  .btn-delete:focus {
+    background-color: #000000;
+    color: #ff0077;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .btn-edit:active,
+  .btn-delete:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+  

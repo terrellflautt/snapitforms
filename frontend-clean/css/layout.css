@@ -1,0 +1,23 @@
+/* css/layout.css */
+/* ---------- Container Layout & Headings ---------- */
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px;
+  background: linear-gradient(145deg, #fff8f0, #ffeede); /* Offwhite to cream */
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+h1, h2 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,401 @@
+/* 
+ * SnapIt Ecosystem - Unified Design System 
+ * Professional, conversion-optimized styling for all SnapIt applications
+ */
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors */
+    --color-snapit-magenta: #ff6b8a;
+    --color-snapit-purple: #aa336a;
+    --color-snapit-dark: #1f2937;
+    --color-snapit-gray: #6b7280;
+    --color-snapit-light: #f8fafc;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #aa336a 0%, #aa336a 100%);
+    --gradient-cta: linear-gradient(135deg, #ff6b8a 0%, #aa336a 100%);
+    --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    --gradient-text: linear-gradient(135deg, #ff6b8a 0%, #aa336a 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-code: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Background Utilities */
+  .bg-hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .bg-cta-gradient {
+    background: var(--gradient-cta);
+  }
+
+  .bg-snapit-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  /* Text Utilities */
+  .text-gradient-snapit {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-snapit-magenta {
+    color: var(--color-snapit-magenta);
+  }
+
+  .text-snapit-purple {
+    color: var(--color-snapit-purple);
+  }
+
+  .text-snapit-dark {
+    color: var(--color-snapit-dark);
+  }
+
+  .text-snapit-gray {
+    color: var(--color-snapit-gray);
+  }
+
+  /* Background Colors */
+  .bg-snapit-magenta {
+    background-color: var(--color-snapit-magenta);
+  }
+
+  .bg-snapit-purple {
+    background-color: var(--color-snapit-purple);
+  }
+
+  .bg-snapit-light {
+    background-color: var(--color-snapit-light);
+  }
+
+  /* Border Colors */
+  .border-snapit-magenta {
+    border-color: var(--color-snapit-magenta);
+  }
+
+  .border-snapit-purple {
+    border-color: var(--color-snapit-purple);
+  }
+
+  /* Button Components */
+  .snapit-btn {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 cursor-pointer;
+  }
+
+  .snapit-btn-primary {
+    @apply bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+  }
+
+  .snapit-btn-secondary {
+    @apply bg-[#FFF8F0] text-gray-700 border-2 border-gray-300 hover:bg-[#FFF8F0] hover:border-gray-400;
+  }
+
+  .snapit-btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  .snapit-btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  /* Card Components */
+  .snapit-card {
+    @apply bg-[#FFF8F0] rounded-xl p-6 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+
+  .snapit-card:hover {
+    box-shadow: var(--shadow-lg);
+    @apply transform -translate-y-1;
+  }
+
+  .snapit-card-feature {
+    @apply snapit-card text-center;
+  }
+
+  .snapit-card-pricing {
+    @apply snapit-card relative;
+  }
+
+  .snapit-card-pricing.popular {
+    @apply ring-2 ring-purple-500 transform scale-105;
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Input Components */
+  .snapit-input {
+    @apply w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none transition-all duration-200;
+  }
+
+  .snapit-label {
+    @apply block text-sm font-semibold text-gray-700 mb-2;
+  }
+
+  /* Layout Components */
+  .snapit-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .snapit-section {
+    @apply py-16 md:py-24;
+  }
+
+  .snapit-hero {
+    @apply bg-hero-gradient bg-snapit-pattern text-white;
+  }
+
+  /* Navigation */
+  .snapit-nav {
+    @apply fixed top-0 left-0 right-0 bg-[#FFF8F0] bg-opacity-95 backdrop-filter backdrop-blur-lg shadow-sm z-50;
+  }
+
+  .snapit-nav-brand {
+    @apply flex items-center space-x-3 text-xl font-bold text-gray-900;
+  }
+
+  .snapit-nav-logo {
+    @apply w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center text-white font-bold;
+  }
+
+  /* Google Sign-in Button */
+  .google-signin-btn, .google-sign-in {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-[#FFF8F0] border-2 border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-[#FFF8F0] hover:border-gray-400 transition-all duration-300 shadow-sm hover:shadow-md;
+  }
+
+  .google-signin-btn:before, .google-sign-in:before {
+    content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="%234285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="%2334A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="%23FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="%23EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>');
+    margin-right: 8px;
+  }
+
+  /* Animation Utilities */
+  .animate-blink {
+    animation: blink 1s infinite;
+  }
+
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.5s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .code-perspective {
+    transform: perspective(1000px) rotateX(5deg);
+  }
+
+  /* Shadow Utilities */
+  .shadow-code {
+    box-shadow: var(--shadow-code);
+  }
+
+  /* Status Indicators */
+  .status-online {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800;
+  }
+
+  .status-offline {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800;
+  }
+
+  .status-processing {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800;
+  }
+
+  /* Form Components */
+  .snapit-form {
+    @apply space-y-6;
+  }
+
+  .snapit-form-group {
+    @apply space-y-2;
+  }
+
+  .snapit-checkbox {
+    @apply h-4 w-4 text-[#aa336a] border-gray-300 rounded focus:ring-purple-500;
+  }
+
+  .snapit-radio {
+    @apply h-4 w-4 text-[#aa336a] border-gray-300 focus:ring-purple-500;
+  }
+
+  /* Table Components */
+  .snapit-table {
+    @apply w-full bg-[#FFF8F0] rounded-xl overflow-hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .snapit-table thead {
+    @apply bg-gradient-to-r from-purple-600 to-pink-600 text-white;
+  }
+
+  .snapit-table th {
+    @apply px-6 py-4 text-left font-semibold;
+  }
+
+  .snapit-table td {
+    @apply px-6 py-4 border-b border-gray-200;
+  }
+
+  .snapit-table tbody tr:hover {
+    @apply bg-[#FFF8F0];
+  }
+
+  /* Modal Components */
+  .snapit-modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+  }
+
+  .snapit-modal {
+    @apply bg-[#FFF8F0] rounded-2xl p-6 max-w-lg w-full mx-4 max-h-screen overflow-y-auto;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .snapit-modal-header {
+    @apply flex justify-between items-center mb-4 pb-4 border-b border-gray-200;
+  }
+
+  .snapit-modal-title {
+    @apply text-xl font-bold text-gray-900;
+  }
+
+  .snapit-modal-close {
+    @apply text-gray-400 hover:text-gray-600 cursor-pointer;
+  }
+
+  /* Loading Components */
+  .snapit-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-purple-600;
+  }
+
+  .snapit-skeleton {
+    @apply animate-pulse bg-gray-300 rounded;
+  }
+
+  /* Alert Components */
+  .snapit-alert {
+    @apply p-4 rounded-lg mb-4;
+  }
+
+  .snapit-alert-success {
+    @apply snapit-alert bg-green-100 text-green-800 border border-green-200;
+  }
+
+  .snapit-alert-error {
+    @apply snapit-alert bg-red-100 text-red-800 border border-red-200;
+  }
+
+  .snapit-alert-warning {
+    @apply snapit-alert bg-yellow-100 text-yellow-800 border border-yellow-200;
+  }
+
+  .snapit-alert-info {
+    @apply snapit-alert bg-blue-100 text-blue-800 border border-blue-200;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .snapit-container {
+    @apply px-4;
+  }
+  
+  .snapit-section {
+    @apply py-12;
+  }
+  
+  .snapit-btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+  
+  .snapit-modal {
+    @apply mx-2;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .snapit-nav,
+  .snapit-btn,
+  .google-signin-btn,
+  .google-sign-in {
+    display: none !important;
+  }
+  
+  .snapit-card {
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blink,
+  .animate-fade-in-scale,
+  .animate-slide-up {
+    animation: none !important;
+  }
+  
+  .snapit-btn,
+  .snapit-card {
+    transition: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .snapit-btn-primary {
+    @apply bg-black text-white border-2 border-white;
+  }
+  
+  .snapit-card {
+    @apply border-2 border-black;
+  }
+}

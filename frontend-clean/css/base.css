@@ -1,0 +1,35 @@
+/* css/base.css */
+/* ---------- Base & Typography ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Code', monospace, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(to right, #ffcddf, #f8e2e8); /* Signature pink gradient */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #2d3748; /* Deep dark text */
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Utility classes */
+.hidden {
+  display: none;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}

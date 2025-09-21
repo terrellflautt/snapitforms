@@ -1,0 +1,343 @@
+/* Mobile-First Responsive CSS Updates */
+
+/* Reset and Base Styles with Mobile Fixes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #2d3748;
+    background: linear-gradient(to right, #ffcddf, #f8e2e8);
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Container with better mobile constraints */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Hero Section Mobile Fixes */
+.hero {
+    padding: 6rem 0 4rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    background: linear-gradient(135deg, #aa336a, #ff0077);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 2rem;
+    color: #4a4a4a;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Code Preview Mobile Fix */
+.code-preview {
+    background: #2d3748;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(170, 51, 106, 0.15);
+    transform: none;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.code-content {
+    padding: 1rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.code-content code {
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Navigation Mobile Fixes */
+.navbar {
+    background: rgba(255, 248, 240, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.nav-logo h1 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+/* Pricing Grid Mobile Optimization */
+.pricing-grid, .pricing-grid-all {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
+}
+
+.pricing-card {
+    padding: 1.5rem;
+    max-width: 100%;
+}
+
+/* Features Grid Mobile */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+/* Modal Mobile Fixes */
+.modal-content {
+    width: 95%;
+    max-width: 600px;
+    margin: 5% auto;
+    padding: 1.5rem;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Support Widget Mobile Position */
+.support-widget, .floating-support-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 999;
+}
+
+/* Dashboard Mobile Fixes */
+.dashboard-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 0.5rem;
+}
+
+.nav-tab {
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.dashboard-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.stat-card {
+    padding: 1rem;
+}
+
+/* Table Responsive */
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+}
+
+.submissions-table {
+    min-width: 600px;
+}
+
+/* Forms and Inputs Mobile */
+input, textarea, select {
+    width: 100%;
+    font-size: 16px; /* Prevents zoom on iOS */
+}
+
+/* Button Mobile Fixes */
+.btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+    
+    .hero-content {
+        text-align: left;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .btn {
+        width: auto;
+        margin-bottom: 0;
+    }
+    
+    .nav-tab {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .pricing-grid-all {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .code-preview:hover {
+        transform: rotate(0deg) scale(1.02);
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+    .pricing-grid-all {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+    }
+}
+
+/* Ensure no horizontal scroll */
+@media (max-width: 767px) {
+    * {
+        max-width: 100vw !important;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        padding: 0 0.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .code-preview {
+        margin: 0;
+        border-radius: 8px;
+    }
+    
+    .modal-content {
+        border-radius: 0;
+        height: 100vh;
+        margin: 0;
+        max-height: 100vh;
+    }
+}
+
+/* Utility Classes for Mobile */
+.mobile-only {
+    display: block;
+}
+
+.desktop-only {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-only {
+        display: none;
+    }
+    
+    .desktop-only {
+        display: block;
+    }
+}
+
+/* Prevent text overflow */
+p, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}

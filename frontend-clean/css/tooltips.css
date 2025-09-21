@@ -1,0 +1,141 @@
+/* tooltips.css */
+/* tooltips.css */
+.terminal-tooltip {
+  --tooltip-bg: #2a0a1a;       /* Dark pink base */
+  --tooltip-text: #ff69b4;     /* Hot pink text */
+  --tooltip-border: rgba(255, 105, 180, 0.2); /* Subtle pink border */
+  --tooltip-cursor: #ff69b4;   /* Matching cursor color */
+  
+  position: fixed;
+  max-width: min(300px, 90vw);
+  width: max-content;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  font-family: 'Fira Code', monospace, sans-serif;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(255, 192, 203, 0.15);
+  border: 1px solid var(--tooltip-border);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  line-height: 1.4;
+  word-wrap: break-word;
+  left: 50%;
+}
+
+.terminal-tooltip.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.tooltip-content {
+  position: relative;
+  font-size: 0.9rem;
+  text-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
+}
+
+.typed-text {
+  white-space: pre-wrap;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  color: var(--tooltip-cursor);
+}
+
+/* Arrow pointing to target element */
+.terminal-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: var(--tooltip-bg) transparent transparent;
+  margin-left: -8px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .terminal-tooltip {
+    max-width: 80vw;
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+  }
+  
+  .terminal-tooltip::after {
+    bottom: -8px;
+    border-width: 6px 6px 0;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0.4 }
+}
+
+/* Pink glow animation */
+@keyframes pink-glow {
+  0%, 100% { text-shadow: 0 0 8px rgba(255,105,180,0.3); }
+  50% { text-shadow: 0 0 12px rgba(255,105,180,0.5); }
+}
+
+.typed-text {
+  animation: pink-glow 2s ease-in-out infinite;
+}/* Unified Tooltip System */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--snapit-deep-black);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1000;
+    margin-bottom: 5px;
+}
+
+[data-tooltip]:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--snapit-deep-black);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    opacity: 1;
+}
+
+/* Responsive tooltip positioning */
+@media (max-width: 768px) {
+    [data-tooltip]:before {
+        white-space: normal;
+        max-width: 200px;
+        text-align: center;
+    }
+}

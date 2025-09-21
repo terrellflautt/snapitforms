@@ -1,0 +1,26 @@
+/* celebrations.css */
+/* Confetti Canvas - Ghost Mode */
+.confetti-ghost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998; /* Below tooltips but above content */
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    background: transparent !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  
+  /* Element Highlight Pulse */
+  @keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  
+  .celebrate-element {
+    animation: gentle-pulse 0.4s ease-out;
+    position: relative;
+    z-index: 9999; /* Ensure elements stay above confetti */
+  }

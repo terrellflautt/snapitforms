@@ -1,0 +1,507 @@
+/* css/pricing.css - Pricing component styles */
+
+/* ============================================================================
+   PRICING SECTION
+   ============================================================================ */
+.pricing {
+    padding: 120px 0;
+    background: #fafafa;
+}
+
+.pricing-grid-all {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 60px;
+}
+
+/* ============================================================================
+   PRICING CARDS
+   ============================================================================ */
+.pricing-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: #aa336a;
+}
+
+.pricing-card.featured {
+    border-color: #aa336a;
+    box-shadow: 0 10px 30px rgba(170, 51, 106, 0.2);
+    transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.pricing-card.current {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+}
+
+.pricing-badge,
+.current-badge,
+.featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.pricing-badge,
+.featured-badge {
+    background: linear-gradient(135deg, #aa336a, #ff0077);
+    color: white;
+}
+
+.current-badge {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+}
+
+/* ============================================================================
+   PRICING CONTENT
+   ============================================================================ */
+.pricing-header {
+    margin-bottom: 32px;
+}
+
+.plan-name,
+.pricing-card .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+.price,
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #aa336a;
+}
+
+.currency {
+    font-size: 1.5rem;
+    margin-right: 4px;
+}
+
+.price span,
+.plan-price span,
+.plan-period {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #aa336a;
+}
+
+.plan-period {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.pricing-description,
+.plan-description {
+    color: #6b7280;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+/* ============================================================================
+   FEATURES LIST
+   ============================================================================ */
+.pricing-features,
+.plan-features {
+    list-style: none;
+    margin-bottom: 32px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.pricing-features li,
+.plan-features li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 24px;
+    color: #374151;
+    font-size: 0.95rem;
+}
+
+.pricing-features li::before,
+.plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+}
+
+/* ============================================================================
+   PRICING BUTTONS
+   ============================================================================ */
+.pricing-btn,
+.upgrade-btn {
+    width: 100%;
+    margin-top: auto;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pricing-btn:hover,
+.upgrade-btn:hover {
+    transform: translateY(-2px);
+}
+
+.pricing-btn.btn-primary,
+.upgrade-btn {
+    background: linear-gradient(135deg, #aa336a, #ff0077);
+    color: white;
+    box-shadow: 0 4px 15px rgba(170, 51, 106, 0.3);
+}
+
+.pricing-btn.btn-primary:hover,
+.upgrade-btn:hover {
+    box-shadow: 0 8px 25px rgba(170, 51, 106, 0.4);
+}
+
+.pricing-btn.contact-sales {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+}
+
+.pricing-btn.contact-sales:hover {
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.pricing-btn:disabled,
+.upgrade-btn:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.pricing-btn:disabled:hover,
+.upgrade-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ============================================================================
+   BILLING DASHBOARD STYLES
+   ============================================================================ */
+.current-plan-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+}
+
+.plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.plan-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    color: #1f2937;
+}
+
+.plan-info p {
+    margin: 0 0 12px 0;
+    color: #6b7280;
+}
+
+.plan-badge {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.plan-price {
+    text-align: right;
+}
+
+.plan-price span {
+    font-size: 1.25rem;
+    color: #aa336a;
+    font-weight: 700;
+}
+
+.plan-price small {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+/* ============================================================================
+   USAGE PROGRESS
+   ============================================================================ */
+.usage-progress {
+    margin-top: 24px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.progress-header span:first-child {
+    color: #374151;
+    font-weight: 500;
+}
+
+.progress-header span:last-child {
+    color: #6b7280;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill,
+.usage-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #aa336a, #ff0077);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Usage bar color variations */
+.usage-bar.warning {
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.usage-bar.danger {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+/* ============================================================================
+   BILLING INFO GRID
+   ============================================================================ */
+.billing-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    border-color: #aa336a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(170, 51, 106, 0.1);
+}
+
+.info-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.info-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #aa336a;
+    margin-bottom: 4px;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* ============================================================================
+   PRICING SECTION IN DASHBOARD
+   ============================================================================ */
+.pricing-section {
+    margin-top: 40px;
+}
+
+.pricing-section h3 {
+    margin-bottom: 16px;
+    color: #1f2937;
+    font-size: 1.5rem;
+}
+
+.pricing-section p {
+    color: #6b7280;
+    margin-bottom: 32px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+@media (max-width: 1200px) {
+    .pricing-grid-all {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing {
+        padding: 80px 0;
+    }
+    
+    .pricing-grid-all,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+    }
+    
+    .pricing-card.featured:hover {
+        transform: translateY(-8px);
+    }
+    
+    .plan-header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: left;
+    }
+    
+    .plan-price {
+        text-align: left;
+    }
+    
+    .billing-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .current-plan-card {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-card {
+        padding: 24px 20px;
+    }
+    
+    .billing-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .plan-price {
+        font-size: 2rem;
+    }
+    
+    .price {
+        font-size: 2.5rem;
+    }
+}
+
+/* ============================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+    .pricing-card,
+    .pricing-btn,
+    .upgrade-btn,
+    .info-card {
+        transition: none;
+    }
+    
+    .pricing-card:hover,
+    .pricing-btn:hover,
+    .upgrade-btn:hover,
+    .info-card:hover {
+        transform: none;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .pricing-card {
+        border-width: 3px;
+    }
+    
+    .pricing-card.featured,
+    .pricing-card.current {
+        border-width: 4px;
+    }
+    
+    .pricing-features li::before,
+    .plan-features li::before {
+        font-weight: 900;
+    }
+}

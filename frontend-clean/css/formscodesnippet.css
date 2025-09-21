@@ -1,0 +1,71 @@
+/* Code Snippet Styles */
+.code-example {
+    position: relative;
+    background: #1e1e3f;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+  
+  .code-example::before {
+    content: 'HTML';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #ccc;
+  }
+  
+  .code-example pre {
+    margin: 0;
+    padding-top: 15px;
+  }
+  
+  .code-example code {
+    color: #f8f8f2;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  /* Syntax highlighting colors */
+  .code-example .tag {
+    color: #ff79c6;
+  }
+  
+  .code-example .attr {
+    color: #50fa7b;
+  }
+  
+  .code-example .string {
+    color: #f1fa8c;
+  }
+  
+  .code-example .comment {
+    color: #6272a4;
+  }
+  
+  /* Copy button within code example */
+  .code-example .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  
+  .code-example .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }

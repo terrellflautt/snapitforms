@@ -1,0 +1,36 @@
+/* Logo upload styles */
+.logo-upload-section {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+}
+
+.logo-preview {
+    width: 120px;
+    height: 120px;
+    border: 2px dashed var(--border-gray);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-gray);
+}
+
+.logo-placeholder {
+    text-align: center;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+.logo-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
