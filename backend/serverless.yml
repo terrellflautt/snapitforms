@@ -1,0 +1,716 @@
+service: snapitforms-api-new
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage, 'production'}
+  memorySize: 1024
+  timeout: 30
+  environment:
+    STAGE: ${self:provider.stage}
+    REGION: ${self:provider.region}
+    
+    # DynamoDB Tables
+    DYNAMODB_TABLE_FORMS: ${self:service}-${self:provider.stage}-forms
+    DYNAMODB_TABLE_SUBMISSIONS: ${self:service}-${self:provider.stage}-submissions
+    DYNAMODB_TABLE_USERS: ${self:service}-${self:provider.stage}-users
+    DYNAMODB_TABLE_TEMPLATES: ${self:service}-${self:provider.stage}-templates
+    DYNAMODB_TABLE_USAGE: ${self:service}-${self:provider.stage}-usage
+    
+    # Authentication
+    GOOGLE_CLIENT_ID: 242648112266-iglul54tuis9mhucsp1pmpqg0a48l8i0.apps.googleusercontent.com
+    GOOGLE_CLIENT_SECRET: ${ssm:/snapitforms/google/client-secret}
+    JWT_SECRET: baa4cab62aeabd0ee59099e86eac2e6349a8638ea1c96386a10c33667c437ef4
+    
+    # Stripe
+    STRIPE_PUBLISHABLE_KEY: ${ssm:/snapitforms/stripe/publishable-key}
+    STRIPE_SECRET_KEY: ${ssm:/snapitforms/stripe/secret-key}
+    STRIPE_WEBHOOK_SECRET: ${ssm:/snapitforms/stripe/webhook-secret}
+    
+    # CORS - Allow both production and localhost development
+    CORS_ORIGIN: ${opt:cors, '*'}
+
+    # Email Configuration
+    SES_REGION: us-east-1
+    SES_FROM_EMAIL: noreply@snapitforms.com
+    SES_TEST_EMAIL: admin@snapitforms.com
+
+    # Storage and URLs
+    S3_BUCKET: snapitforms-assets-${self:provider.stage}
+    FRONTEND_URL: https://snapitforms.com
+    USERS_TABLE: ${self:provider.environment.DYNAMODB_TABLE_USERS}
+    USAGE_TABLE: ${self:provider.environment.DYNAMODB_TABLE_USAGE}
+  
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:BatchGetItem
+            - dynamodb:BatchWriteItem
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_FORMS}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_FORMS}/index/*"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_SUBMISSIONS}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_SUBMISSIONS}/index/*"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_USERS}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_USERS}/index/*"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_TEMPLATES}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_USAGE}"
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+            - ses:SendRawEmail
+          Resource: "*"
+        - Effect: Allow
+          Action:
+            - ssm:GetParameter
+            - ssm:GetParameters
+          Resource:
+            - "arn:aws:ssm:${self:provider.region}:*:parameter/snapitforms/*"
+
+plugins:
+  - serverless-offline
+
+functions:
+  # Health Check
+  health:
+    handler: src/handlers/health.check
+    events:
+      - http:
+          path: health
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Authentication
+  auth:
+    handler: src/handlers/auth.handler
+    events:
+      - http:
+          path: auth/google
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Registration (frontend expects this endpoint)
+  registerGoogle:
+    handler: src/handlers/auth.handler
+    events:
+      - http:
+          path: register/google
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+      - http:
+          path: register/google
+          method: options
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Form Management
+  createForm:
+    handler: src/handlers/forms.create
+    events:
+      - http:
+          path: forms
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  getForm:
+    handler: src/handlers/forms.get
+    events:
+      - http:
+          path: forms/{formId}
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  listForms:
+    handler: src/handlers/forms.list
+    events:
+      - http:
+          path: forms
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  updateForm:
+    handler: src/handlers/forms.update
+    events:
+      - http:
+          path: forms/{formId}
+          method: put
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  deleteForm:
+    handler: src/handlers/forms.delete
+    events:
+      - http:
+          path: forms/{formId}
+          method: delete
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Form Submissions
+  submitForm:
+    handler: src/handlers/submissions.submit
+    events:
+      - http:
+          path: submit
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+
+  getSubmissions:
+    handler: src/handlers/submissions.list
+    events:
+      - http:
+          path: submissions
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  exportSubmissions:
+    handler: src/handlers/export.handler
+    timeout: 60
+    events:
+      - http:
+          path: submissions/export
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Templates
+  getTemplates:
+    handler: src/handlers/templates.list
+    events:
+      - http:
+          path: templates
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Analytics
+  getAnalytics:
+    handler: src/handlers/analytics.handler
+    events:
+      - http:
+          path: analytics
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # File Upload
+  uploadFile:
+    handler: src/handlers/upload.handler
+    timeout: 60
+    memorySize: 1536
+    events:
+      - http:
+          path: upload
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  # Usage Tracking
+  getUsage:
+    handler: src/handlers/usageTracking.get
+    events:
+      - http:
+          path: usage
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+              - X-Access-Key
+            allowCredentials: false
+
+  # Billing
+  getBilling:
+    handler: src/handlers/billing.handler
+    events:
+      - http:
+          path: billing
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+              - X-Access-Key
+            allowCredentials: false
+
+  # Dashboard
+  getDashboard:
+    handler: src/handlers/dashboard.handler
+    events:
+      - http:
+          path: dashboard
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+              - X-Access-Key
+            allowCredentials: false
+
+  # Stripe Integration
+  createCheckoutSession:
+    handler: src/handlers/stripe-checkout.handler
+    events:
+      - http:
+          path: stripe/checkout
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+      - http:
+          path: create-checkout-session
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  stripeWebhook:
+    handler: src/handlers/stripeWebhook.handler
+    events:
+      - http:
+          path: stripe/webhook
+          method: post
+
+  # Email Services
+  sendEmail:
+    handler: src/handlers/email.sendEmail
+    events:
+      - http:
+          path: send-email
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  sendFormNotification:
+    handler: src/handlers/email.sendFormNotification
+    events:
+      - http:
+          path: send-form-notification
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  testSES:
+    handler: src/handlers/email.testSES
+    events:
+      - http:
+          path: test-ses
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+resources:
+  Resources:
+    # DynamoDB Tables
+    FormsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_FORMS}
+        AttributeDefinitions:
+          - AttributeName: formId
+            AttributeType: S
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: S
+        KeySchema:
+          - AttributeName: formId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: UserIndex
+            KeySchema:
+              - AttributeName: userId
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true
+
+    SubmissionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_SUBMISSIONS}
+        AttributeDefinitions:
+          - AttributeName: submissionId
+            AttributeType: S
+          - AttributeName: formId
+            AttributeType: S
+          - AttributeName: timestamp
+            AttributeType: S
+        KeySchema:
+          - AttributeName: submissionId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: FormIndex
+            KeySchema:
+              - AttributeName: formId
+                KeyType: HASH
+              - AttributeName: timestamp
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true
+
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_USERS}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: email
+            AttributeType: S
+          - AttributeName: accessKey
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: EmailIndex
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+          - IndexName: AccessKeyIndex
+            KeySchema:
+              - AttributeName: accessKey
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+
+    TemplatesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_TEMPLATES}
+        AttributeDefinitions:
+          - AttributeName: templateId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: templateId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    UsageTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_USAGE}
+        AttributeDefinitions:
+          - AttributeName: accessKey
+            AttributeType: S
+          - AttributeName: monthKey
+            AttributeType: S
+        KeySchema:
+          - AttributeName: accessKey
+            KeyType: HASH
+          - AttributeName: monthKey
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true
