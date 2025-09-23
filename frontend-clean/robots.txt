@@ -1,0 +1,46 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://snapitforms.com/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /api/
+Disallow: /aws/
+
+# Allow important pages
+Allow: /form-generator.html
+Allow: /templates.html
+Allow: /dashboard.html
+Allow: /pricing.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /help.html
+Allow: /documentation.html
+
+# CSS and JS files
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+
+# Favicon and manifest
+Allow: /favicon.ico
+Allow: /site.webmanifest
+Allow: /apple-touch-icon.png

@@ -13,12 +13,12 @@ provider:
     STAGE: ${self:provider.stage}
     REGION: ${self:provider.region}
     
-    # DynamoDB Tables
-    DYNAMODB_TABLE_FORMS: ${self:service}-${self:provider.stage}-forms
-    DYNAMODB_TABLE_SUBMISSIONS: ${self:service}-${self:provider.stage}-submissions
-    DYNAMODB_TABLE_USERS: ${self:service}-${self:provider.stage}-users
-    DYNAMODB_TABLE_TEMPLATES: ${self:service}-${self:provider.stage}-templates
-    DYNAMODB_TABLE_USAGE: ${self:service}-${self:provider.stage}-usage
+    # DynamoDB Tables - Use existing production tables
+    DYNAMODB_TABLE_FORMS: snapitforms-forms-production
+    DYNAMODB_TABLE_SUBMISSIONS: snapitforms-submissions-production
+    DYNAMODB_TABLE_USERS: snapit-users-production
+    DYNAMODB_TABLE_TEMPLATES: snapitforms-templates-production
+    DYNAMODB_TABLE_USAGE: snapitsoftware-usage-production
     
     # Authentication
     GOOGLE_CLIENT_ID: 242648112266-iglul54tuis9mhucsp1pmpqg0a48l8i0.apps.googleusercontent.com
@@ -31,7 +31,7 @@ provider:
     STRIPE_WEBHOOK_SECRET: ${ssm:/snapitforms/stripe/webhook-secret}
     
     # CORS - Allow both production and localhost development
-    CORS_ORIGIN: ${opt:cors, '*'}
+    CORS_ORIGIN: 'https://snapitforms.com'
 
     # Email Configuration
     SES_REGION: us-east-1
@@ -41,8 +41,8 @@ provider:
     # Storage and URLs
     S3_BUCKET: snapitforms-assets-${self:provider.stage}
     FRONTEND_URL: https://snapitforms.com
-    USERS_TABLE: ${self:provider.environment.DYNAMODB_TABLE_USERS}
-    USAGE_TABLE: ${self:provider.environment.DYNAMODB_TABLE_USAGE}
+    USERS_TABLE: snapit-users-production
+    USAGE_TABLE: snapitsoftware-usage-production
   
   iam:
     role:
@@ -318,6 +318,29 @@ functions:
               - X-Access-Key
             allowCredentials: false
 
+  # Dashboard expects /forms/submissions endpoint
+  getFormSubmissions:
+    handler: src/handlers/submissions.list
+    events:
+      - http:
+          path: forms/submissions
+          method: get
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
   exportSubmissions:
     handler: src/handlers/export.handler
     timeout: 60
@@ -532,6 +555,28 @@ functions:
           path: stripe/webhook
           method: post
 
+  createPortalSession:
+    handler: src/handlers/stripe-portal.handler
+    events:
+      - http:
+          path: create-portal-session
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
   # Email Services
   sendEmail:
     handler: src/handlers/email.sendEmail
@@ -560,6 +605,28 @@ functions:
     events:
       - http:
           path: send-form-notification
+          method: post
+          cors:
+            origin: ${self:provider.environment.CORS_ORIGIN}
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Accept
+              - X-User-ID
+              - X-Device-ID
+              - X-Service
+              - X-Google-Token
+              - X-Access-Key
+            allowCredentials: false
+
+  sendAccessCode:
+    handler: src/handlers/email.sendAccessCode
+    events:
+      - http:
+          path: send-access-code
           method: post
           cors:
             origin: ${self:provider.environment.CORS_ORIGIN}

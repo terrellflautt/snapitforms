@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>SnapItForms Support Center - Help Articles, FAQs & Troubleshooting</title>
+    <meta name="title" content="SnapItForms Support Center - Help Articles, FAQs & Troubleshooting">
+    <meta name="description" content="Find answers in the SnapItForms support center. Browse help articles, Form Submission FAQs, troubleshooting guides, video tutorials, and step-by-step solutions for common issues.">
+    <meta name="keywords" content="SnapItForms support, free dedicated account manager for business and enterprise customers, help center, FAQ, troubleshooting, help articles, form help, support documentation, customer support, self-service help">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snapitforms.com/support.html">
+    <meta property="og:title" content="SnapItForms Support Center - Help Articles, FAQs & Troubleshooting">
+    <meta property="og:description" content="Find answers in the SnapItForms support center. Browse help articles, FAQs, troubleshooting guides, video tutorials, and step-by-step solutions for common issues.">
+    <meta property="og:image" content="https://snapitforms.com/images/snapitforms-support-center.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://snapitforms.com/support.html">
+    <meta property="twitter:title" content="SnapItForms Support Center - Help Articles, FAQs & Troubleshooting">
+    <meta property="twitter:description" content="Find answers in the SnapItForms support center. Browse help articles, FAQs, troubleshooting guides, video tutorials, and step-by-step solutions for common issues.">
+    <meta property="twitter:image" content="https://snapitforms.com/images/snapitforms-support-center.png">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="SnapItForms">
+    <meta name="category" content="Support">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <link rel="canonical" href="https://snapitforms.com/support.html">
+
+    <style>
+        /* Support Center Styles */
+        :root {
+            --primary-pink: #aa336a;
+            --gradient-primary: linear-gradient(135deg, #aa336a, #ff0077);
+            --dark-text: #2d3748;
+            --gray-text: #6b7280;
+            --light-gray: #f8fafc;
+            --border-gray: rgba(170, 51, 106, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --warm-bg: #fef9f3;
+            --success-green: #059669;
+            --warning-orange: #d97706;
+            --error-red: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: var(--warm-bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo h1 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-pink);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--warm-bg) 0%, rgba(170, 51, 106, 0.05) 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(170, 51, 106, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-text);
+            font-size: 1.2rem;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .quick-link {
+            background: white;
+            color: var(--primary-pink);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid var(--border-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Help Categories Grid */
+        .help-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-gray);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-pink);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-description {
+            color: var(--gray-text);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .category-links {
+            list-style: none;
+        }
+
+        .category-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .category-links a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .category-links a:hover {
+            color: var(--dark-text);
+            text-decoration: underline;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-gray);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(170, 51, 106, 0.05);
+        }
+
+        .faq-icon {
+            color: var(--primary-pink);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-gray);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-method {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--warm-bg);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-description {
+            color: var(--gray-text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--success-green);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success-green);
+            border-radius: 50%;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(170, 51, 106, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .help-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links {
+                justify-content: center;
+            }
+
+            .quick-link {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Hide/Show elements for search */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>SnapItForms</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="form-submission.html" class="nav-link">Home</a>
+                <a href="templates.html" class="nav-link">Templates</a>
+                <a href="form-generator.html" class="nav-link">Form Generator</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="documentation.html" class="nav-link">Docs</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                All systems operational
+            </div>
+            <h1 class="hero-title fade-in-up">Support Center</h1>
+            <p class="hero-subtitle fade-in-up">Find answers, get help, and learn how to make the most of SnapItForms</p>
+
+            <!-- Search Bar -->
+            <div class="search-container fade-in-up">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-bar" placeholder="Search for help articles, FAQs, or how-to guides..." id="searchInput">
+            </div>
+
+            <!-- Quick Links -->
+            <div class="quick-links fade-in-up">
+                <a href="#getting-started" class="quick-link">Getting Started</a>
+                <a href="#form-setup" class="quick-link">Form Setup</a>
+                <a href="#billing" class="quick-link">Billing & Plans</a>
+                <a href="#integrations" class="quick-link">Integrations</a>
+                <a href="#troubleshooting" class="quick-link">Troubleshooting</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Categories -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Browse by Category</h2>
+                <p class="section-subtitle">Find the help you need organized by topic</p>
+            </div>
+
+            <div class="help-categories" id="helpCategories">
+                <div class="category-card" data-category="getting-started">
+                    <div class="category-icon">🚀</div>
+                    <h3 class="category-title">Getting Started</h3>
+                    <p class="category-description">New to SnapItForms? Learn the basics and get your first form up and running in minutes.</p>
+                    <ul class="category-links">
+                        <li><a href="#quick-start">Quick Start Guide</a></li>
+                        <li><a href="#first-form">Creating Your First Form</a></li>
+                        <li><a href="#account-setup">Account Setup</a></li>
+                        <li><a href="#dashboard-tour">Dashboard Tour</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-card" data-category="form-setup">
+                    <div class="category-icon">📝</div>
+                    <h3 class="category-title">Form Setup & Management</h3>
+                    <p class="category-description">Learn how to create, customize, and manage your forms effectively.</p>
+                    <ul class="category-links">
+                        <li><a href="#form-builder">Using the Form Builder</a></li>
+                        <li><a href="#form-validation">Form Validation</a></li>
+                        <li><a href="#custom-styling">Custom Styling</a></li>
+                        <li><a href="#form-settings">Form Settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-card" data-category="submissions">
+                    <div class="category-icon">📊</div>
+                    <h3 class="category-title">Submissions & Analytics</h3>
+                    <p class="category-description">Manage your form submissions and understand your data with our analytics tools.</p>
+                    <ul class="category-links">
+                        <li><a href="#viewing-submissions">Viewing Submissions</a></li>
+                        <li><a href="#export-data">Exporting Data</a></li>
+                        <li><a href="#analytics-dashboard">Analytics Dashboard</a></li>
+                        <li><a href="#email-notifications">Email Notifications</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-card" data-category="integrations">
+                    <div class="category-icon">🔗</div>
+                    <h3 class="category-title">Integrations & APIs</h3>
+                    <p class="category-description">Connect SnapItForms with your favorite tools and services.</p>
+                    <ul class="category-links">
+                        <li><a href="#webhook-setup">Webhook Setup</a></li>
+                        <li><a href="#zapier-integration">Zapier Integration</a></li>
+                        <li><a href="#api-documentation">API Documentation</a></li>
+                        <li><a href="#slack-notifications">Slack Notifications</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-card" data-category="billing">
+                    <div class="category-icon">💳</div>
+                    <h3 class="category-title">Billing & Plans</h3>
+                    <p class="category-description">Understand our pricing, manage your subscription, and upgrade or downgrade your plan.</p>
+                    <ul class="category-links">
+                        <li><a href="#pricing-plans">Pricing Plans</a></li>
+                        <li><a href="#upgrade-downgrade">Upgrade/Downgrade</a></li>
+                        <li><a href="#billing-history">Billing History</a></li>
+                        <li><a href="#cancel-subscription">Cancel Subscription</a></li>
+                    </ul>
+                </div>
+
+                <div class="category-card" data-category="troubleshooting">
+                    <div class="category-icon">🔧</div>
+                    <h3 class="category-title">Troubleshooting</h3>
+                    <p class="category-description">Solve common issues and get your forms working perfectly.</p>
+                    <ul class="category-links">
+                        <li><a href="#forms-not-working">Forms Not Working</a></li>
+                        <li><a href="#email-issues">Email Issues</a></li>
+                        <li><a href="#browser-compatibility">Browser Compatibility</a></li>
+                        <li><a href="#common-errors">Common Errors</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Quick answers to the most common questions</p>
+            </div>
+
+            <div class="faq-container" id="faqContainer">
+                <div class="faq-item" data-tags="getting-started setup basics">
+                    <div class="faq-question">
+                        <span>How do I get started with SnapItForms?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Getting started is simple! Sign up for a free account using Google OAuth, get your unique access key from the dashboard, add it to your HTML form using the hidden input field, and start receiving submissions. The entire process takes less than 5 minutes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="pricing free plan limits">
+                    <div class="faq-question">
+                        <span>What's included in the free plan?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our free plan includes 500 form submissions per month, email notifications, basic analytics, community support, and SnapItForms branding. It's perfect for personal projects and small websites.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="forms setup html coding">
+                    <div class="faq-question">
+                        <span>Do I need to know how to code to use SnapItForms?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No! While you can use SnapItForms with any HTML form, we also provide a visual form builder that requires zero coding knowledge. You can create beautiful forms with our drag-and-drop interface and copy the code to your website.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="submissions data export analytics">
+                    <div class="faq-question">
+                        <span>How can I view and export my form submissions?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All submissions are viewable in your dashboard with real-time analytics. You can export your data as CSV files (available on Basic plan and above) and set up email notifications to receive submissions instantly in your inbox.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="integrations webhooks api zapier">
+                    <div class="faq-question">
+                        <span>What integrations are available?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer webhook integrations (Premium plan+), Zapier connectivity, Slack notifications, and a comprehensive API for custom integrations. Connect your forms to virtually any service or build custom workflows.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="security spam protection privacy">
+                    <div class="faq-question">
+                        <span>How secure are my form submissions?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Security is our top priority. All data is transmitted over HTTPS, stored securely, and we include built-in spam protection. We're GDPR compliant and give you full control over your data with easy export and deletion options.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="billing upgrade downgrade cancel">
+                    <div class="faq-question">
+                        <span>Can I upgrade or downgrade my plan anytime?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can upgrade or downgrade your plan anytime from your dashboard. Changes take effect immediately for upgrades, and downgrades apply at the end of your current billing cycle. No contracts or commitments.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="support help customer-service">
+                    <div class="faq-question">
+                        <span>What support options are available?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer community support for free users, email support for paid plans, priority support for Business+ plans, and dedicated account managers for Enterprise customers. Our comprehensive documentation and video tutorials are available to everyone.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="forms not working troubleshooting errors">
+                    <div class="faq-question">
+                        <span>My form isn't working. What should I check?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>First, verify your access key is correct and the form action points to our API. Check that your form uses POST method and includes the required hidden access_key field. If issues persist, check your browser's developer console for error messages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-tags="limits submissions monthly usage">
+                    <div class="faq-question">
+                        <span>What happens if I exceed my monthly submission limit?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll notify you as you approach your limit. Once exceeded, new submissions will be temporarily blocked until you upgrade your plan or your limit resets next month. Your existing data remains safe and accessible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-section">
+                <div class="section-header">
+                    <h2 class="section-title">Still Need Help?</h2>
+                    <p class="section-subtitle">Choose the best way to get in touch with our support team</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-method">
+                        <div class="contact-icon">💬</div>
+                        <h3 class="contact-title">Live Chat</h3>
+                        <p class="contact-description">Get instant help from our support team during business hours</p>
+                        <a href="#" class="btn btn-primary" onclick="openLiveChat()">Start Chat</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon">📧</div>
+                        <h3 class="contact-title">Email Support</h3>
+                        <p class="contact-description">Send us a detailed message and we'll respond within 24 hours</p>
+                        <a href="#contact-form" class="btn btn-primary">Send Email</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon">📚</div>
+                        <h3 class="contact-title">Documentation</h3>
+                        <p class="contact-description">Comprehensive guides, tutorials, and API documentation</p>
+                        <a href="documentation.html" class="btn btn-primary">View Docs</a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div id="contact-form" class="contact-form" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1.5rem; text-align: center;">Send Us a Message</h3>
+                    <form action="https://api.snapitforms.com/dev/submit" method="POST" id="supportForm">
+                        <input type="hidden" name="access_key" value="299216be-3aed-4ee8-aa2e-3d5b4e0489d3">
+                        <input type="hidden" name="subject" value="SnapItForms Support Request">
+
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category" class="form-label">Category</label>
+                            <select id="category" name="category" class="form-input">
+                                <option value="">Select a category</option>
+                                <option value="getting-started">Getting Started</option>
+                                <option value="technical-support">Technical Support</option>
+                                <option value="billing">Billing & Account</option>
+                                <option value="feature-request">Feature Request</option>
+                                <option value="bug-report">Bug Report</option>
+                                <option value="integration-help">Integration Help</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority" class="form-label">Priority</label>
+                            <select id="priority" name="priority" class="form-input">
+                                <option value="low">Low - General question</option>
+                                <option value="medium" selected>Medium - Need help soon</option>
+                                <option value="high">High - Urgent issue</option>
+                                <option value="critical">Critical - Service down</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Please describe your issue or question in detail..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏆 World-Class SnapIT Ecosystem Footer -->
+    <footer class="snapit-ecosystem-footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>SnapIT Forms</h2>
+                    <p class="footer-tagline">AI-powered form builder. No backend required.</p>
+                    <div class="service-status">
+                        <span class="status-dot"></span>
+                        <span>All systems operational</span>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="form-generator.html">Form Builder</a></li>
+                        <li><a href="templates.html">Templates</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>SnapIT Suite</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://snapitqr.com" target="_blank">QR Generator</a></li>
+                        <li><a href="https://snapiturl.com" target="_blank">URL Shortener</a></li>
+                        <li><a href="https://snapitanalytics.com" target="_blank">Analytics</a></li>
+                        <li><a href="https://snapitagent.com" target="_blank">AI Assistant</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="documentation.html">Docs</a></li>
+                        <li><a href="status.html">Status</a></li>
+                        <li><a href="support.html">Help</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 SnapIT Software. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/terrellflautt/snapitforms" class="social-link" target="_blank" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="css/world-class-footer.css">
+
+    <script>
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const categoryCards = document.querySelectorAll('.category-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+
+            // Filter FAQ items
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                const tags = item.dataset.tags?.toLowerCase() || '';
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm) || tags.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter category cards
+            categoryCards.forEach(card => {
+                const title = card.querySelector('.category-title').textContent.toLowerCase();
+                const description = card.querySelector('.category-description').textContent.toLowerCase();
+                const category = card.dataset.category?.toLowerCase() || '';
+
+                if (title.includes(searchTerm) || description.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Quick Links Smooth Scrolling
+        document.querySelectorAll('.quick-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.querySelector(`[data-category="${targetId}"]`);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+
+                    // Highlight the target card
+                    targetElement.style.transform = 'scale(1.02)';
+                    targetElement.style.boxShadow = '0 20px 40px rgba(170, 51, 106, 0.2)';
+
+                    setTimeout(() => {
+                        targetElement.style.transform = '';
+                        targetElement.style.boxShadow = '';
+                    }, 2000);
+                }
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            // Submit the form
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    const successDiv = document.createElement('div');
+                    successDiv.style.cssText = `
+                        background: rgba(5, 150, 105, 0.1);
+                        color: #059669;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        margin-top: 1rem;
+                        text-align: center;
+                        font-weight: 500;
+                    `;
+                    successDiv.textContent = 'Message sent successfully! We\'ll get back to you within 24 hours.';
+
+                    this.appendChild(successDiv);
+                    this.reset();
+
+                    setTimeout(() => {
+                        successDiv.remove();
+                    }, 5000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.style.cssText = `
+                    background: rgba(220, 38, 38, 0.1);
+                    color: #dc2626;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-top: 1rem;
+                    text-align: center;
+                    font-weight: 500;
+                `;
+                errorDiv.textContent = 'Failed to send message. Please try again or contact us directly.';
+
+                this.appendChild(errorDiv);
+
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 5000);
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+        // Live Chat Function (placeholder)
+        function openLiveChat() {
+            // This would integrate with your actual live chat service
+            alert('Live chat would open here. You can integrate with services like Intercom, Zendesk Chat, or Crisp.');
+        }
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.category-card, .faq-item, .contact-method').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 248, 240, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 248, 240, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

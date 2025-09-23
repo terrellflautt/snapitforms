@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Primary Meta Tags -->
+<title>SnapItForms Documentation - Complete Setup Guide & API Reference</title>
+<meta name="title" content="SnapItForms Documentation - Complete Setup Guide & API Reference">
+<meta name="description" content="Complete SnapItForms documentation with step-by-step setup guides, API reference, code examples, troubleshooting tips, and integration tutorials for developers.">
+<meta name="keywords" content="SnapItForms documentation, form API documentation, HTML form setup guide, contact form tutorial, form backend docs, API reference, developer guide">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://snapitforms.com/documentation.html">
+<meta property="og:title" content="SnapItForms Documentation - Complete Setup Guide & API Reference">
+<meta property="og:description" content="Complete SnapItForms documentation with step-by-step setup guides, API reference, code examples, troubleshooting tips, and integration tutorials for developers.">
+<meta property="og:image" content="https://snapitforms.com/images/docs-og.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://snapitforms.com/documentation.html">
+<meta property="twitter:title" content="SnapItForms Documentation - Complete Setup Guide & API Reference">
+<meta property="twitter:description" content="Complete SnapItForms documentation with step-by-step setup guides, API reference, code examples, troubleshooting tips, and integration tutorials for developers.">
+<meta property="twitter:image" content="https://snapitforms.com/images/docs-og.png">
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="author" content="SnapItForms">
+<meta name="category" content="Documentation">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="rating" content="General">
+<link rel="canonical" href="https://snapitforms.com/documentation.html">
+    <link rel="stylesheet" href="css/landingstyles.css">
+    <style>
+        /* Contact Page Specific Styles */
+        :root {
+            --primary-pink: #aa336a;
+            --gradient-primary: linear-gradient(135deg, #aa336a, #ff0077);
+            --dark-text: #2d3748;
+            --gray-text: #6b7280;
+            --light-gray: #f8fafc;
+            --border-gray: rgba(170, 51, 106, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --warm-bg: #fef9f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: var(--warm-bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo h1 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-pink);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--warm-bg) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23aa336a" opacity="0.05"/></svg>') repeat;
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .badge-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0 6rem;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding: 2rem 0;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(170, 51, 106, 0.05);
+            transform: translateX(5px);
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .method-content h3,
+        .method-content h4 {
+            color: var(--dark-text);
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .method-content p {
+            color: var(--gray-text);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .contact-form h4 {
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(170, 51, 106, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Code Preview */
+        .code-preview {
+            background: var(--dark-text);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .code-preview:hover {
+            transform: translateY(-2px);
+        }
+
+        .code-header {
+            background: #1a1a1a;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .code-content code {
+            color: #f8f8f2;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            text-align: center;
+            color: #a0a0a0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-badges {
+                gap: 1rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>SnapItForms</h1>
+            </div>
+            <div class="nav-menu">
+
+                <a href="form-submission.html" class="nav-link">Home</a>
+                <a href="templates.html" class="nav-link">Templates</a>
+                <a href="form-generator.html" class="nav-link">Form Generator</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="documentation.html" class="nav-link">Docs</a>
+                <button class="btn btn-primary" onclick="handleGetStarted()">Get Started</button>
+        </div>
+        <div id="hiddenGoogleSignIn" style="position: absolute; left: -9999px; visibility: hidden;"></div>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Documentation</h1>
+                <p class="hero-subtitle">Everything you need to know about creating forms with SnapItForms. From your first form to advanced customization.</p>
+                <div class="hero-badges">
+                    <div class="badge">
+                        <div class="badge-icon">📋</div>
+                        <span>Visual Form Builder</span>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">📊</div>
+                        <span>Dashboard Management</span>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">⚡</div>
+                        <span>Instant Setup</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="code-title">Quick Start</span>
+                    </div>
+                    <div class="code-content">
+                        <code>1. Sign in with Google<br>2. Choose a template<br>3. Drag & drop fields<br>4. Customize styling<br>5. Deploy your form</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Getting Started</h2>
+                <p>Follow these simple steps to create your first form and start collecting submissions.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>1. Sign In & Access Dashboard</h3>
+                    <p>Start by signing in with your Google account to access the SnapItForms dashboard. Your dashboard is your central hub for managing all your forms and viewing submissions.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">🔐</div>
+                            <div class="method-content">
+                                <h4>Google Sign-In</h4>
+                                <p>One-click authentication with your Google account</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📊</div>
+                            <div class="method-content">
+                                <h4>Dashboard Access</h4>
+                                <p>View all your forms, submissions, and account settings</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">🔑</div>
+                            <div class="method-content">
+                                <h4>Automatic Access Key</h4>
+                                <p>Your unique API key is generated automatically</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h4>Dashboard Navigation</h4>
+                    <div class="form-group">
+                        <label class="form-label">Overview Tab</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            View form submission statistics, recent activity, and account usage metrics.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Forms Tab</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Manage all your created forms, view submissions, and access form settings.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Billing Tab</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Manage your subscription plan, view usage limits, and update payment methods.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Generator Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Using the Form Generator</h2>
+                <p>Our visual form generator makes it easy to create professional forms without any coding knowledge.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h4>Template Selection</h4>
+                    <div class="form-group">
+                        <label class="form-label">Choose Your Starting Point</label>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">📝</div>
+                                <div class="method-content">
+                                    <h4>Blank Form</h4>
+                                    <p>Start from scratch with complete creative control</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">📧</div>
+                                <div class="method-content">
+                                    <h4>Contact Form</h4>
+                                    <p>Pre-built with name, email, and message fields</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">📊</div>
+                                <div class="method-content">
+                                    <h4>Survey Form</h4>
+                                    <p>Perfect for feedback and questionnaires</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">🛒</div>
+                                <div class="method-content">
+                                    <h4>Order Form</h4>
+                                    <p>Collect product orders and customer details</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h3>2. Access Form Generator</h3>
+                    <p>From your dashboard, click on any template card or the "Create Form" button to open the form generator. You can also access it directly from the navigation menu.</p>
+
+                    <div class="code-preview">
+                        <div class="code-header">
+                            <span class="code-title">Form Generator Features</span>
+                        </div>
+                        <div class="code-content">
+                            <code>
+                                ✓ Drag & drop interface<br>
+                                ✓ Real-time preview<br>
+                                ✓ Instant customization<br>
+                                ✓ Mobile responsive design<br>
+                                ✓ One-click deployment
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Building Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Building Your Form</h2>
+                <p>Learn how to use the drag-and-drop interface to create exactly the form you need.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>3. Add Form Elements</h3>
+                    <p>The form generator sidebar contains all the elements you need. Simply drag any element from the sidebar to your form canvas to add it.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📝</div>
+                            <div class="method-content">
+                                <h4>Text Input</h4>
+                                <p>Single-line text fields for names, titles, etc.</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📧</div>
+                            <div class="method-content">
+                                <h4>Email Field</h4>
+                                <p>Automatically validates email addresses</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📄</div>
+                            <div class="method-content">
+                                <h4>Textarea</h4>
+                                <p>Multi-line text areas for messages and comments</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📋</div>
+                            <div class="method-content">
+                                <h4>Dropdown</h4>
+                                <p>Select menus with multiple options</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">🔘</div>
+                            <div class="method-content">
+                                <h4>Radio Buttons</h4>
+                                <p>Single-choice selection from multiple options</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">☑️</div>
+                            <div class="method-content">
+                                <h4>Checkboxes</h4>
+                                <p>Multiple-choice selections and agreements</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h4>Element Customization</h4>
+                    <div class="form-group">
+                        <label class="form-label">Properties Panel</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Click any form element to see its properties in the right sidebar. Customize labels, placeholders, validation rules, and styling options.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Form Settings</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Edit your form title, description, submit button text, and redirect URL in the properties panel when no element is selected.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Real-time Preview</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            See your changes instantly in the form canvas. Your form updates in real-time as you make modifications.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Deploying Your Form</h2>
+                <p>Once your form is ready, deploying it is as simple as copying and pasting code.</p>
+            </div>
+
+            <div class="code-preview">
+                <div class="code-header">
+                    <span class="code-title">Generated HTML Code</span>
+                </div>
+                <div class="code-content">
+                    <code>&lt;form action="https://api.snapitforms.com/dev/submit" method="POST"&gt;<br>
+                        &nbsp;&nbsp;&lt;input type="hidden" name="access_key" value="YOUR_KEY"&gt;<br>
+                        &nbsp;&nbsp;&lt;input type="text" name="name" placeholder="Your Name" required&gt;<br>
+                        &nbsp;&nbsp;&lt;input type="email" name="email" placeholder="Your Email" required&gt;<br>
+                        &nbsp;&nbsp;&lt;textarea name="message" placeholder="Your Message"&gt;&lt;/textarea&gt;<br>
+                        &nbsp;&nbsp;&lt;button type="submit"&gt;Send Message&lt;/button&gt;<br>
+                        &lt;/form&gt;
+                    </code>
+                </div>
+            </div>
+
+            <div class="contact-container" style="margin-top: 3rem;">
+                <div class="contact-info">
+                    <h3>4. Generate & Copy Code</h3>
+                    <p>When you're satisfied with your form design, click the "Generate Code" button. The form generator will create clean, semantic HTML that includes your access key and all form elements.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📋</div>
+                            <div class="method-content">
+                                <h4>Copy HTML Code</h4>
+                                <p>One-click copying of your complete form HTML</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">🔗</div>
+                            <div class="method-content">
+                                <h4>Automatic Integration</h4>
+                                <p>Your access key is automatically included</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📱</div>
+                            <div class="method-content">
+                                <h4>Mobile Responsive</h4>
+                                <p>Generated forms work perfectly on all devices</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h4>Integration Steps</h4>
+                    <div class="form-group">
+                        <label class="form-label">1. Copy Generated Code</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Click "Generate Code" then "Copy HTML" to get your form's HTML code.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">2. Paste into Your Website</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Add the HTML code to any webpage where you want the form to appear.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">3. Start Receiving Submissions</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Your form immediately starts working and sending data to your dashboard.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Features Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Advanced Features</h2>
+                <p>Discover powerful features to enhance your forms and improve your workflow.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h4>Email Notifications</h4>
+                    <div class="form-group">
+                        <label class="form-label">Automatic Notifications</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Receive instant email notifications for every form submission directly to your inbox.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Custom Email Templates</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Personalize notification emails with custom subjects and formatting.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Multiple Recipients</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Send notifications to multiple team members or departments automatically.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Additional Capabilities</h3>
+                    <p>SnapItForms includes powerful features that work automatically without any additional setup required.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📊</div>
+                            <div class="method-content">
+                                <h4>Analytics Dashboard</h4>
+                                <p>Track submission rates, popular forms, and user engagement</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">🛡️</div>
+                            <div class="method-content">
+                                <h4>Spam Protection</h4>
+                                <p>Built-in spam filtering keeps unwanted submissions away</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📱</div>
+                            <div class="method-content">
+                                <h4>Mobile Optimization</h4>
+                                <p>All forms automatically work perfectly on mobile devices</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">⚡</div>
+                            <div class="method-content">
+                                <h4>Instant Processing</h4>
+                                <p>Submissions are processed and stored immediately</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>API Reference</h2>
+                <p>For developers who prefer to work directly with our API endpoints.</p>
+            </div>
+
+            <div class="code-preview">
+                <div class="code-header">
+                    <span class="code-title">Basic API Usage</span>
+                </div>
+                <div class="code-content">
+                    <code>POST https://api.snapitforms.com/dev/submit<br><br>
+                        Content-Type: application/x-www-form-urlencoded<br><br>
+                        access_key=YOUR_ACCESS_KEY<br>
+                        name=John Doe<br>
+                        email=john@example.com<br>
+                        message=Hello World
+                    </code>
+                </div>
+            </div>
+
+            <div class="contact-container" style="margin-top: 3rem;">
+                <div class="contact-info">
+                    <h3>API Endpoints</h3>
+                    <p>SnapItForms provides simple REST API endpoints for form submission and data retrieval.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📤</div>
+                            <div class="method-content">
+                                <h4>Submit Endpoint</h4>
+                                <p>POST /dev/submit - Process form submissions</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📥</div>
+                            <div class="method-content">
+                                <h4>Retrieve Data</h4>
+                                <p>GET /api/submissions - Fetch your submission data</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">🔒</div>
+                            <div class="method-content">
+                                <h4>Secure Access</h4>
+                                <p>All requests require your unique access key</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h4>Response Format</h4>
+                    <div class="form-group">
+                        <label class="form-label">Success Response</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem; font-family: monospace;">
+                            { "success": true, "message": "Form submitted successfully" }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Error Response</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem; font-family: monospace;">
+                            { "success": false, "message": "Invalid access key" }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Need Help?</h2>
+                <p>We're here to help you get the most out of SnapItForms. Reach out anytime!</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get Support</h3>
+                    <p>Our support team is ready to help you with any questions about using SnapItForms, from basic setup to advanced integrations.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📧</div>
+                            <div class="method-content">
+                                <h4>Email Support</h4>
+                                <p>support@snapitforms.com - We typically respond within 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">💬</div>
+                            <div class="method-content">
+                                <h4>Live Chat</h4>
+                                <p>Available Monday-Friday, 9 AM - 6 PM EST</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">📚</div>
+                            <div class="method-content">
+                                <h4>Knowledge Base</h4>
+                                <p>Comprehensive guides and tutorials for all features</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h4>Quick Start Checklist</h4>
+                    <div class="form-group">
+                        <label class="form-label">✓ Sign in with Google</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Create your account and get your automatic access key
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">✓ Choose a template</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Select from contact, survey, order, or blank form templates
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">✓ Customize your form</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Drag elements, edit properties, and preview your form
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">✓ Copy and deploy</label>
+                        <div class="form-input" style="background: #f8f9fa; border: none; padding: 1rem;">
+                            Generate HTML code and add it to your website
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏆 World-Class SnapIT Ecosystem Footer -->
+    <footer class="snapit-ecosystem-footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>SnapIT Forms</h2>
+                    <p class="footer-tagline">AI-powered form builder. No backend required.</p>
+                    <div class="service-status">
+                        <span class="status-dot"></span>
+                        <span>All systems operational</span>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="form-generator.html">Form Builder</a></li>
+                        <li><a href="templates.html">Templates</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>SnapIT Suite</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://snapitqr.com" target="_blank">QR Generator</a></li>
+                        <li><a href="https://snapiturl.com" target="_blank">URL Shortener</a></li>
+                        <li><a href="https://snapitanalytics.com" target="_blank">Analytics</a></li>
+                        <li><a href="https://snapitagent.com" target="_blank">AI Assistant</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="documentation.html">Docs</a></li>
+                        <li><a href="status.html">Status</a></li>
+                        <li><a href="support.html">Help</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 SnapIT Software. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/terrellflautt/snapitforms" class="social-link" target="_blank" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="css/world-class-footer.css">
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add interactive behavior to code previews
+        document.querySelectorAll('.code-preview').forEach(preview => {
+            preview.addEventListener('click', function() {
+                const code = this.querySelector('code');
+                if (code) {
+                    // Select the code text for easy copying
+                    const range = document.createRange();
+                    range.selectNode(code);
+                    window.getSelection().removeAllRanges();
+                    window.getSelection().addRange(range);
+
+                    // Show feedback
+                    const header = this.querySelector('.code-title');
+                    const originalText = header.textContent;
+                    header.textContent = 'Code Selected - Press Ctrl+C to Copy';
+
+                    setTimeout(() => {
+                        header.textContent = originalText;
+                        window.getSelection().removeAllRanges();
+                    }, 2000);
+                }
+            });
+        });
+
+        // Sign in button functionality
+        document.getElementById('signInBtn')?.addEventListener('click', function() {
+            // This would integrate with your Google Sign-In system
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+    <script>
+// Add this JavaScript to your existing scripts
+function handleGetStarted() {
+    // Check if user is already signed in
+    const existingAccessKey = localStorage.getItem('accessKey');
+    if (existingAccessKey) {
+        // User already has an access key, go straight to dashboard
+        window.location.href = `/dashboard.html?key=${existingAccessKey}`;
+        return;
+    }
+
+    // Check if Google Sign-In is available and initialized
+    if (typeof google !== 'undefined' && google.accounts) {
+        try {
+            // Trigger Google One Tap prompt
+            google.accounts.id.prompt((notification) => {
+                console.log('Google prompt notification:', notification);
+
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                    // If prompt doesn't show, render a button and trigger it
+                    renderAndClickGoogleButton();
+                }
+            });
+        } catch (error) {
+            console.error('Error prompting Google sign-in:', error);
+            renderAndClickGoogleButton();
+        }
+    } else {
+        // Google not loaded yet, try again in a moment
+        setTimeout(() => {
+            if (typeof google !== 'undefined') {
+                handleGetStarted();
+            } else {
+                alert('Sign-in service not ready. Please refresh the page and try again.');
+            }
+        }, 1000);
+    }
+}
+
+function renderAndClickGoogleButton() {
+    const container = document.getElementById('hiddenGoogleSignIn');
+    if (container && typeof google !== 'undefined') {
+        // Clear any existing button
+        container.innerHTML = '';
+
+        // Render Google button using your existing callback
+        google.accounts.id.renderButton(container, {
+            theme: "filled_blue",
+            size: "large",
+            text: "signup_with"
+        });
+
+        // Auto-click the button after a short delay
+        setTimeout(() => {
+            const googleBtn = container.querySelector('[role="button"]');
+            if (googleBtn) {
+                googleBtn.click();
+            }
+        }, 100);
+    }
+}
+</script>
+</body>
+</html>

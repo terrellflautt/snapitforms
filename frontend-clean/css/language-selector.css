@@ -1,0 +1,256 @@
+/* Language Selector Styles for SnapIT Forms */
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.language-dropdown {
+    position: relative;
+    z-index: 1000;
+}
+
+.language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.2s ease;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.language-toggle:hover {
+    background: #f8fafc;
+    border-color: #6366f1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.language-toggle:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.language-icon {
+    font-size: 16px;
+}
+
+.language-text {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    color: #9ca3af;
+    transition: transform 0.2s ease;
+}
+
+.language-toggle[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.language-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    background: white;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    min-width: 140px;
+    overflow: hidden;
+}
+
+.language-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.language-option:hover {
+    background: #f8fafc;
+}
+
+.language-option.active {
+    background: #eef2ff;
+    color: #6366f1;
+    font-weight: 500;
+}
+
+.language-option.active::after {
+    content: '✓';
+    position: absolute;
+    right: 12px;
+    color: #6366f1;
+    font-weight: bold;
+}
+
+.language-option .flag {
+    font-size: 16px;
+}
+
+.language-option span:last-child {
+    flex: 1;
+}
+
+/* Language change notification */
+.language-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #10b981;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s ease;
+}
+
+.language-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Navigation integration */
+.nav-language-selector {
+    margin-left: auto;
+}
+
+.navbar .language-selector,
+.header .language-selector {
+    margin-left: 16px;
+}
+
+/* Footer integration */
+.footer-language-selector {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer .language-selector .language-toggle {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer .language-selector .language-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .language-toggle {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .language-icon {
+        font-size: 14px;
+    }
+
+    .language-menu {
+        right: -10px;
+        min-width: 120px;
+    }
+
+    .language-option {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .language-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        text-align: center;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .language-toggle {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f3f4f6;
+    }
+
+    .language-toggle:hover {
+        background: #374151;
+        border-color: #6366f1;
+    }
+
+    .language-menu {
+        background: #1f2937;
+        border-color: #374151;
+    }
+
+    .language-option {
+        color: #f3f4f6;
+    }
+
+    .language-option:hover {
+        background: #374151;
+    }
+
+    .language-option.active {
+        background: #312e81;
+        color: #a5b4fc;
+    }
+}
+
+/* Accessibility improvements */
+.language-toggle:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+.language-option:focus {
+    outline: none;
+    background: #f3f4f6;
+}
+
+/* Animation for smooth transitions */
+.language-selector * {
+    box-sizing: border-box;
+}
+
+.language-dropdown {
+    isolation: isolate;
+}
+
+/* Ensure proper stacking context */
+.language-menu {
+    z-index: 1001;
+}

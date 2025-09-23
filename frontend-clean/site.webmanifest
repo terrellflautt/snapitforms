@@ -1,0 +1,16 @@
+{
+    "name": "SnapIT Forms",
+    "short_name": "SnapItForms",
+    "description": "Professional form builder and submission handler",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#aa336a",
+    "icons": [
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ]
+}

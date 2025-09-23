@@ -1,0 +1,60 @@
+<!-- SnapitForms Professional Enhancement Integration -->
+<!-- Add these script tags before the closing </body> tag in form-generator.html -->
+
+<!-- Advanced Field Types -->
+<script src="advanced-field-types.js"></script>
+
+<!-- Enhanced Drag & Drop with Mobile Touch Support -->
+<script src="enhanced-drag-drop.js"></script>
+
+<!-- Visual Conditional Logic Builder -->
+<script src="conditional-logic.js"></script>
+
+<!-- Main Enhancement Integration -->
+<script src="snapitforms-enhancements.js"></script>
+
+<!-- Success Notification -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Show success notification when enhancements are loaded
+    setTimeout(() => {
+        if (window.snapitFormsEnhancements && window.snapitFormsEnhancements.enhanced) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 16px 20px; border-radius: 8px; z-index: 10000; font-weight: 500; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); animation: slideIn 0.5s ease;">
+                    🚀 SnapitForms Enhanced!
+                    <div style="font-size: 14px; opacity: 0.9; margin-top: 4px;">Professional features activated</div>
+                </div>
+                <style>
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                </style>
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.5s ease reverse';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+    }, 1000);
+});
+</script>
+
+<!-- Optional: Add enhancement toggle for testing -->
+<script>
+// Development helper - remove in production
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    const toggle = document.createElement('div');
+    toggle.innerHTML = `
+        <button onclick="location.reload()"
+                style="position: fixed; bottom: 20px; right: 20px; background: #6366f1; color: white; border: none; padding: 12px; border-radius: 50%; cursor: pointer; z-index: 10000; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);"
+                title="Reload with Enhancements">
+            ⚡
+        </button>
+    `;
+    document.body.appendChild(toggle);
+}
+</script>

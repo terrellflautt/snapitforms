@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Primary Meta Tags -->
+<title>SnapItForms Features - No-Code Form Backend with Analytics & Spam Protection</title>
+<meta name="title" content="SnapItForms Features - No-Code Form Backend with Analytics & Spam Protection">
+<meta name="description" content="Discover powerful SnapItForms features: instant form backend setup, real-time notifications, advanced analytics, spam protection, custom integrations, and team collaboration tools.">
+<meta name="keywords" content="form backend features, HTML form processing, contact form features, form analytics, spam protection, form notifications, no-code form backend, form integrations">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://snapitforms.com/features.html">
+<meta property="og:title" content="SnapItForms Features - No-Code Form Backend with Analytics & Spam Protection">
+<meta property="og:description" content="Discover powerful SnapItForms features: instant form backend setup, real-time notifications, advanced analytics, spam protection, custom integrations, and team collaboration tools.">
+<meta property="og:image" content="https://snapitforms.com/images/features-og.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://snapitforms.com/features.html">
+<meta property="twitter:title" content="SnapItForms Features - No-Code Form Backend with Analytics & Spam Protection">
+<meta property="twitter:description" content="Discover powerful SnapItForms features: instant form backend setup, real-time notifications, advanced analytics, spam protection, custom integrations, and team collaboration tools.">
+<meta property="twitter:image" content="https://snapitforms.com/images/features-twitter.jpg">
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="author" content="SnapItForms">
+<meta name="category" content="Web Services">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="rating" content="General">
+<link rel="canonical" href="https://snapitforms.com/features.html">
+
+<link rel="stylesheet" href="css/landingstyles.css">
+    <style>
+        /* Features Page Specific Styles */
+        :root {
+            --primary-pink: #aa336a;
+            --gradient-primary: linear-gradient(135deg, #aa336a, #ff0077);
+            --dark-text: #2d3748;
+            --gray-text: #6b7280;
+            --light-gray: #f8fafc;
+            --border-gray: rgba(170, 51, 106, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --warm-bg: #fef9f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: var(--warm-bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo h1 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-pink);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--warm-bg) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23aa336a" opacity="0.05"/></svg>') repeat;
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-gray);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-pink);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h4 {
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--gray-text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Advanced Features Section */
+        .advanced-features {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .advanced-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary-pink);
+        }
+
+        .advanced-card h5 {
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .advanced-card p {
+            color: var(--gray-text);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Integration Section */
+        .integrations {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .integration-card {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .integration-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .integration-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .integration-card h6 {
+            color: var(--dark-text);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 4rem 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-pink);
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            text-align: center;
+            color: #a0a0a0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advanced-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .integration-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .integration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>SnapItForms</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="form-generator.html" class="nav-link">Form Generator</a>
+                <a href="templates.html" class="nav-link">Templates</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="documentation.html" class="nav-link">Docs</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <button id="signInBtn" class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">Powerful Features for Modern Forms</h1>
+            <p class="hero-subtitle">Everything you need to create, manage, and analyze your forms. No backend required, no complex setup needed.</p>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core Features</h2>
+                <p>Built for developers, designed for everyone. Create professional forms in minutes, not hours.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h4>Visual Form Builder</h4>
+                    <p>Drag and drop form fields to create beautiful, responsive forms. No coding required, but full customization available.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📧</span>
+                    <h4>Email Notifications</h4>
+                    <p>Get instant email notifications when forms are submitted. Customize templates and send autoresponders to users.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h4>Analytics & Insights</h4>
+                    <p>Track form performance with detailed analytics. See submission rates, completion times, and user behavior patterns.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h4>Secure Data Storage</h4>
+                    <p>Your form data is encrypted and securely stored. GDPR compliant with automatic data retention policies.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h4>Mobile Responsive</h4>
+                    <p>All forms are automatically optimized for mobile devices. Perfect user experience on any screen size.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h4>Lightning Fast</h4>
+                    <p>Optimized for speed with global CDN delivery. Your forms load instantly anywhere in the world.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h4>Smart Validation</h4>
+                    <p>Built-in form validation with custom rules. Prevent spam and ensure data quality automatically.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔗</span>
+                    <h4>Easy Integration</h4>
+                    <p>Embed forms anywhere with a simple code snippet. Works with any website, CMS, or framework.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📋</span>
+                    <h4>Form Templates</h4>
+                    <p>Start with professionally designed templates for contact forms, surveys, registrations, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Features Section -->
+    <section class="advanced-features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Advanced Capabilities</h2>
+                <p>Power features for professional workflows and enterprise needs.</p>
+            </div>
+
+            <div class="advanced-grid">
+                <div class="advanced-card">
+                    <h5>Webhook Integration</h5>
+                    <p>Connect to any external service with real-time webhooks for instant data processing.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>API Access</h5>
+                    <p>Full REST API access for custom integrations and programmatic form management.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>Custom CSS</h5>
+                    <p>Complete styling control with custom CSS for pixel-perfect form designs.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>Multi-Step Forms</h5>
+                    <p>Create complex multi-page forms with progress indicators and conditional logic.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>File Uploads</h5>
+                    <p>Secure file upload handling with virus scanning and storage management.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>Team Collaboration</h5>
+                    <p>Share forms and data with team members using role-based access controls.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>White Label</h5>
+                    <p>Remove all SnapItForms branding for a completely custom experience.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>Data Export</h5>
+                    <p>Export your form data in CSV, JSON, or Excel formats for further analysis.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>Custom Domains</h5>
+                    <p>Host forms on your own domain for seamless brand integration.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>A/B Testing</h5>
+                    <p>Test different form versions to optimize conversion rates and user experience.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>CAPTCHA Protection</h5>
+                    <p>Built-in spam protection with Google reCAPTCHA and custom anti-bot measures.</p>
+                </div>
+
+                <div class="advanced-card">
+                    <h5>Conditional Logic</h5>
+                    <p>Show or hide fields based on user responses for personalized form experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section class="integrations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Integrations</h2>
+                <p>Connect with your favorite tools and services seamlessly.</p>
+            </div>
+
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <span class="integration-icon">📧</span>
+                    <h6>Email Services</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">📊</span>
+                    <h6>Google Sheets</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">💬</span>
+                    <h6>Slack</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">🔗</span>
+                    <h6>Zapier</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">📈</span>
+                    <h6>Analytics</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">💳</span>
+                    <h6>Payment Gateways</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">👥</span>
+                    <h6>CRM Systems</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">📝</span>
+                    <h6>Notion</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">🎯</span>
+                    <h6>Marketing Tools</h6>
+                </div>
+
+                <div class="integration-card">
+                    <span class="integration-icon">🔒</span>
+                    <h6>Authentication</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Build Better Forms?</h2>
+            <p>Join thousands of developers and businesses who trust SnapItForms for their form handling needs.</p>
+            <a href="/" class="btn btn-secondary">Get Started Free</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>SnapItForms</h3>
+                <p>The easiest way to handle form submissions without the backend complexity. Build forms that work, without all the work.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="form-generator.html">Form Generator</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="templates.html">Templates</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="support.html">Help Center</a></li>
+                    <li><a href="status.html">Status Page</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SnapItForms. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Handle sign in button
+        document.getElementById('signInBtn').addEventListener('click', function() {
+            window.location.href = '/';
+        });
+
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const accessKey = urlParams.get('key') || localStorage.getItem('accessKey');
+
+            // Update navigation links to include access key when needed
+            if (accessKey) {
+                const formGeneratorLinks = document.querySelectorAll('a[href="form-generator.html"]');
+                formGeneratorLinks.forEach(link => {
+                    link.href = `form-generator.html?key=${accessKey}`;
+                });
+
+                const dashboardLinks = document.querySelectorAll('a[href="dashboard.html"]');
+                dashboardLinks.forEach(link => {
+                    link.href = `dashboard.html?key=${accessKey}`;
+                });
+
+                // Update sign in button to dashboard
+                const signInBtn = document.getElementById('signInBtn');
+                if (signInBtn) {
+                    signInBtn.textContent = 'Dashboard';
+                    signInBtn.onclick = function() {
+                        window.location.href = `dashboard.html?key=${accessKey}`;
+                    };
+                }
+            }
+        });
+    </script>
+</body>
+</html>

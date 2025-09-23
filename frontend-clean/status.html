@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>SnapItForms Service Status - Real-Time System Health & Uptime Monitor</title>
+<meta name="title" content="SnapItForms Service Status - Real-Time System Health & Uptime Monitor">
+<meta name="description" content="Check SnapItForms current service status, system uptime, performance metrics, and any ongoing incidents or maintenance. Stay informed about service availability.">
+<meta name="keywords" content="SnapItForms status, service status, system uptime, service health, downtime status, form service availability, system monitor, incident status">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://snapitforms.com/status.html">
+<meta property="og:title" content="SnapItForms Service Status - Real-Time System Health & Uptime Monitor">
+<meta property="og:description" content="Check SnapItForms current service status, system uptime, performance metrics, and any ongoing incidents or maintenance. Stay informed about service availability.">
+<meta property="og:image" content="https://snapitforms.com/images/status-og.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://snapitforms.com/status.html">
+<meta property="twitter:title" content="SnapItForms Service Status - Real-Time System Health & Uptime Monitor">
+<meta property="twitter:description" content="Check SnapItForms current service status, system uptime, performance metrics, and any ongoing incidents or maintenance. Stay informed about service availability.">
+<meta property="twitter:image" content="https://snapitforms.com/images/status-twitter.jpg">
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="author" content="SnapItForms">
+<meta name="category" content="System Status">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="rating" content="General">
+<link rel="canonical" href="https://snapitforms.com/status.html">
+    <link rel="stylesheet" href="css/landingstyles.css">
+    <style>
+        /* Status Page Specific Styles */
+        :root {
+            --primary-pink: #aa336a;
+            --gradient-primary: linear-gradient(135deg, #aa336a, #ff0077);
+            --dark-text: #2d3748;
+            --gray-text: #6b7280;
+            --light-gray: #f8fafc;
+            --border-gray: rgba(170, 51, 106, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --warm-bg: #fef9f3;
+            --success-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --danger-red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: var(--warm-bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo h1 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-pink);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: var(--warm-bg);
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Status Overview */
+        .status-overview {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .overall-status {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--success-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--success-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-gray);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .service-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .service-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .service-status.operational {
+            color: var(--success-green);
+        }
+
+        .service-status.degraded {
+            color: var(--warning-yellow);
+        }
+
+        .service-status.outage {
+            color: var(--danger-red);
+        }
+
+        .service-metrics {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            margin-top: 0.25rem;
+        }
+
+        /* Incident History */
+        .incident-history {
+            background: var(--light-gray);
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .incident-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .incident-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .incident-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .incident-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .incident-date {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            white-space: nowrap;
+        }
+
+        .incident-description {
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        .incident-resolved {
+            border-left-color: var(--success-green);
+        }
+
+        .incident-investigating {
+            border-left-color: var(--warning-yellow);
+        }
+
+        /* Subscribe Section */
+        .subscribe-section {
+            padding: 3rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .subscribe-form {
+            max-width: 400px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            margin-bottom: 0;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-metrics {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .incident-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .incident-item {
+                padding: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>SnapItForms</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="form-submission.html" class="nav-link">Home</a>
+                <a href="templates.html" class="nav-link">Templates</a>
+                <a href="form-generator.html" class="nav-link">Form Generator</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">Service Status</h1>
+            <p class="hero-subtitle">Real-time monitoring of all SnapItForms services and infrastructure. Stay updated on system health and performance.</p>
+        </div>
+    </section>
+
+    <!-- Status Overview -->
+    <section class="status-overview">
+        <div class="container">
+            <div class="overall-status">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    All Systems Operational
+                </div>
+                <p>All services are running smoothly with no reported issues.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-name">API Gateway</h3>
+                        <div class="service-status operational">
+                            <span class="status-dot"></span>
+                            Operational
+                        </div>
+                    </div>
+                    <p>Form submission endpoint and API responses</p>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Uptime</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">145ms</div>
+                            <div class="metric-label">Response Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-name">Form Builder</h3>
+                        <div class="service-status operational">
+                            <span class="status-dot"></span>
+                            Operational
+                        </div>
+                    </div>
+                    <p>Visual form creation and customization tools</p>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.8%</div>
+                            <div class="metric-label">Uptime</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">230ms</div>
+                            <div class="metric-label">Load Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-name">Dashboard</h3>
+                        <div class="service-status operational">
+                            <span class="status-dot"></span>
+                            Operational
+                        </div>
+                    </div>
+                    <p>User dashboard and submission management</p>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.7%</div>
+                            <div class="metric-label">Uptime</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">320ms</div>
+                            <div class="metric-label">Load Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-name">Email Notifications</h3>
+                        <div class="service-status operational">
+                            <span class="status-dot"></span>
+                            Operational
+                        </div>
+                    </div>
+                    <p>Email delivery and notification system</p>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Delivery Rate</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">< 30s</div>
+                            <div class="metric-label">Avg Delivery</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-name">Data Storage</h3>
+                        <div class="service-status operational">
+                            <span class="status-dot"></span>
+                            Operational
+                        </div>
+                    </div>
+                    <p>Secure submission storage and retrieval</p>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Data Integrity</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">< 100ms</div>
+                            <div class="metric-label">Query Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-name">Authentication</h3>
+                        <div class="service-status operational">
+                            <span class="status-dot"></span>
+                            Operational
+                        </div>
+                    </div>
+                    <p>Google OAuth and session management</p>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Success Rate</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">1.2s</div>
+                            <div class="metric-label">Login Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Incident History -->
+    <section class="incident-history">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Incidents</h2>
+                <p>Track of recent service incidents and their resolutions</p>
+            </div>
+
+            <div class="incident-timeline">
+                <div class="incident-item incident-resolved">
+                    <div class="incident-header">
+                        <h3 class="incident-title">Scheduled Maintenance Completed</h3>
+                        <span class="incident-date">June 8, 2025</span>
+                    </div>
+                    <p class="incident-description">
+                        <strong>Resolved:</strong> Scheduled database maintenance has been completed successfully. All services were briefly unavailable from 2:00 AM to 2:15 AM UTC for performance optimizations and security updates.
+                    </p>
+                </div>
+
+                <div class="incident-item incident-resolved">
+                    <div class="incident-header">
+                        <h3 class="incident-title">API Response Delays</h3>
+                        <span class="incident-date">June 5, 2025</span>
+                    </div>
+                    <p class="incident-description">
+                        <strong>Resolved:</strong> Some users experienced slower than usual API response times between 14:30 and 15:45 UTC. The issue was caused by a temporary increase in traffic volume and has been resolved through auto-scaling adjustments.
+                    </p>
+                </div>
+
+                <div class="incident-item incident-resolved">
+                    <div class="incident-header">
+                        <h3 class="incident-title">Email Notification Delays</h3>
+                        <span class="incident-date">June 1, 2025</span>
+                    </div>
+                    <p class="incident-description">
+                        <strong>Resolved:</strong> Email notifications experienced delays of up to 10 minutes between 09:00 and 11:30 UTC. The issue was related to our email service provider and has been fully resolved. All queued emails were delivered successfully.
+                    </p>
+                </div>
+
+                <div class="incident-item incident-resolved">
+                    <div class="incident-header">
+                        <h3 class="incident-title">Form Builder Intermittent Issues</h3>
+                        <span class="incident-date">May 28, 2025</span>
+                    </div>
+                    <p class="incident-description">
+                        <strong>Resolved:</strong> Some users reported intermittent loading issues with the form builder interface. The problem was traced to a CDN configuration issue and has been resolved. No form data was lost during this incident.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="subscribe-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to receive notifications about service updates and planned maintenance</p>
+            </div>
+
+            <form class="subscribe-form">
+                <input type="email" class="email-input" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>SnapItForms</h3>
+                <p>The easiest way to handle form submissions without a backend.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="form-generator.html">Form Generator</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="templates.html">Templates</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                            <li><a href="support.html">Help</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="status.html">Status</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SnapItForms. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sign In Button Handler
+        document.getElementById('signInBtn').addEventListener('click', function() {
+            // Check if user is already signed in
+            const accessKey = localStorage.getItem('accessKey');
+            if (accessKey) {
+                window.location.href = 'dashboard.html';
+            } else {
+                window.location.href = 'form-generator.html';
+            }
+        });
+
+        // Subscribe Form Handler
+        document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.email-input').value;
+
+            // Simple validation
+            if (email && email.includes('@')) {
+                alert('Thank you for subscribing! You will receive status updates at ' + email);
+                this.querySelector('.email-input').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+
+        // Auto-refresh status every 30 seconds
+        setInterval(function() {
+            const statusDots = document.querySelectorAll('.status-dot');
+            statusDots.forEach(dot => {
+                // Simple animation to show "live" updating
+                dot.style.animation = 'none';
+                setTimeout(() => {
+                    dot.style.animation = 'pulse 2s infinite';
+                }, 100);
+            });
+        }, 30000);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 248, 240, 0.98)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 248, 240, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

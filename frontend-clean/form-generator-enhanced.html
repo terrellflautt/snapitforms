@@ -2729,5 +2729,52 @@ ${this.fields.map(field => {
     <script src="js/translations.js"></script>
     <script src="js/language-selector.js"></script>
     <script src="js/performance-optimizer.js"></script>
+
+    <!-- SnapitForms Professional Enhancement Integration -->
+    <!-- Advanced Field Types -->
+    <script src="js/advanced-field-types.js"></script>
+
+    <!-- Enhanced Drag & Drop with Mobile Touch Support -->
+    <script src="js/enhanced-drag-drop.js"></script>
+
+    <!-- Visual Conditional Logic Builder -->
+    <script src="js/conditional-logic.js"></script>
+
+    <!-- Main Enhancement Integration -->
+    <script src="js/snapitforms-enhancements.js"></script>
+
+    <!-- Expanded Template Library (100+ Templates) -->
+    <script src="js/expanded-templates.js"></script>
+    <script src="js/template-expansion-integration.js"></script>
+
+    <!-- Success Notification -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Show success notification when enhancements are loaded
+        setTimeout(() => {
+            if (window.snapitFormsEnhancements && window.snapitFormsEnhancements.enhanced) {
+                const notification = document.createElement('div');
+                notification.innerHTML = `
+                    <div style="position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 16px 20px; border-radius: 8px; z-index: 10000; font-weight: 500; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); animation: slideIn 0.5s ease;">
+                        🚀 SnapitForms Enhanced!
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 4px;">Professional features activated</div>
+                    </div>
+                    <style>
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                    </style>
+                `;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.animation = 'slideIn 0.5s ease reverse';
+                    setTimeout(() => notification.remove(), 500);
+                }, 3000);
+            }
+        }, 1000);
+    });
+    </script>
 </body>
 </html>
