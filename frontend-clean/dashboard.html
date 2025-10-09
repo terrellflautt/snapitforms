@@ -29,41 +29,32 @@
 <meta name="author" content="SnapItForms">
 <meta name="category" content="Web Application">
 <link rel="canonical" href="https://snapitforms.com/dashboard.html">
-
-    <!-- Content Security Policy for Dashboard -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://js.stripe.com https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://accounts.google.com; script-src-elem 'self' 'unsafe-inline' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://js.stripe.com https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://accounts.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com https://unpkg.com https://accounts.google.com; connect-src 'self' https://api.snapitforms.com https://dnxslxuth3.execute-api.us-east-1.amazonaws.com https://6cbwon5xd0.execute-api.us-east-1.amazonaws.com https://*.google.com https://*.googleapis.com https://js.stripe.com https://www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google.com https://*.gstatic.com; frame-src 'self' https://*.google.com https://js.stripe.com;">
-
-    <!-- Fix Cross-Origin-Opener-Policy for Google OAuth -->
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
-
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://accounts.google.com https://js.stripe.com https://www.googletagmanager.com https://cdn.tailwindcss.com; 
+        style-src 'self' 'unsafe-inline' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://fonts.googleapis.com https://cdn.tailwindcss.com; 
+        font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:; 
+        img-src 'self' data: https: blob: https://*.google.com https://*.googleapis.com; 
+        connect-src 'self' https://api.snapitforms.com https://dnxslxuth3.execute-api.us-east-1.amazonaws.com https://api.snapitanalytics.com https://*.google.com https://*.googleapis.com https://fonts.googleapis.com https://accounts.google.com https://www.google-analytics.com https://js.stripe.com; 
+        frame-src 'self' https://*.google.com https://accounts.google.com https://js.stripe.com; 
+        object-src 'none'; 
+        base-uri 'self';
+        worker-src 'self' blob:;
+        child-src 'self' https://*.google.com https://js.stripe.com;
+    ">
+    
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://api.snapitforms.com">
     <link rel="preconnect" href="https://js.stripe.com">
-    <link rel="preconnect" href="https://accounts.google.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
+    
     <!-- External CSS Files -->
     <link rel="stylesheet" href="css/pricing-styles.css">
     <link rel="stylesheet" href="css/forms-billing-buttons.css">
     <link rel="stylesheet" href="css/forms-dashboard-styles.css">
-    <link rel="stylesheet" href="css/language-selector.css">
-
-    <!-- Google Identity Services -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-    <!-- Stripe Integration -->
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <!-- SnapIT Authentication System -->
-    <script src="/js/auth-fix-universal.js"></script>
-    <script src="/js/auth-interceptor.js"></script>
-
-    <!-- SnapIT Forms Agent -->
-    <!-- Removed useless AI assistant script -->
 </head>
 <body>
     <!-- Loading Overlay -->
@@ -80,11 +71,10 @@
         <header class="dashboard-header">
             <div class="header-content">
                 <div class="brand">
-                    <h1 data-i18n="dashboard.title">SnapItForms Dashboard</h1>
+                    <h1>SnapItForms Dashboard</h1>
                     <p>Manage your forms and submissions</p>
                 </div>
                 <div class="header-actions">
-                    <div id="language-selector-container"></div>
                     <button id="templatesBtn" class="btn btn-outline" onclick="openTemplateGallery()" aria-label="Browse templates">
                         <span class="icon">🎨</span>
                         Templates
@@ -147,7 +137,7 @@
             <!-- Usage Alert -->
             <div id="usageAlert" class="usage-alert" style="display: none;" role="alert">
                 <div class="alert-content">
-                    <strong>Usage Warning:</strong>
+                    <strong>Usage Warning:</strong> 
                     <span id="alertMessage"></span>
                 </div>
                 <button class="btn btn-small btn-primary" onclick="switchTab('billing')">Upgrade Now</button>
@@ -155,7 +145,7 @@
 
             <!-- Overview Tab -->
             <div id="overview-tab" class="tab-content active" role="tabpanel">
-
+              
 
                 <!-- Stats Cards -->
                 <section class="dashboard-stats" aria-labelledby="stats-title">
@@ -196,13 +186,13 @@
                     </div>
                 </section>
 
-
+             
 
                 <!-- Usage Tracking -->
                 <section class="usage-section" aria-labelledby="usage-title">
                     <h2 id="usage-title">Usage Tracking</h2>
                     <p>Your form submissions are tracked automatically with your access key.</p>
-
+                    
                     <div class="usage-visual">
                         <div class="usage-bar-container">
                             <div class="usage-bar">
@@ -254,7 +244,7 @@
                 <!-- Code Examples -->
                 <section class="code-examples" aria-labelledby="code-examples-title">
                     <h2 id="code-examples-title">Integration Examples</h2>
-
+                    
                     <div class="code-tabs">
                         <button class="code-tab active" onclick="showCodeTab('html')" aria-controls="html-code">HTML Form</button>
                         <button class="code-tab" onclick="showCodeTab('ajax')" aria-controls="ajax-code">JavaScript/AJAX</button>
@@ -349,7 +339,7 @@
                             </button>
                         </div>
                     </div>
-
+                    
                     <!-- Current Plan Status -->
                     <div class="current-plan-card">
                         <div class="plan-header">
@@ -363,7 +353,7 @@
                                 <small>/month</small>
                             </div>
                         </div>
-
+                        
                         <div class="usage-progress">
                             <div class="progress-header">
                                 <span>Usage this month</span>
@@ -406,12 +396,12 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <!-- Pricing Plans Container - populated by JavaScript -->
                     <div class="pricing-section">
                         <h3>All Available Plans</h3>
                         <p>Choose the plan that best fits your needs. Upgrade or downgrade anytime.</p>
-
+                        
                         <div class="pricing-grid" id="pricingGrid">
                             <!-- Plans will be dynamically populated by dashboard.js -->
                         </div>
@@ -439,9 +429,9 @@
                                     <span class="icon">📧</span>
                                     Notification Email
                                 </label>
-                                <input type="email"
-                                       id="notificationEmail"
-                                       name="notificationEmail"
+                                <input type="email" 
+                                       id="notificationEmail" 
+                                       name="notificationEmail" 
                                        class="setting-input"
                                        placeholder="email@example.com"
                                        aria-describedby="notificationEmailHelp">
@@ -455,9 +445,9 @@
                                     <span class="icon">🔗</span>
                                     Redirect URL (Optional)
                                 </label>
-                                <input type="url"
-                                       id="redirectURL"
-                                       name="redirectURL"
+                                <input type="url" 
+                                       id="redirectURL" 
+                                       name="redirectURL" 
                                        class="setting-input"
                                        placeholder="https://example.com/thank-you"
                                        aria-describedby="redirectURLHelp">
@@ -471,9 +461,9 @@
                                     <span class="icon">📝</span>
                                     Email Subject
                                 </label>
-                                <input type="text"
-                                       id="emailSubject"
-                                       name="emailSubject"
+                                <input type="text" 
+                                       id="emailSubject" 
+                                       name="emailSubject" 
                                        class="setting-input"
                                        placeholder="New form submission"
                                        aria-describedby="emailSubjectHelp">
@@ -528,32 +518,32 @@
     </div>
 <script>function openFormGenerator() {
     const accessKey = localStorage.getItem('accessKey');
-
+    
     if (!accessKey) {
         // Show notification if no access key
         alert('Please sign in first to use the form generator!');
         return;
     }
-
+    
     // Show loading notification (optional)
     console.log('Opening form generator...');
-
+    
     // Redirect to form generator with access key
     window.location.href = `/form-generator.html?key=${accessKey}`;
 }
 function openTemplateGallery() {
     const accessKey = localStorage.getItem('accessKey') ||
                      new URLSearchParams(window.location.search).get('key');
-
+    
     if (!accessKey) {
         // Show notification if no access key
         alert('Please sign in first to browse templates!');
         return;
     }
-
+    
     // Show loading notification (optional)
     console.log('Opening template gallery...');
-
+    
     // Redirect to templates page with access key
     window.location.href = `/templates.html?key=${accessKey}`;
 }
@@ -565,7 +555,7 @@ window.openTemplateGallery = openTemplateGallery;
     <script>
         // Updated dashboard.js with correct API URL - Inline to ensure it works
         const API_BASE_URL = 'https://api.snapitforms.com';
-
+        
         let currentUser = null;
         let availableTiers = {};
         let retryAttempts = 0;
@@ -573,9 +563,9 @@ window.openTemplateGallery = openTemplateGallery;
 
         // Complete 9-tier pricing structure
         const DEFAULT_TIERS = {
-            free: {
-                limit: 500,
-                price: 0,
+            free: { 
+                limit: 500, 
+                price: 0, 
                 name: 'Free',
                 description: 'Perfect for getting started',
                 features: [
@@ -586,9 +576,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'SnapItForms branding'
                 ]
             },
-            starter: {
-                limit: 1000,
-                price: 2.99,
+            starter: { 
+                limit: 1000, 
+                price: 2.99, 
                 name: 'Starter',
                 description: 'Great for personal projects',
                 features: [
@@ -599,9 +589,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Email support'
                 ]
             },
-            basic: {
-                limit: 2500,
-                price: 4.99,
+            basic: { 
+                limit: 2500, 
+                price: 4.99, 
                 name: 'Basic',
                 description: 'Perfect for small businesses',
                 features: [
@@ -612,9 +602,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Form validation'
                 ]
             },
-            premium: {
-                limit: 5000,
-                price: 9.99,
+            premium: { 
+                limit: 5000, 
+                price: 9.99, 
                 name: 'Premium',
                 description: 'Ideal for growing businesses',
                 featured: true,
@@ -626,9 +616,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Custom email templates'
                 ]
             },
-            pro: {
-                limit: 25000,
-                price: 14.99,
+            pro: { 
+                limit: 25000, 
+                price: 14.99, 
                 name: 'Pro',
                 description: 'For established businesses',
                 features: [
@@ -639,9 +629,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Team collaboration (3 users)'
                 ]
             },
-            business: {
-                limit: 75000,
-                price: 29.99,
+            business: { 
+                limit: 75000, 
+                price: 29.99, 
                 name: 'Business',
                 description: 'For large organizations',
                 features: [
@@ -652,9 +642,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Advanced integrations'
                 ]
             },
-            enterprise: {
-                limit: 300000,
-                price: 59.99,
+            enterprise: { 
+                limit: 300000, 
+                price: 59.99, 
                 name: 'Enterprise',
                 description: 'For enterprise scale',
                 features: [
@@ -666,9 +656,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Dedicated account manager'
                 ]
             },
-            scale: {
-                limit: 1000000,
-                price: 99.99,
+            scale: { 
+                limit: 1000000, 
+                price: 99.99, 
                 name: 'Scale',
                 description: 'High-volume operations',
                 features: [
@@ -680,9 +670,9 @@ window.openTemplateGallery = openTemplateGallery;
                     'Performance monitoring'
                 ]
             },
-            unlimited: {
-                limit: 2500000,
-                price: 199.99,
+            unlimited: { 
+                limit: 2500000, 
+                price: 199.99, 
                 name: 'Unlimited',
                 description: 'Maximum capacity',
                 features: [
@@ -718,7 +708,7 @@ window.openTemplateGallery = openTemplateGallery;
             // Check for success/cancel parameters
             const success = urlParams.get('success');
             const canceled = urlParams.get('canceled');
-
+            
             if (success === 'true') {
                 showNotification('🎉 Payment successful! Your subscription has been activated.', 'success');
             } else if (canceled === 'true') {
@@ -728,7 +718,7 @@ window.openTemplateGallery = openTemplateGallery;
             updateAccessKeyDisplay(accessKey);
             updateCodeSnippets(accessKey);
             setupEventListeners();
-
+            
             await initializeDashboard(accessKey);
         });
 
@@ -736,31 +726,38 @@ window.openTemplateGallery = openTemplateGallery;
             try {
                 setLoadingState(true);
                 hideError();
-
+                
                 // Test API connectivity first
                 console.log('Testing API connectivity...');
-
+                
                 // Load data with timeout
                 await Promise.race([
                     Promise.all([
                         loadDashboardData(accessKey),
                         loadBillingInfo(accessKey)
                     ]),
-                    new Promise((_, reject) =>
+                    new Promise((_, reject) => 
                         setTimeout(() => reject(new Error('Request timeout')), 15000)
                     )
                 ]);
-
+                
                 updateSimplifiedUsageDisplay();
                 setLoadingState(false);
-
+                
             } catch (error) {
                 console.error('Dashboard initialization error:', error);
                 setLoadingState(false);
-
-                console.warn('API calls failed, but that\'s OK - showing dashboard with defaults');
-                setDefaultValues(accessKey);
-                setLoadingState(false);
+                
+                if (retryAttempts < maxRetries) {
+                    showError(`Loading failed. Attempt ${retryAttempts + 1} of ${maxRetries + 1}. Retrying...`);
+                    setTimeout(() => {
+                        retryAttempts++;
+                        initializeDashboard(accessKey);
+                    }, 2000);
+                } else {
+                    showError("Unable to load dashboard data. Please check your connection and try refreshing the page.");
+                    setDefaultValues(accessKey);
+                }
             }
         }
 
@@ -774,20 +771,16 @@ window.openTemplateGallery = openTemplateGallery;
         function showError(message, redirect = false) {
             const errorDisplay = document.getElementById('errorDisplay');
             const errorMessage = document.getElementById('errorMessage');
-
+            
             if (errorDisplay && errorMessage) {
                 errorMessage.textContent = message;
                 errorDisplay.style.display = 'block';
             }
-
+            
             if (redirect) {
-                console.log('🚨 REDIRECT TRIGGERED - Will redirect in 30 seconds to allow error copying');
-                console.log('🚨 Error message:', message);
-                alert('REDIRECT WARNING: ' + message + ' - Will redirect in 30 seconds. Check console for errors.');
                 setTimeout(() => {
-                    console.log('🚨 REDIRECTING NOW to landing page');
                     window.location.href = '/';
-                }, 30000); // Increased from 3 seconds to 30 seconds
+                }, 3000);
             }
         }
 
@@ -813,7 +806,7 @@ window.openTemplateGallery = openTemplateGallery;
                 transform: translateX(100%);
                 transition: transform 0.3s ease;
             `;
-
+            
             if (type === 'success') {
                 notification.style.background = '#10b981';
             } else if (type === 'error') {
@@ -821,15 +814,15 @@ window.openTemplateGallery = openTemplateGallery;
             } else {
                 notification.style.background = '#3b82f6';
             }
-
+            
             notification.textContent = message;
             document.body.appendChild(notification);
-
+            
             // Animate in
             setTimeout(() => {
                 notification.style.transform = 'translateX(0)';
             }, 100);
-
+            
             // Auto hide
             setTimeout(() => {
                 notification.style.transform = 'translateX(100%)';
@@ -847,20 +840,15 @@ window.openTemplateGallery = openTemplateGallery;
             document.getElementById('totalSubmissions').textContent = '0';
             document.getElementById('monthlyUsage').textContent = '0';
             document.getElementById('remainingSubmissions').textContent = '500';
-
+            
             // Set default user data
             currentUser = { tier: 'free', usageLimit: 500, usageCount: 0 };
             availableTiers = DEFAULT_TIERS;
-
-            // Show the actual access key
-            updateAccessKeyDisplay(accessKey);
+            
             updateSimplifiedUsageDisplay();
             updateCurrentPlanDisplay();
             updateCodeSnippets(accessKey);
             generatePricingCards();
-
-            // Show success message
-            console.log('✅ Dashboard loaded successfully with access key:', accessKey);
         }
 
         function switchTab(tabName) {
@@ -868,18 +856,18 @@ window.openTemplateGallery = openTemplateGallery;
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
-
+            
             // Remove active class from all nav tabs
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-
+            
             // Show selected tab
             const selectedTab = document.getElementById(`${tabName}-tab`);
             if (selectedTab) {
                 selectedTab.classList.add('active');
             }
-
+            
             // Add active class to clicked nav tab
             if (event && event.target) {
                 event.target.classList.add('active');
@@ -958,7 +946,7 @@ export default function ContactForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('submitting');
-
+        
         try {
             const response = await fetch('${API_BASE_URL}/submit', {
                 method: 'POST',
@@ -968,9 +956,9 @@ export default function ContactForm() {
                     ...formData
                 })
             });
-
+            
             const result = await response.json();
-
+            
             if (result.success) {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
@@ -1017,7 +1005,7 @@ export default function ContactForm() {
             if (codeEl) {
                 codeEl.textContent = htmlSnippet;
             }
-
+            
             const ajaxCodeEl = document.getElementById('ajaxCodeSnippet');
             if (ajaxCodeEl) {
                 ajaxCodeEl.textContent = ajaxSnippet;
@@ -1031,31 +1019,25 @@ export default function ContactForm() {
 
         async function loadDashboardData(accessKey) {
             console.log('Loading dashboard data from:', `${API_BASE_URL}/dashboard`);
-
-            // Get authentication headers from unified auth system
-            const authToken = window.snapitAuth ? window.snapitAuth.getAuthToken() : null;
-            const authHeaders = authToken ? { 'Authorization': `Bearer ${authToken}` } : {};
-
+            
             try {
-                const statsResponse = await fetch(`${API_BASE_URL}/dashboard`, {
+                const statsResponse = await fetch(`${API_BASE_URL}/dashboard?access_key=${encodeURIComponent(accessKey)}`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-Access-Key': accessKey // Send access key as header instead of query param
-                    },
-                    credentials: 'omit' // Don't send credentials to avoid CORS wildcard issue
+                        'Content-Type': 'application/json'
+                    }
                 });
-
+                
                 if (!statsResponse.ok) {
                     throw new Error(`Dashboard API error: ${statsResponse.status} ${statsResponse.statusText}`);
                 }
-
+                
                 const statsData = await statsResponse.json();
-
+                
                 document.getElementById('totalForms').textContent = statsData.totalForms || '1';
                 document.getElementById('totalSubmissions').textContent = statsData.totalSubmissions || '0';
-
+                
             } catch (error) {
                 console.warn('Dashboard stats failed, using defaults:', error);
                 document.getElementById('totalForms').textContent = '1';
@@ -1064,16 +1046,14 @@ export default function ContactForm() {
 
             // Load submissions
             try {
-                const submissionsResponse = await fetch(`${API_BASE_URL}/submissions`, {
+                const submissionsResponse = await fetch(`${API_BASE_URL}/form/${encodeURIComponent(accessKey)}/submissions`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-Access-Key': accessKey
-                    },
-                    credentials: 'omit' // Don't send credentials to avoid CORS wildcard issue
+                        'Content-Type': 'application/json'
+                    }
                 });
-
+                
                 if (submissionsResponse.ok) {
                     const submissionsData = await submissionsResponse.json();
                     populateSubmissionsTable(submissionsData.items || []);
@@ -1081,7 +1061,7 @@ export default function ContactForm() {
                     console.warn('Submissions API failed:', submissionsResponse.status);
                     populateSubmissionsTable([]);
                 }
-
+                
             } catch (error) {
                 console.warn('Submissions loading failed:', error);
                 populateSubmissionsTable([]);
@@ -1090,36 +1070,30 @@ export default function ContactForm() {
 
         async function loadBillingInfo(accessKey) {
             console.log('Loading billing info from:', `${API_BASE_URL}/billing`);
-
-            // Get authentication headers from unified auth system
-            const authToken = window.snapitAuth ? window.snapitAuth.getAuthToken() : null;
-            const authHeaders = authToken ? { 'Authorization': `Bearer ${authToken}` } : {};
-
+            
             try {
-                const response = await fetch(`${API_BASE_URL}/billing`, {
+                const response = await fetch(`${API_BASE_URL}/billing?access_key=${encodeURIComponent(accessKey)}`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-Access-Key': accessKey
-                    },
-                    credentials: 'omit' // Don't send credentials to avoid CORS wildcard issue
+                        'Content-Type': 'application/json'
+                    }
                 });
-
+                
                 if (!response.ok) {
                     throw new Error(`Billing API error: ${response.status} ${response.statusText}`);
                 }
-
+                
                 const data = await response.json();
-
+                
                 currentUser = data.subscription || { tier: 'free', usageLimit: 500, usageCount: 0 };
                 availableTiers = data.availableTiers || DEFAULT_TIERS;
-
+                
                 updateCurrentPlanDisplay();
                 updateOverviewStats();
                 generatePricingCards();
                 checkUsageAlerts();
-
+                
             } catch (error) {
                 console.warn('Billing info failed, using defaults:', error);
                 currentUser = { tier: 'free', usageLimit: 500, usageCount: 0 };
@@ -1131,14 +1105,14 @@ export default function ContactForm() {
 
         function updateSimplifiedUsageDisplay() {
             if (!currentUser) return;
-
+            
             const elements = {
                 currentMonthUsage: document.getElementById('currentMonthUsage'),
                 usageLimit: document.getElementById('usageLimit'),
                 remainingLimit: document.getElementById('remainingLimit'),
                 currentTier: document.getElementById('currentTier')
             };
-
+            
             if (elements.currentMonthUsage) {
                 elements.currentMonthUsage.textContent = (currentUser.usageCount || 0).toLocaleString();
             }
@@ -1156,11 +1130,11 @@ export default function ContactForm() {
 
         function updateCurrentPlanDisplay() {
             if (!currentUser) return;
-
+            
             const tier = currentUser.tier || 'free';
             const tierInfo = availableTiers[tier] || DEFAULT_TIERS[tier];
             const planName = tierInfo.name || tier.charAt(0).toUpperCase() + tier.slice(1);
-
+            
             const elements = {
                 currentPlanName: document.getElementById('currentPlanName'),
                 currentPlanDescription: document.getElementById('currentPlanDescription'),
@@ -1172,20 +1146,20 @@ export default function ContactForm() {
                 manageBillingBtn: document.getElementById('manageBillingBtn'),
                 currentTierDisplay: document.getElementById('currentTierDisplay')
             };
-
+            
             if (elements.currentPlanName) {
                 elements.currentPlanName.textContent = `${planName} Plan`;
             }
-
+            
             if (elements.currentPlanDescription) {
                 elements.currentPlanDescription.textContent = `${currentUser.usageLimit.toLocaleString()} submissions per month`;
             }
-
+            
             const usagePercent = Math.min((currentUser.usageCount / currentUser.usageLimit) * 100, 100);
-
+            
             if (elements.usageBar) {
                 elements.usageBar.style.width = `${usagePercent}%`;
-
+                
                 // Change color based on usage
                 if (usagePercent >= 90) {
                     elements.usageBar.style.background = 'linear-gradient(90deg, #dc3545, #ff6b6b)';
@@ -1195,31 +1169,31 @@ export default function ContactForm() {
                     elements.usageBar.style.background = 'linear-gradient(90deg, #aa336a, #ff0077)';
                 }
             }
-
+            
             if (elements.usageText) {
                 elements.usageText.textContent = `${currentUser.usageCount.toLocaleString()} / ${currentUser.usageLimit.toLocaleString()} submissions used this month`;
             }
-
+            
             if (elements.currentUsage) {
                 elements.currentUsage.textContent = currentUser.usageCount.toLocaleString();
             }
-
+            
             if (elements.remainingUsage) {
                 elements.remainingUsage.textContent = Math.max(0, currentUser.usageLimit - currentUser.usageCount).toLocaleString();
             }
-
+            
             if (elements.currentTierDisplay) {
                 elements.currentTierDisplay.textContent = planName;
             }
-
+            
             if (elements.resetDate && currentUser.nextResetDate) {
                 const resetDateObj = new Date(currentUser.nextResetDate);
-                elements.resetDate.textContent = resetDateObj.toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric'
+                elements.resetDate.textContent = resetDateObj.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric' 
                 });
             }
-
+            
             // Show manage billing button for paid plans
             if (elements.manageBillingBtn && tier !== 'free' && currentUser.stripeCustomerId) {
                 elements.manageBillingBtn.style.display = 'block';
@@ -1228,12 +1202,12 @@ export default function ContactForm() {
 
         function updateOverviewStats() {
             if (!currentUser) return;
-
+            
             const elements = {
                 monthlyUsage: document.getElementById('monthlyUsage'),
                 remainingSubmissions: document.getElementById('remainingSubmissions')
             };
-
+            
             if (elements.monthlyUsage) {
                 elements.monthlyUsage.textContent = currentUser.usageCount.toLocaleString();
             }
@@ -1244,13 +1218,13 @@ export default function ContactForm() {
 
         function checkUsageAlerts() {
             if (!currentUser) return;
-
+            
             const usagePercent = (currentUser.usageCount / currentUser.usageLimit) * 100;
             const alert = document.getElementById('usageAlert');
             const message = document.getElementById('alertMessage');
-
+            
             if (!alert || !message) return;
-
+            
             if (usagePercent >= 90) {
                 alert.classList.add('danger');
                 message.textContent = `You've used ${Math.round(usagePercent)}% of your monthly submissions. Upgrade now to avoid service interruption.`;
@@ -1267,44 +1241,44 @@ export default function ContactForm() {
         function generatePricingCards() {
             const pricingGrid = document.getElementById('pricingGrid');
             if (!pricingGrid || !availableTiers) return;
-
+            
             pricingGrid.innerHTML = '';
-
+            
             // Define tier order
             const tierOrder = ['free', 'starter', 'basic', 'premium', 'pro', 'business', 'enterprise', 'scale', 'unlimited'];
-
+            
             tierOrder.forEach(tierKey => {
                 const tier = availableTiers[tierKey] || DEFAULT_TIERS[tierKey];
                 if (!tier) return;
-
+                
                 const card = document.createElement('div');
                 card.className = 'pricing-card';
-
+                
                 // Add special styling for current tier
                 if (currentUser && tierKey === currentUser.tier) {
                     card.classList.add('current');
                 }
-
+                
                 // Add featured styling
                 if (tier.featured) {
                     card.classList.add('featured');
                 }
-
+                
                 const features = tier.features || getFeaturesList(tierKey, tier);
-
+                
                 // Determine button text and action
                 let buttonText = 'Upgrade';
                 let buttonAction = `handleUpgrade('${tierKey}')`;
                 let buttonDisabled = '';
                 let buttonClass = 'upgrade-btn';
-
+                
                 if (currentUser && tierKey === currentUser.tier) {
                     buttonText = 'Current Plan';
                     buttonDisabled = 'disabled';
                 } else if (tierKey === 'free' && currentUser && currentUser.tier !== 'free') {
                     buttonText = 'Downgrade';
                 }
-
+                
                 card.innerHTML = `
                     ${currentUser && tierKey === currentUser.tier ? '<div class="current-badge">Current</div>' : ''}
                     ${tier.featured && !(currentUser && tierKey === currentUser.tier) ? '<div class="featured-badge">Most Popular</div>' : ''}
@@ -1317,13 +1291,13 @@ export default function ContactForm() {
                     <ul class="plan-features">
                         ${features.slice(0, 4).map(feature => `<li>${feature}</li>`).join('')}
                     </ul>
-                    <button class="${buttonClass}"
+                    <button class="${buttonClass}" 
                             onclick="${buttonAction}"
                             ${buttonDisabled}>
                         ${buttonText}
                     </button>
                 `;
-
+                
                 pricingGrid.appendChild(card);
             });
         }
@@ -1332,10 +1306,10 @@ export default function ContactForm() {
             if (tier.features) {
                 return tier.features;
             }
-
+            
             // Generate basic features if not provided
             const features = [`${tier.limit.toLocaleString()} submissions/month`];
-
+            
             if (tier.price === 0) {
                 features.push('Email notifications', 'Basic analytics', 'Community support');
             } else if (tier.price <= 5) {
@@ -1349,7 +1323,7 @@ export default function ContactForm() {
             } else {
                 features.push('Priority infrastructure', '24/7 phone support', 'Custom SLA');
             }
-
+            
             return features;
         }
 
@@ -1360,23 +1334,23 @@ export default function ContactForm() {
                 }
                 return;
             }
-
+            
             try {
                 const accessKey = getAccessKey();
                 showNotification('Creating checkout session...', 'info');
-
+                
                 const response = await fetch(`${API_BASE_URL}/create-checkout-session`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ accessKey, tier })
                 });
-
+                
                 if (!response.ok) {
                     throw new Error(`Checkout session failed: ${response.status}`);
                 }
-
+                
                 const data = await response.json();
-
+                
                 if (data.type === 'portal') {
                     // Existing subscription, redirect to portal
                     showNotification('Redirecting to billing portal...', 'info');
@@ -1396,17 +1370,17 @@ export default function ContactForm() {
             try {
                 const accessKey = getAccessKey();
                 showNotification('Opening billing portal...', 'info');
-
+                
                 const response = await fetch(`${API_BASE_URL}/create-portal-session`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ accessKey })
                 });
-
+                
                 if (!response.ok) {
                     throw new Error(`Portal session failed: ${response.status}`);
                 }
-
+                
                 const data = await response.json();
                 window.location.href = data.url;
             } catch (error) {
@@ -1419,18 +1393,18 @@ export default function ContactForm() {
             const tableBody = document.querySelector('#submissionsTable tbody');
             const noSubmissions = document.getElementById('noSubmissions');
             const submissionsTable = document.getElementById('submissionsTable');
-
+            
             if (!tableBody) return;
-
+            
             if (submissions.length === 0) {
                 if (noSubmissions) noSubmissions.style.display = 'block';
                 if (submissionsTable) submissionsTable.style.display = 'none';
                 return;
             }
-
+            
             if (noSubmissions) noSubmissions.style.display = 'none';
             if (submissionsTable) submissionsTable.style.display = 'table';
-
+            
             tableBody.innerHTML = submissions.map(sub => `
                 <tr>
                     <td>${sanitize(sub.data?.name)}</td>
@@ -1559,20 +1533,20 @@ export default function ContactForm() {
             document.querySelectorAll('.code-content').forEach(content => {
                 content.classList.remove('active');
             });
-
+            
             // Remove active class from all code tab buttons
             document.querySelectorAll('.code-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-
+            
             // Show selected code tab
             const selectedContent = document.getElementById(`${tabName}-code`);
             if (selectedContent) {
                 selectedContent.classList.add('active');
             }
-
+            
             // Add active class to clicked tab button
-            const selectedTab = Array.from(document.querySelectorAll('.code-tab')).find(tab =>
+            const selectedTab = Array.from(document.querySelectorAll('.code-tab')).find(tab => 
                 tab.textContent.toLowerCase().includes(tabName)
             );
             if (selectedTab) {
@@ -1592,460 +1566,5 @@ export default function ContactForm() {
         window.openBillingPortal = openBillingPortal;
         window.showSubmissionDetails = showSubmissionDetails;
     </script>
-
-    <!-- Enhanced Dashboard with Stripe and User Features -->
-    <script>
-    (function() {
-        'use strict';
-
-        // Stripe Configuration
-        const STRIPE_PUBLIC_KEY = 'pk_test_51RUcFYEpdWEENcj1aolZN1F2rYi3mz9oq4qZNPAGUrlIlu8LNBKiP1SGGZ048Ee9xCmAPCCfYEhrzof5fX9vPAxU00tmqsZqQd';
-        let stripe = null;
-
-        // Initialize Stripe
-        if (typeof Stripe !== 'undefined') {
-            stripe = Stripe(STRIPE_PUBLIC_KEY);
-        }
-
-        // User Dashboard Manager
-        const DashboardManager = {
-            user: null,
-            subscription: null,
-            forms: [],
-            submissions: [],
-
-            async init() {
-                console.log('Initializing Dashboard Manager...');
-
-                // Check authentication - allow access key OR Google OAuth
-                const hasAccessKey = localStorage.getItem('accessKey') || new URLSearchParams(window.location.search).get('key');
-                const hasGoogleAuth = window.snapitAuth && window.snapitAuth.isAuthenticated();
-
-                if (!hasAccessKey && !hasGoogleAuth) {
-                    console.warn('User not authenticated, redirecting to login...');
-                    this.redirectToLogin();
-                    return;
-                }
-
-                // Get user data
-                this.user = window.snapitAuth.getUser();
-
-                // Load user-specific data
-                await Promise.all([
-                    this.loadUserProfile(),
-                    this.loadSubscription(),
-                    this.loadForms(),
-                    this.loadSubmissions(),
-                    this.loadUsageStats()
-                ]);
-
-                // Update UI with user data
-                this.updateUserInterface();
-
-                // Hide loading overlay
-                document.getElementById('loadingOverlay').style.display = 'none';
-            },
-
-            async loadUserProfile() {
-                try {
-                    const response = await window.makeAuthenticatedCall('/user/profile');
-                    if (response) {
-                        this.user = { ...this.user, ...response };
-                        console.log('User profile loaded:', this.user);
-                    }
-                } catch (error) {
-                    console.warn('Could not load user profile:', error);
-                }
-            },
-
-            async loadSubscription() {
-                try {
-                    const response = await window.makeAuthenticatedCall('/subscription');
-                    this.subscription = response;
-                    console.log('Subscription loaded:', this.subscription);
-
-                    // Update billing UI
-                    this.updateBillingSection();
-                } catch (error) {
-                    console.warn('Could not load subscription:', error);
-                }
-            },
-
-            async loadForms() {
-                try {
-                    const response = await window.makeAuthenticatedCall('/forms');
-                    this.forms = response.forms || [];
-                    console.log(`Loaded ${this.forms.length} forms`);
-
-                    // Update forms list
-                    this.updateFormsList();
-                } catch (error) {
-                    console.error('Could not load forms:', error);
-                    this.showError('Failed to load forms. Please refresh the page.');
-                }
-            },
-
-            async loadSubmissions() {
-                try {
-                    const response = await window.makeAuthenticatedCall('/submissions');
-                    this.submissions = response.submissions || [];
-                    console.log(`Loaded ${this.submissions.length} submissions`);
-
-                    // Update submissions list
-                    this.updateSubmissionsList();
-                } catch (error) {
-                    console.warn('Could not load submissions:', error);
-                }
-            },
-
-            async loadUsageStats() {
-                try {
-                    const response = await window.makeAuthenticatedCall('/usage');
-                    const usage = response.usage || {};
-
-                    // Update usage display
-                    document.querySelector('.usage-count').textContent = usage.submissionsUsed || 0;
-                    document.querySelector('.usage-limit').textContent = usage.submissionsLimit || 500;
-
-                    // Update progress bar
-                    const percentage = (usage.submissionsUsed / usage.submissionsLimit) * 100;
-                    document.querySelector('.usage-progress-fill').style.width = `${percentage}%`;
-
-                } catch (error) {
-                    console.warn('Could not load usage stats:', error);
-                }
-            },
-
-            updateUserInterface() {
-                // Update user info in header
-                const accountBtn = document.getElementById('accountBtn');
-                if (accountBtn && this.user) {
-                    accountBtn.innerHTML = `
-                        <span class="icon">👤</span>
-                        ${this.user.name || this.user.email}
-                    `;
-                }
-
-                // Update welcome message
-                const welcomeElements = document.querySelectorAll('.welcome-message');
-                welcomeElements.forEach(el => {
-                    el.textContent = `Welcome back, ${this.user.name || 'User'}!`;
-                });
-
-                // Show access key
-                const accessKeyElements = document.querySelectorAll('.access-key-display');
-                accessKeyElements.forEach(el => {
-                    el.textContent = this.user.accessKey || 'sa_' + this.generateAccessKey();
-                });
-            },
-
-            updateBillingSection() {
-                const billingInfo = document.querySelector('.billing-info');
-                if (!billingInfo) return;
-
-                if (this.subscription && this.subscription.status === 'active') {
-                    billingInfo.innerHTML = `
-                        <div class="subscription-active">
-                            <h3>${this.subscription.planName || 'Pro'} Plan</h3>
-                            <p>Status: <span class="badge badge-success">Active</span></p>
-                            <p>Next billing: ${new Date(this.subscription.nextBilling).toLocaleDateString()}</p>
-                            <button onclick="DashboardManager.manageBilling()" class="btn btn-outline">
-                                Manage Billing
-                            </button>
-                        </div>
-                    `;
-                } else {
-                    billingInfo.innerHTML = `
-                        <div class="subscription-free">
-                            <h3>Free Plan</h3>
-                            <p>500 submissions/month</p>
-                            <button onclick="DashboardManager.showUpgradePlans()" class="btn btn-primary">
-                                Upgrade to Pro
-                            </button>
-                        </div>
-                    `;
-                }
-            },
-
-            updateFormsList() {
-                const formsList = document.querySelector('.forms-list');
-                if (!formsList) return;
-
-                if (this.forms.length === 0) {
-                    formsList.innerHTML = `
-                        <div class="empty-state">
-                            <p>No forms yet. Create your first form!</p>
-                            <button onclick="openFormGenerator()" class="btn btn-primary">
-                                Create Form
-                            </button>
-                        </div>
-                    `;
-                } else {
-                    formsList.innerHTML = this.forms.map(form => `
-                        <div class="form-card">
-                            <h4>${form.name}</h4>
-                            <p>Created: ${new Date(form.createdAt).toLocaleDateString()}</p>
-                            <p>Submissions: ${form.submissionCount || 0}</p>
-                            <div class="form-actions">
-                                <button onclick="DashboardManager.editForm('${form.id}')" class="btn btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="DashboardManager.viewForm('${form.id}')" class="btn btn-sm">
-                                    View
-                                </button>
-                                <button onclick="DashboardManager.getEmbedCode('${form.id}')" class="btn btn-sm">
-                                    Embed
-                                </button>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            },
-
-            updateSubmissionsList() {
-                const submissionsList = document.querySelector('.submissions-list');
-                if (!submissionsList) return;
-
-                if (this.submissions.length === 0) {
-                    submissionsList.innerHTML = `
-                        <div class="empty-state">
-                            <p>No submissions yet.</p>
-                        </div>
-                    `;
-                } else {
-                    submissionsList.innerHTML = this.submissions.map(submission => `
-                        <div class="submission-row" onclick="DashboardManager.viewSubmission('${submission.id}')">
-                            <span class="form-name">${submission.formName}</span>
-                            <span class="submitter">${submission.email || 'Anonymous'}</span>
-                            <span class="date">${new Date(submission.createdAt).toLocaleDateString()}</span>
-                            <span class="status">
-                                <span class="badge badge-${submission.read ? 'default' : 'primary'}">
-                                    ${submission.read ? 'Read' : 'New'}
-                                </span>
-                            </span>
-                        </div>
-                    `).join('');
-                }
-            },
-
-            async showUpgradePlans() {
-                if (!stripe) {
-                    console.error('Stripe not initialized');
-                    return;
-                }
-
-                try {
-                    // Create checkout session
-                    const response = await window.makeAuthenticatedCall('/create-checkout-session', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            priceId: 'price_1RUcFYEpdWEENcj1Pro29', // Pro plan price ID
-                            successUrl: window.location.origin + '/dashboard.html?upgrade=success',
-                            cancelUrl: window.location.origin + '/dashboard.html'
-                        })
-                    });
-
-                    if (response.sessionId) {
-                        // Redirect to Stripe Checkout
-                        const result = await stripe.redirectToCheckout({
-                            sessionId: response.sessionId
-                        });
-
-                        if (result.error) {
-                            console.error('Stripe error:', result.error);
-                            this.showError(result.error.message);
-                        }
-                    }
-                } catch (error) {
-                    console.error('Checkout error:', error);
-                    this.showError('Could not start checkout process. Please try again.');
-                }
-            },
-
-            async manageBilling() {
-                try {
-                    // Create billing portal session
-                    const response = await window.makeAuthenticatedCall('/create-billing-portal', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            returnUrl: window.location.href
-                        })
-                    });
-
-                    if (response.url) {
-                        window.location.href = response.url;
-                    }
-                } catch (error) {
-                    console.error('Billing portal error:', error);
-                    this.showError('Could not open billing portal. Please try again.');
-                }
-            },
-
-            editForm(formId) {
-                window.location.href = `/form-generator.html?id=${formId}`;
-            },
-
-            viewForm(formId) {
-                window.open(`/form/${formId}`, '_blank');
-            },
-
-            getEmbedCode(formId) {
-                const embedCode = `<iframe src="https://snapitforms.com/form/${formId}" width="100%" height="600" frameborder="0"></iframe>`;
-
-                // Copy to clipboard
-                navigator.clipboard.writeText(embedCode).then(() => {
-                    this.showSuccess('Embed code copied to clipboard!');
-                });
-            },
-
-            viewSubmission(submissionId) {
-                // Mark as read
-                window.makeAuthenticatedCall(`/submissions/${submissionId}/read`, {
-                    method: 'POST'
-                });
-
-                // Show submission details
-                window.location.href = `/submission/${submissionId}`;
-            },
-
-            generateAccessKey() {
-                return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-            },
-
-            redirectToLogin() {
-                window.location.href = '/index.html?redirect=dashboard';
-            },
-
-            showError(message) {
-                if (window.showNotification) {
-                    window.showNotification(message, 'error');
-                } else {
-                    alert(message);
-                }
-            },
-
-            showSuccess(message) {
-                if (window.showNotification) {
-                    window.showNotification(message, 'success');
-                } else {
-                    console.log(message);
-                }
-            }
-        };
-
-        // Make DashboardManager globally available
-        window.DashboardManager = DashboardManager;
-
-        // Initialize when authentication is ready
-        window.addEventListener('snapit-authenticated', function() {
-            DashboardManager.init();
-        });
-
-        // Check if already authenticated on load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                // Check for access key OR Google OAuth
-                const hasAccessKey = localStorage.getItem('accessKey') || new URLSearchParams(window.location.search).get('key');
-                const hasGoogleAuth = window.snapitAuth && window.snapitAuth.isAuthenticated();
-
-                if (hasGoogleAuth) {
-                    DashboardManager.init();
-                } else if (hasAccessKey) {
-                    // Access key authentication - let main dashboard handle it
-                    console.log('Using access key authentication, skipping DashboardManager');
-                } else {
-                    // Show login prompt
-                    document.getElementById('loadingMessage').textContent = 'Please sign in to continue...';
-                    setTimeout(() => {
-                        DashboardManager.redirectToLogin();
-                    }, 2000);
-                }
-            }, 500);
-        });
-
-        // Handle upgrade success
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('upgrade') === 'success') {
-            setTimeout(() => {
-                DashboardManager.showSuccess('Upgrade successful! Your Pro features are now active.');
-                DashboardManager.loadSubscription();
-            }, 1000);
-        }
-
-        // Helper functions for form generator and templates
-        window.openFormGenerator = function() {
-            window.location.href = '/form-generator.html';
-        };
-
-        window.openTemplateGallery = function() {
-            window.location.href = '/templates.html';
-        };
-
-    })();
-    </script>
-
-    <!-- 🏆 World-Class SnapIT Ecosystem Footer -->
-    <footer class="snapit-ecosystem-footer" role="contentinfo">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h2>SnapIT Forms</h2>
-                    <p class="footer-tagline">AI-powered form builder. No backend required.</p>
-                    <div class="service-status">
-                        <span class="status-dot"></span>
-                        <span>All systems operational</span>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Platform</h3>
-                    <ul class="footer-links">
-                        <li><a href="form-generator.html">Form Builder</a></li>
-                        <li><a href="templates.html">Templates</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="index.html#pricing">Pricing</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>SnapIT Suite</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://snapitqr.com" target="_blank">QR Generator</a></li>
-                        <li><a href="https://snapiturl.com" target="_blank">URL Shortener</a></li>
-                        <li><a href="https://snapitanalytics.com" target="_blank">Analytics</a></li>
-                        <li><a href="https://snapitagent.com" target="_blank">AI Assistant</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="documentation.html">Docs</a></li>
-                        <li><a href="status.html">Status</a></li>
-                        <li><a href="support.html">Help</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p class="footer-copyright">&copy; 2025 SnapIT Software. All rights reserved.</p>
-                <div class="footer-social">
-                    <a href="https://github.com/terrellflautt/snapitforms" class="social-link" target="_blank" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <link rel="stylesheet" href="css/world-class-footer.css">
-
-    <!-- Translation System -->
-    <script src="js/translations.js"></script>
-    <script src="js/language-selector.js"></script>
-    <script src="js/performance-optimizer.js"></script>
 </body>
 </html>

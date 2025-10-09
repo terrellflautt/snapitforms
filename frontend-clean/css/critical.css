@@ -1,0 +1,291 @@
+/* SnapIT Forms Critical CSS - Above-the-fold styles for instant rendering */
+
+/* Reset and Core Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Brand Colors */
+    --primary-pink: #aa336a;
+    --accent-pink: #ff0077;
+    --cream: #fff8f0;
+    --dark-text: #1a1a1a;
+    --light-text: #666;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary-pink), var(--accent-pink));
+    --gradient-background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-size-xl: 3rem;
+    --font-size-lg: 2rem;
+    --font-size-md: 1.25rem;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+}
+
+/* Body and Typography */
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--dark-text);
+    background: var(--gradient-background);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(170, 51, 106, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Hero Section - Critical Above-the-Fold */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    background: var(--gradient-background);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    margin-bottom: var(--spacing-lg);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: var(--font-size-md);
+    color: var(--light-text);
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Primary CTA Button */
+.cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: var(--gradient-primary);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(170, 51, 106, 0.3);
+}
+
+.cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-primary:hover::before {
+    left: 100%;
+}
+
+/* Google Sign In Button */
+.google-signin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: white;
+    color: var(--dark-text);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 2px solid #dadce0;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    margin-left: var(--spacing-md);
+}
+
+.google-signin-btn:hover {
+    border-color: var(--primary-pink);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+/* Loading and Animation States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .hero {
+        min-height: 80vh;
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: var(--font-size-base);
+    }
+
+    .cta-primary {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: var(--font-size-base);
+        width: 100%;
+        justify-content: center;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .google-signin-btn {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+}
+
+/* Performance Optimizations */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23f0f0f0" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

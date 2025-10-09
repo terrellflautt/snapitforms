@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; script-src-elem * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; style-src-elem * 'unsafe-inline'; img-src * data: blob:; font-src *; connect-src * wss: ws:; frame-src *; object-src 'none';">\n    \n<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://js.stripe.com https://unpkg.com https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://snapitsaas.com https://accounts.google.com; script-src-elem 'self' 'unsafe-inline' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://js.stripe.com https://unpkg.com https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://snapitsaas.com https://accounts.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com https://unpkg.com https://accounts.google.com; connect-src 'self' https://api.snapitforms.com https://api.snapitanalytics.com https://api.snapitagent.com https://api.snapitqr.com https://api.snapiturl.com https://api.urlstatuschecker.com https://dnxslxuth3.execute-api.us-east-1.amazonaws.com https://*.google.com https://*.googleapis.com https://js.stripe.com https://www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google.com https://*.gstatic.com; frame-src 'self' https://*.google.com https://js.stripe.com; object-src 'none';">
 <meta charset="UTF-8">
  <!-- SEO-Optimized Meta Tags for Maximum Organic Traffic -->
 <meta name="title" content="Free Form Submission Service - 500 Monthly Submissions | SnapItForms - Better Than Formspree & Netlify Forms">
@@ -84,21 +83,18 @@ affiliate forms, referral forms">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://accounts.google.com">
-    <link rel="dns-prefetch" href="https://api.snapitforms.com">
+    <link rel="dns-prefetch" href="https://dnxslxuth3.execute-api.us-east-1.amazonaws.com">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Google Identity Services -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
-    <!-- Stripe Payment Processing -->
-    <script src="https://js.stripe.com/v3/"></script>
         
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://accounts.google.com">
-    <link rel="preconnect" href="https://api.snapitforms.com">
+    <link rel="preconnect" href="https://dnxslxuth3.execute-api.us-east-1.amazonaws.com">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/landingstyles.css">
@@ -585,7 +581,7 @@ affiliate forms, referral forms">
         // Configuration - Production settings
         const CONFIG = {
             API_BASE_URL: 'https://api.snapitforms.com',
-            GOOGLE_CLIENT_ID: "242648112266-3oepgrf25h8dak6sg01vq5kbsrkjo3s9.apps.googleusercontent.com",
+            GOOGLE_CLIENT_ID: "242648112266-iglul54tuis9mhucsp1pmpqg0a48l8i0.apps.googleusercontent.com",
             STRIPE_PUBLISHABLE_KEY: "pk_test_51RUcFYEpdWEENcj1aolZN1F2rYi3mz9oq4qZNPAGUrlIlu8LNBKiP1SGGZ048Ee9xCmAPCCfYEhrzof5fX9vPAxU00tmqsZqQd",
             FRONTEND_URL: 'https://snapitforms.com',
             PRICING_TIERS: {
@@ -717,20 +713,6 @@ affiliate forms, referral forms">
             retryCount: 0,
             maxRetries: 3
         };
-
-        // Stripe Configuration
-        let stripe = null;
-        
-        // Initialize Stripe
-        function initializeStripe() {
-            if (window.Stripe && CONFIG.STRIPE_PUBLISHABLE_KEY) {
-                stripe = Stripe(CONFIG.STRIPE_PUBLISHABLE_KEY);
-                console.log('Stripe initialized successfully');
-            } else {
-                console.warn('Stripe not available or missing publishable key');
-                setTimeout(initializeStripe, 1000);
-            }
-        }
 
         // Utility functions
         const utils = {
@@ -870,7 +852,7 @@ affiliate forms, referral forms">
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ credential: token })
+                    body: JSON.stringify({ token })
                 });
                 
                 if (!response.ok) {
@@ -1063,51 +1045,17 @@ affiliate forms, referral forms">
             }
 
             // Create checkout session for other paid tiers
-            if (!stripe) {
-                utils.showNotification('Payment system loading...', 'info');
-                initializeStripe();
-                setTimeout(() => handlePricingClick(tier), 1000);
-                return;
-            }
-            
             try {
                 utils.showLoading(true);
-                
-                // Create checkout session via API
-                const response = await fetch(`${CONFIG.API_BASE_URL}/create-checkout-session`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        plan: tier,
-                        accessKey: accessKey,
-                        userEmail: appState.currentUser?.email || 'customer@snapitforms.com'
-                    })
-                });
-                
-                if (response.ok) {
-                    const session = await response.json();
-                    const result = await stripe.redirectToCheckout({
-                        sessionId: session.sessionId
-                    });
-                    
-                    if (result.error) {
-                        utils.showNotification(result.error.message, 'error');
-                    }
-                } else {
-                    // Fallback to existing API method
-                    const data = await api.createCheckoutSession(accessKey, tier);
-                    
-                    if (data.url) {
-                        utils.showNotification('Redirecting to checkout...', 'info');
-                        window.location.href = data.url;
-                    } else {
-                        throw new Error('No checkout URL received');
-                    }
-                }
-                
+                const data = await api.createCheckoutSession(accessKey, tier);
                 utils.showLoading(false);
+                
+                if (data.url) {
+                    utils.showNotification('Redirecting to checkout...', 'info');
+                    window.location.href = data.url;
+                } else {
+                    throw new Error('No checkout URL received');
+                }
             } catch (error) {
                 utils.showLoading(false);
                 console.error('Checkout error:', error);
@@ -1469,11 +1417,8 @@ affiliate forms, referral forms">
             appState.isLoading = false;
         });
 
-        // Initialize Google Sign-In and Stripe when the library loads
-        window.onload = function() {
-            initializeGoogleSignIn();
-            initializeStripe();
-        };
+        // Initialize Google Sign-In when the library loads
+        window.onload = initializeGoogleSignIn;
 
         // Make functions globally available
         window.handlePricingClick = handlePricingClick;

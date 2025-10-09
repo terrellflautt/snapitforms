@@ -740,7 +740,7 @@
                 <h2>Stay Updated</h2>
                 <p>Subscribe to receive notifications about service updates and planned maintenance</p>
             </div>
-
+            
             <form class="subscribe-form">
                 <input type="email" class="email-input" placeholder="Enter your email address" required>
                 <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -801,7 +801,7 @@
         document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = this.querySelector('.email-input').value;
-
+            
             // Simple validation
             if (email && email.includes('@')) {
                 alert('Thank you for subscribing! You will receive status updates at ' + email);

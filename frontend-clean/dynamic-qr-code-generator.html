@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://apis.google.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://js.stripe.com; style-src 'self' 'unsafe-inline' https://accounts.google.com https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://accounts.google.com https://www.googleapis.com https://api.snapitqr.com; frame-src https://accounts.google.com; img-src 'self' data: https:;">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create dynamic QR codes with advanced customization, analytics, and URL shortening. The world's most powerful QR code generator by SnapIT Software.">
+  <meta name="keywords" content="dynamic QR code generator, QR code analytics, URL shortener, custom QR codes, QR code tracking, free QR code maker">
+  <meta name="author" content="SnapIT Software">
+  <meta property="og:title" content="SnapIT QR - Advanced Dynamic QR Code Generator">
+  <meta property="og:description" content="Create trackable QR codes with custom designs, logos, and real-time analytics. Free to start!">
+  <meta property="og:image" content="https://snapitsoftware.com/images/qr-preview.png">
+  <meta property="og:url" content="https://snapitsoftware.com/dynamic-qr-code-generator.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <title>SnapIT QR - Free Dynamic QR Code Generator with Analytics</title>
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://accounts.google.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://api.snapitqr.com">
+
+  <!-- External Libraries First -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/qrstyles.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="/" aria-label="SnapIT Software Home">
+          <h1>SnapIT QR</h1>
+        </a>
+      </div>
+      <div class="nav-menu">
+        <a href="#generator" class="nav-link active" onclick="switchTab('generator')">Generator</a>
+        <a href="#dashboard" class="nav-link" onclick="switchTab('dashboard')">My QR Codes</a>
+        <a href="#shortener" class="nav-link" onclick="switchTab('shortener')">URL Shortener</a>
+        <a href="#analytics" class="nav-link" onclick="switchTab('analytics')">Analytics</a>
+        <a href="#pricing" class="nav-link" onclick="showPricingModal()">Pricing</a>
+
+        <!-- User Menu -->
+        <div id="userMenu" style="display: none;">
+          <div class="user-menu">
+            <img id="userAvatar" class="user-avatar" alt="User avatar" onclick="toggleUserDropdown()">
+            <div id="userDropdown" class="user-dropdown">
+              <div class="user-dropdown-item" id="userEmail"></div>
+              <div class="user-dropdown-item" id="userPlan">Free Plan</div>
+              <div class="user-dropdown-item" onclick="showPricingModal()">
+                <span class="upgrade-icon">⚡</span> Upgrade
+              </div>
+              <div class="user-dropdown-item" onclick="showAccountSettings()">Account Settings</div>
+              <div class="user-dropdown-item" onclick="authManager.signOut()">Sign Out</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign In Button -->
+        <div id="signInButton"></div>
+      </div>
+
+      <!-- Mobile menu toggle -->
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main id="main" class="main-container">
+    <!-- QR Generator Tab -->
+    <div id="generatorTab" class="tab-content active">
+      <div class="qr-generator-grid">
+        <!-- Input Section -->
+        <div class="input-section">
+          <h2 class="section-title">Create Your QR Code</h2>
+
+          <!-- QR Type Selection -->
+          <div class="qr-type-selector">
+            <button class="qr-type-btn active" onclick="selectQRType('static', event)">
+              <div class="qr-type-icon">📱</div>
+              <div class="qr-type-title">Static QR Code</div>
+              <small>Fixed destination • Always free</small>
+            </button>
+            <button class="qr-type-btn" onclick="selectQRType('dynamic', event)">
+              <div class="qr-type-icon">🔄</div>
+              <div class="qr-type-title">Dynamic QR Code</div>
+              <small>Editable • Trackable • Analytics</small>
+              <span class="premium-badge">Premium</span>
+            </button>
+          </div>
+
+          <!-- URL/Content Input -->
+          <div class="input-group">
+            <label for="qrContent">Enter URL or Content</label>
+            <input type="url"
+                   id="qrContent"
+                   placeholder="https://example.com"
+                   oninput="generateQRCode()"
+                   autocomplete="url">
+            <small class="input-help">Enter any URL, text, email, phone number, or WiFi credentials</small>
+          </div>
+
+          <!-- Short URL Option -->
+          <div class="input-group" id="shortUrlOption" style="display: none;">
+            <label class="checkbox-label">
+              <input type="checkbox" id="useShortUrl" onchange="toggleShortUrl()">
+              <span>Use short URL (snapitqr.com/xxx)</span>
+              <span class="premium-text">• Premium feature</span>
+            </label>
+          </div>
+
+          <!-- Title/Label -->
+          <div class="input-group">
+            <label for="qrTitle">Title (Optional)</label>
+            <input type="text"
+                   id="qrTitle"
+                   placeholder="My QR Code"
+                   maxlength="50">
+            <small class="input-help">Give your QR code a memorable name</small>
+          </div>
+
+          <!-- Color Customization -->
+          <div class="customization-section">
+            <h3 class="subsection-title">
+              <span class="section-icon">🎨</span>
+              Colors & Styling
+            </h3>
+
+            <div class="color-grid">
+              <div class="color-input-wrapper">
+                <label for="fgColor">QR Code Color</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="fgColor" value="#000000" class="color-input" onchange="generateQRCode()">
+                  <span class="color-preview"></span>
+                </div>
+              </div>
+              <div class="color-input-wrapper">
+                <label for="bgColor">Background Color</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="bgColor" value="#FFFFFF" class="color-input" onchange="generateQRCode()">
+                  <span class="color-preview"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Color Presets -->
+            <div class="color-presets">
+              <button class="preset-btn" onclick="applyColorPreset('classic')" title="Classic">⚫⚪</button>
+              <button class="preset-btn" onclick="applyColorPreset('ocean')" title="Ocean">🔵⚪</button>
+              <button class="preset-btn" onclick="applyColorPreset('sunset')" title="Sunset">🔴🟡</button>
+              <button class="preset-btn" onclick="applyColorPreset('nature')" title="Nature">🟢⚪</button>
+              <button class="preset-btn" onclick="applyColorPreset('royal')" title="Royal">🟣⚪</button>
+            </div>
+          </div>
+
+          <!-- Logo Upload -->
+          <div class="customization-section">
+            <h3 class="subsection-title">
+              <span class="section-icon">🏢</span>
+              Logo & Branding
+            </h3>
+            <div class="logo-upload-area" id="logoUploadArea" onclick="document.getElementById('logoInput').click()">
+              <div id="logoPreviewContainer" style="display: none;">
+                <div class="logo-preview">
+                  <img id="logoPreview" alt="Logo preview">
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="removeLogo(event)">Remove Logo</button>
+              </div>
+              <div id="logoUploadText">
+                <div class="upload-icon">📷</div>
+                <p>Click to upload logo</p>
+                <small>PNG, JPG, WebP (max 2MB)</small>
+              </div>
+            </div>
+            <input type="file" id="logoInput" accept="image/*" style="display: none;" onchange="handleLogoUpload(event)">
+
+            <!-- Logo Controls -->
+            <div id="logoControls" class="logo-controls" style="display: none;">
+              <div class="slider-wrapper">
+                <label for="logoSize">Logo Size: <span id="logoSizeValue">20</span>%</label>
+                <input type="range" id="logoSize" min="10" max="40" value="20" class="slider" oninput="updateLogoSize(this.value)">
+              </div>
+            </div>
+          </div>
+
+          <!-- Advanced Options -->
+          <details class="advanced-options">
+            <summary class="advanced-toggle">
+              <span class="toggle-icon">⚙️</span>
+              Advanced Options
+            </summary>
+            <div class="advanced-content">
+              <div class="input-group">
+                <label for="errorCorrection">Error Correction Level</label>
+                <select id="errorCorrection" class="select-input" onchange="generateQRCode()">
+                  <option value="L">Low (7%)</option>
+                  <option value="M">Medium (15%)</option>
+                  <option value="Q">Quartile (25%)</option>
+                  <option value="H" selected>High (30%)</option>
+                </select>
+                <small class="input-help">Higher levels allow QR codes to be read even when partially damaged</small>
+              </div>
+              <div class="slider-wrapper">
+                <label for="qrSize">QR Code Size: <span id="qrSizeValue">300</span>px</label>
+                <input type="range" id="qrSize" min="200" max="800" value="300" step="50" class="slider" oninput="updateQRSize(this.value)">
+              </div>
+              <div class="input-group">
+                <label for="qrMargin">Quiet Zone Margin</label>
+                <select id="qrMargin" class="select-input" onchange="generateQRCode()">
+                  <option value="0">None</option>
+                  <option value="1" selected>Small</option>
+                  <option value="2">Medium</option>
+                  <option value="4">Large</option>
+                </select>
+                <small class="input-help">White space around the QR code for better scanning</small>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-section">
+          <h2 class="section-title">Live Preview</h2>
+
+          <div id="qrPreview" class="qr-preview-container">
+            <div class="empty-state">
+              <div class="empty-state-icon">📱</div>
+              <div class="empty-state-title">QR Code Preview</div>
+              <p class="empty-state-text">Enter a URL to generate your QR code</p>
+              <div class="empty-state-features">
+                <div class="feature-item">
+                  <span class="feature-icon">✓</span>
+                  <span>Free forever</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">✓</span>
+                  <span>No sign-up required</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">✓</span>
+                  <span>Unlimited downloads</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button class="btn btn-primary" onclick="saveQRCode()" disabled id="saveBtn">
+              <span class="btn-icon">💾</span>
+              <span>Save to Dashboard</span>
+            </button>
+            <button class="btn btn-secondary" onclick="downloadQRCode()" disabled id="downloadBtn">
+              <span class="btn-icon">⬇️</span>
+              <span>Download PNG</span>
+            </button>
+            <button class="btn btn-outline" onclick="shareQRCode()" disabled id="shareBtn">
+              <span class="btn-icon">🔗</span>
+              <span>Share</span>
+            </button>
+          </div>
+
+          <!-- Promotion -->
+          <div class="promotion-box" id="promotionBox">
+            <h3>🚀 Unlock Premium Features</h3>
+            <ul class="feature-list">
+              <li>Dynamic QR codes that you can edit anytime</li>
+              <li>Real-time scan analytics and tracking</li>
+              <li>Custom short URLs with your brand</li>
+              <li>Bulk QR code generation</li>
+              <li>API access for developers</li>
+            </ul>
+            <button class="btn btn-primary btn-sm" onclick="showPricingModal()">
+              View Plans →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Tab -->
+    <div id="dashboardTab" class="tab-content">
+      <div class="dashboard-header">
+        <h2 class="section-title">My QR Codes</h2>
+        <div class="dashboard-stats">
+          <span class="usage-counter">
+            <span id="qrCodeCount">0</span> / <span id="qrCodeLimit">1</span> QR Codes
+          </span>
+          <button class="btn btn-primary btn-sm" onclick="switchTab('generator')">
+            <span class="btn-icon">➕</span>
+            Create New
+          </button>
+        </div>
+      </div>
+
+      <div id="dashboardContent" class="dashboard-content">
+        <!-- QR codes will be loaded here -->
+      </div>
+    </div>
+
+    <!-- URL Shortener Tab -->
+    <div id="shortenerTab" class="tab-content">
+      <div class="url-shortener-container">
+        <h2 class="section-title">URL Shortener</h2>
+        <p class="section-description">Create short, memorable links that are easy to share</p>
+
+        <div class="shortener-input-group">
+          <input type="url"
+                 id="urlToShorten"
+                 placeholder="Enter long URL to shorten"
+                 class="url-input"
+                 onkeypress="if(event.key==='Enter') shortenURL()">
+          <button class="btn btn-primary" onclick="shortenURL()">
+            <span class="btn-icon">✂️</span>
+            <span>Shorten</span>
+          </button>
+        </div>
+
+        <div id="shortenedUrlsList" class="shortened-urls">
+          <!-- Shortened URLs will be displayed here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div id="analyticsTab" class="tab-content">
+      <div class="analytics-container">
+        <h2 class="section-title">Analytics Overview</h2>
+
+        <!-- Summary Stats -->
+        <div class="stats-overview">
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <div class="stat-value" id="totalScans">0</div>
+              <div class="stat-label">Total Scans</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📱</div>
+            <div class="stat-content">
+              <div class="stat-value" id="totalQRCodes">0</div>
+              <div class="stat-label">Active QR Codes</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔗</div>
+            <div class="stat-content">
+              <div class="stat-value" id="totalLinks">0</div>
+              <div class="stat-label">Short Links</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-content">
+              <div class="stat-value" id="avgScansPerDay">0</div>
+              <div class="stat-label">Daily Average</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-section">
+          <div class="chart-card">
+            <h3>Scan Activity (Last 7 Days)</h3>
+            <div class="chart-container">
+              <canvas id="scansChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Top Performing QR Codes</h3>
+            <div id="topQRCodes" class="top-qr-list">
+              <!-- Top QR codes will be listed here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div id="pricingModal" class="modal">
+    <div class="modal-backdrop" onclick="closePricingModal()"></div>
+    <div class="modal-content pricing-modal">
+      <div class="modal-header">
+        <h2>Choose Your Plan</h2>
+        <button class="modal-close" onclick="closePricingModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="pricing-grid">
+          <!-- Free Plan -->
+          <div class="pricing-card">
+            <div class="plan-name">Free</div>
+            <div class="plan-price">
+              <span class="currency">$</span>0
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">Perfect for trying out SnapIT QR</div>
+            <ul class="plan-features">
+              <li>Unlimited static QR codes</li>
+              <li>1 dynamic QR code</li>
+              <li>Basic analytics</li>
+              <li>Standard support</li>
+              <li class="disabled">Custom short URLs</li>
+              <li class="disabled">API access</li>
+            </ul>
+            <div class="pricing-cta">
+              <button class="btn btn-outline" onclick="selectPlan('free')">Current Plan</button>
+            </div>
+          </div>
+
+          <!-- Starter Plan -->
+          <div class="pricing-card">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">
+              <span class="currency">$</span>4.99
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">Great for individuals & freelancers</div>
+            <ul class="plan-features">
+              <li>Everything in Free, plus:</li>
+              <li>5 dynamic QR codes</li>
+              <li>Advanced analytics</li>
+              <li>Email support</li>
+              <li>Basic custom URLs</li>
+              <li class="disabled">API access</li>
+            </ul>
+            <div class="pricing-cta">
+              <button class="btn btn-primary" onclick="selectPlan('starter')">Get Started</button>
+            </div>
+          </div>
+
+          <!-- Professional Plan -->
+          <div class="pricing-card recommended">
+            <span class="recommended-badge">Most Popular</span>
+            <div class="plan-name">Professional</div>
+            <div class="plan-price">
+              <span class="currency">$</span>14.99
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">Perfect for small businesses</div>
+            <ul class="plan-features">
+              <li>Everything in Starter, plus:</li>
+              <li>15 dynamic QR codes</li>
+              <li>Detailed analytics & reports</li>
+              <li>Priority email support</li>
+              <li>Custom branded URLs</li>
+              <li>Basic API access</li>
+            </ul>
+            <div class="pricing-cta">
+              <button class="btn btn-primary" onclick="selectPlan('professional')">Get Started</button>
+            </div>
+          </div>
+
+          <!-- Business Plan -->
+          <div class="pricing-card">
+            <div class="plan-name">Business</div>
+            <div class="plan-price">
+              <span class="currency">$</span>45.99
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">For growing teams & agencies</div>
+            <ul class="plan-features">
+              <li>Everything in Professional, plus:</li>
+              <li>50 dynamic QR codes</li>
+              <li>Team collaboration (3 users)</li>
+              <li>White-label options</li>
+              <li>Phone & email support</li>
+              <li>Full API access</li>
+            </ul>
+            <div class="pricing-cta">
+              <button class="btn btn-primary" onclick="selectPlan('business')">Get Started</button>
+            </div>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="pricing-card">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price">
+              <span class="currency">$</span>99
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">For larger organizations</div>
+            <ul class="plan-features">
+              <li>Everything in Business, plus:</li>
+              <li>200 dynamic QR codes</li>
+              <li>Unlimited team members</li>
+              <li>Custom integrations</li>
+              <li>24/7 phone support</li>
+              <li>SLA guarantee</li>
+            </ul>
+            <div class="pricing-cta">
+              <button class="btn btn-primary" onclick="selectPlan('enterprise')">Get Started</button>
+            </div>
+          </div>
+
+          <!-- Agency Plan -->
+          <div class="pricing-card">
+            <div class="plan-name">Agency</div>
+            <div class="plan-price">
+              <span class="currency">$</span>199
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">For agencies & resellers</div>
+            <ul class="plan-features">
+              <li>Everything in Enterprise, plus:</li>
+              <li>500 dynamic QR codes</li>
+              <li>Client management portal</li>
+              <li>Reseller dashboard</li>
+              <li>Dedicated account manager</li>
+              <li>Custom pricing available</li>
+            </ul>
+            <div class="pricing-cta">
+              <button class="btn btn-primary" onclick="selectPlan('agency')">Get Started</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load our modules in correct order -->
+  <script src="/src/js/config.js"></script>
+  <script src="/src/js/toast.js"></script>
+  <script src="/src/js/google-auth.js"></script>
+  <script src="/src/js/qr-generator.js"></script>
+  <script>
+    // Initialize configuration
+    (async function() {
+      console.log('Loading SnapIT QR Generator...');
+
+      try {
+        // Load dynamic configuration from backend
+        const configLoaded = await window.CONFIG.loadDynamicConfig();
+
+        if (configLoaded) {
+          console.log('Dynamic configuration loaded successfully');
+
+          // Initialize external services with loaded config
+          if (window.CONFIG.GOOGLE_CLIENT_ID) {
+            console.log('Google Client ID configured');
+          }
+
+          if (window.CONFIG.STRIPE_PUBLIC_KEY && window.Stripe) {
+            window.stripeInstance = Stripe(window.CONFIG.STRIPE_PUBLIC_KEY);
+            console.log('Stripe initialized with key:', window.CONFIG.STRIPE_PUBLIC_KEY.substring(0, 20) + '...');
+          }
+        } else {
+          console.warn('Using default configuration - some features may be limited');
+        }
+
+        // Configuration is now ready for other modules
+        window.CONFIG_READY = true;
+
+        // Dispatch event for modules waiting on config
+        window.dispatchEvent(new Event('configReady'));
+
+      } catch (error) {
+        console.error('Configuration error:', error);
+        window.CONFIG_READY = true; // Allow app to continue with defaults
+        window.dispatchEvent(new Event('configReady'));
+      }
+    })();
+  </script>
+  <script src="/src/js/utils.js"></script>
+  <script src="/src/js/plan-limits.js"></script>
+  <script src="/src/js/auth-manager.js"></script>
+  <script src="/src/js/qr-manager.js"></script>
+  <script src="/src/js/url-shortener.js"></script>
+  <script src="/src/js/analytics-manager.js"></script>
+  <script src="/src/js/qr-app.js"></script>
+  <script>
+    // Wait for DOM and config to be ready
+    function initializeApp() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+        return;
+      }
+
+      // Check if config is ready
+      if (!window.CONFIG_READY) {
+        window.addEventListener('configReady', initializeApp);
+        return;
+      }
+
+      // Initialize the QR app
+      if (window.QRApp && typeof window.QRApp.init === 'function') {
+        window.QRApp.init().then(() => {
+          console.log('SnapIT QR Generator initialized successfully');
+
+          // Log final configuration state
+          console.log('App initialized with config:', {
+            apiUrl: window.CONFIG.API_URL,
+            hasStripeKey: !!window.CONFIG.STRIPE_PUBLIC_KEY,
+            hasGoogleClientId: !!window.CONFIG.GOOGLE_CLIENT_ID,
+            features: window.CONFIG.FEATURES
+          });
+
+          // Remove loading screen if present
+          const loader = document.getElementById('appLoader');
+          if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 300);
+          }
+        }).catch(error => {
+          console.error('Failed to initialize app:', error);
+          if (window.showToast) {
+            window.showToast('Failed to initialize app. Please refresh.', 'error');
+          }
+        });
+      } else {
+        console.error('QRApp not found');
+      }
+    }
+
+    // Start initialization
+    initializeApp();
+  </script>
+
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <!-- Add loader to body if you want a loading screen -->
+  <div id="appLoader" style="display: none;">
+    <div class="loader-content">
+      <div class="spinner"></div>
+      <p>Loading SnapIT QR...</p>
+    </div>
+  </div>
+</body>
+</html>

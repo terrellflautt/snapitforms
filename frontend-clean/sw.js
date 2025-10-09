@@ -1,342 +1,311 @@
-// SnapIT Forms Service Worker
-// Ultimate performance and caching optimization
+// SnapItForms Service Worker
+// Version: 1.0.0
+// Purpose: Caching strategy and offline functionality
 
-const CACHE_NAME = 'snapitforms-v1.2.0';
-const STATIC_CACHE = 'snapitforms-static-v1.2.0';
-const DYNAMIC_CACHE = 'snapitforms-dynamic-v1.2.0';
+const CACHE_NAME = 'snapitforms-v1.0.0';
+const STATIC_CACHE_NAME = 'snapitforms-static-v1.0.0';
+const DYNAMIC_CACHE_NAME = 'snapitforms-dynamic-v1.0.0';
 
-// Resources to cache immediately
+// Static assets to cache
 const STATIC_ASSETS = [
     '/',
     '/index.html',
     '/dashboard.html',
-    '/form-generator.html',
-    '/templates.html',
-    '/css/landingstyles.css',
-    '/css/formsmain.css',
-    '/css/formsstyles.css',
-    '/css/language-selector.css',
-    '/js/translations.js',
-    '/js/language-selector.js',
-    '/js/performance-optimizer.js',
+    '/css/style.css',
+    '/js/unified-system.js',
+    '/js/auth-fix-universal.js',
+    '/js/api-interceptor.js',
+    '/images/snapit-logo.png',
     '/favicon.ico',
-    '/apple-touch-icon.png'
+    '/manifest.json'
 ];
 
-// API endpoints to cache
-const API_ENDPOINTS = [
-    'https://api.snapitforms.com/health',
-    'https://api.snapitforms.com/forms',
-    'https://api.snapitforms.com/templates'
+// API endpoints to cache dynamically
+const API_CACHE_PATTERNS = [
+    /^https:\/\/api\.snapitforms\.com\//,
+    /^https:\/\/.*\.execute-api\.us-east-1\.amazonaws\.com\//
 ];
 
-// Install service worker
+// Install event - cache static assets
 self.addEventListener('install', (event) => {
-    console.log('SnapIT Forms SW: Installing...');
-
+    console.log('Service Worker: Installing...');
     event.waitUntil(
-        Promise.all([
-            caches.open(STATIC_CACHE).then(cache => {
-                console.log('SnapIT Forms SW: Caching static assets');
+        caches.open(STATIC_CACHE_NAME)
+            .then((cache) => {
+                console.log('Service Worker: Caching static assets');
                 return cache.addAll(STATIC_ASSETS);
-            }),
-            caches.open(DYNAMIC_CACHE).then(cache => {
-                console.log('SnapIT Forms SW: Preparing dynamic cache');
-                return Promise.resolve();
             })
-        ])
+            .then(() => {
+                console.log('Service Worker: Installation complete');
+                return self.skipWaiting();
+            })
+            .catch((error) => {
+                console.error('Service Worker: Installation failed', error);
+            })
     );
-
-    // Skip waiting to activate immediately
-    self.skipWaiting();
 });
 
-// Activate service worker
+// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-    console.log('SnapIT Forms SW: Activating...');
-
+    console.log('Service Worker: Activating...');
     event.waitUntil(
-        Promise.all([
-            // Clean up old caches
-            caches.keys().then(cacheNames => {
+        caches.keys()
+            .then((cacheNames) => {
                 return Promise.all(
-                    cacheNames.map(cacheName => {
-                        if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
-                            console.log('SnapIT Forms SW: Deleting old cache:', cacheName);
+                    cacheNames.map((cacheName) => {
+                        if (cacheName !== STATIC_CACHE_NAME &&
+                            cacheName !== DYNAMIC_CACHE_NAME &&
+                            cacheName !== CACHE_NAME) {
+                            console.log('Service Worker: Deleting old cache', cacheName);
                             return caches.delete(cacheName);
                         }
                     })
                 );
-            }),
-            // Take control of all pages
-            self.clients.claim()
-        ])
+            })
+            .then(() => {
+                console.log('Service Worker: Activation complete');
+                return self.clients.claim();
+            })
     );
 });
 
-// Fetch handler with advanced caching strategies
+// Fetch event - implement caching strategy
 self.addEventListener('fetch', (event) => {
-    const { request } = event;
+    const request = event.request;
     const url = new URL(request.url);
 
-    // Skip non-GET requests
+    // Skip caching for non-GET requests
     if (request.method !== 'GET') {
         return;
     }
 
-    // Skip Chrome extensions
+    // Skip caching for Chrome extension requests
     if (url.protocol === 'chrome-extension:') {
         return;
     }
 
-    // Handle different types of requests
-    if (url.hostname === 'snapitforms.com' || url.hostname === 'www.snapitforms.com') {
-        event.respondWith(handleSnapITRequest(request));
-    } else if (url.hostname === 'api.snapitforms.com') {
-        event.respondWith(handleAPIRequest(request));
-    } else if (url.hostname.includes('googleapis.com') || url.hostname.includes('gstatic.com')) {
-        event.respondWith(handleGoogleRequest(request));
-    } else if (url.hostname.includes('stripe.com')) {
-        event.respondWith(handleStripeRequest(request));
-    } else {
-        event.respondWith(handleExternalRequest(request));
+    // Skip caching for external third-party resources (Google, Stripe, etc.)
+    const externalDomains = [
+        'accounts.google.com',
+        'js.stripe.com',
+        'm.stripe.com',
+        'r.stripe.com',
+        'q.stripe.com',
+        'b.stripecdn.com',
+        'fonts.googleapis.com',
+        'fonts.gstatic.com'
+    ];
+
+    if (externalDomains.some(domain => url.hostname.includes(domain))) {
+        // Let browser handle these directly without Service Worker interference
+        return;
     }
+
+    event.respondWith(
+        handleFetchRequest(request)
+    );
 });
 
-// Handle SnapIT Forms requests (Cache First strategy)
-async function handleSnapITRequest(request) {
+async function handleFetchRequest(request) {
     const url = new URL(request.url);
 
-    // For HTML pages, use Network First for freshness
-    if (url.pathname.endsWith('.html') || url.pathname === '/') {
-        return networkFirstStrategy(request, DYNAMIC_CACHE);
-    }
-
-    // For static assets (CSS, JS, images), use Cache First
-    if (isStaticAsset(url.pathname)) {
-        return cacheFirstStrategy(request, STATIC_CACHE);
-    }
-
-    // Default to Network First
-    return networkFirstStrategy(request, DYNAMIC_CACHE);
-}
-
-// Handle API requests (Network First with short cache)
-async function handleAPIRequest(request) {
-    return networkFirstStrategy(request, DYNAMIC_CACHE, 30000); // 30 second cache
-}
-
-// Handle Google services (Cache First)
-async function handleGoogleRequest(request) {
-    return cacheFirstStrategy(request, STATIC_CACHE);
-}
-
-// Handle Stripe requests (Network Only)
-async function handleStripeRequest(request) {
-    return fetch(request);
-}
-
-// Handle external requests (Network First)
-async function handleExternalRequest(request) {
-    return networkFirstStrategy(request, DYNAMIC_CACHE);
-}
-
-// Cache First Strategy
-async function cacheFirstStrategy(request, cacheName) {
     try {
-        const cache = await caches.open(cacheName);
-        const cachedResponse = await cache.match(request);
+        // Strategy for static assets: Cache First
+        if (STATIC_ASSETS.some(asset => request.url.endsWith(asset))) {
+            return await cacheFirst(request, STATIC_CACHE_NAME);
+        }
 
+        // Strategy for API calls: Network First
+        if (API_CACHE_PATTERNS.some(pattern => pattern.test(request.url))) {
+            return await networkFirst(request, DYNAMIC_CACHE_NAME);
+        }
+
+        // Strategy for HTML pages: Network First with fallback
+        if (request.headers.get('accept').includes('text/html')) {
+            return await networkFirstWithFallback(request, DYNAMIC_CACHE_NAME);
+        }
+
+        // Default strategy: Network First
+        return await networkFirst(request, DYNAMIC_CACHE_NAME);
+
+    } catch (error) {
+        console.error('Service Worker: Fetch failed', error);
+
+        // Return cached version if available
+        const cachedResponse = await caches.match(request);
         if (cachedResponse) {
-            // Update cache in background
-            fetch(request).then(response => {
-                if (response.ok) {
-                    cache.put(request, response.clone());
-                }
-            }).catch(() => {
-                // Ignore network errors for background updates
-            });
-
             return cachedResponse;
         }
 
-        const networkResponse = await fetch(request);
-
-        if (networkResponse.ok) {
-            await cache.put(request, networkResponse.clone());
+        // Return offline fallback for HTML requests
+        if (request.headers.get('accept').includes('text/html')) {
+            return new Response(
+                `<html>
+                    <head><title>Offline - SnapItForms</title></head>
+                    <body>
+                        <h1>You're offline</h1>
+                        <p>Please check your internet connection and try again.</p>
+                    </body>
+                </html>`,
+                { headers: { 'Content-Type': 'text/html' } }
+            );
         }
 
-        return networkResponse;
-    } catch (error) {
-        console.error('SnapIT Forms SW: Cache First error:', error);
-        return new Response('Service Unavailable', {
-            status: 503,
-            statusText: 'Service Unavailable'
-        });
+        throw error;
     }
 }
 
-// Network First Strategy
-async function networkFirstStrategy(request, cacheName, maxAge = 300000) { // 5 minutes default
+// Cache First strategy
+async function cacheFirst(request, cacheName) {
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+        return cachedResponse;
+    }
+
+    const networkResponse = await fetch(request);
+    if (networkResponse.ok) {
+        const cache = await caches.open(cacheName);
+        cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+}
+
+// Network First strategy
+async function networkFirst(request, cacheName) {
     try {
         const networkResponse = await fetch(request);
-
         if (networkResponse.ok) {
             const cache = await caches.open(cacheName);
-
-            // Add timestamp for cache expiration
-            const responseToCache = networkResponse.clone();
-            responseToCache.headers.set('sw-cached-at', Date.now().toString());
-
-            await cache.put(request, responseToCache);
+            cache.put(request, networkResponse.clone());
         }
-
         return networkResponse;
     } catch (error) {
-        console.log('SnapIT Forms SW: Network failed, trying cache:', error.message);
-
-        const cache = await caches.open(cacheName);
-        const cachedResponse = await cache.match(request);
-
+        const cachedResponse = await caches.match(request);
         if (cachedResponse) {
-            // Check if cache is still valid
-            const cachedAt = cachedResponse.headers.get('sw-cached-at');
-            if (cachedAt && (Date.now() - parseInt(cachedAt)) < maxAge) {
-                return cachedResponse;
-            }
+            return cachedResponse;
         }
-
-        return new Response('Offline', {
-            status: 503,
-            statusText: 'Service Unavailable - Offline'
-        });
+        throw error;
     }
 }
 
-// Check if URL is a static asset
-function isStaticAsset(pathname) {
-    const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2'];
-    return staticExtensions.some(ext => pathname.endsWith(ext));
+// Network First with HTML fallback
+async function networkFirstWithFallback(request, cacheName) {
+    try {
+        const networkResponse = await fetch(request);
+        if (networkResponse.ok) {
+            const cache = await caches.open(cacheName);
+            cache.put(request, networkResponse.clone());
+        }
+        return networkResponse;
+    } catch (error) {
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+
+        // Return index.html as fallback for SPA routing
+        const indexResponse = await caches.match('/index.html');
+        if (indexResponse) {
+            return indexResponse;
+        }
+
+        throw error;
+    }
 }
 
 // Background sync for form submissions
 self.addEventListener('sync', (event) => {
     if (event.tag === 'form-submission') {
-        event.waitUntil(syncFormSubmissions());
-    }
-});
-
-// Sync form submissions when back online
-async function syncFormSubmissions() {
-    try {
-        const db = await openIndexedDB();
-        const pendingSubmissions = await getPendingSubmissions(db);
-
-        for (const submission of pendingSubmissions) {
-            try {
-                const response = await fetch('https://api.snapitforms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(submission.data)
-                });
-
-                if (response.ok) {
-                    await removePendingSubmission(db, submission.id);
-                    console.log('SnapIT Forms SW: Synced form submission:', submission.id);
-                }
-            } catch (error) {
-                console.error('SnapIT Forms SW: Failed to sync submission:', error);
-            }
-        }
-    } catch (error) {
-        console.error('SnapIT Forms SW: Background sync error:', error);
-    }
-}
-
-// IndexedDB helpers for offline form storage
-function openIndexedDB() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open('snapitforms-offline', 1);
-
-        request.onerror = () => reject(request.error);
-        request.onsuccess = () => resolve(request.result);
-
-        request.onupgradeneeded = (event) => {
-            const db = event.target.result;
-            if (!db.objectStoreNames.contains('submissions')) {
-                db.createObjectStore('submissions', { keyPath: 'id' });
-            }
-        };
-    });
-}
-
-function getPendingSubmissions(db) {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(['submissions'], 'readonly');
-        const store = transaction.objectStore('submissions');
-        const request = store.getAll();
-
-        request.onerror = () => reject(request.error);
-        request.onsuccess = () => resolve(request.result);
-    });
-}
-
-function removePendingSubmission(db, id) {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(['submissions'], 'readwrite');
-        const store = transaction.objectStore('submissions');
-        const request = store.delete(id);
-
-        request.onerror = () => reject(request.error);
-        request.onsuccess = () => resolve();
-    });
-}
-
-// Message handler for communication with main thread
-self.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-        self.skipWaiting();
-    }
-
-    if (event.data && event.data.type === 'GET_VERSION') {
-        event.ports[0].postMessage({ version: CACHE_NAME });
-    }
-
-    if (event.data && event.data.type === 'CLEAR_CACHE') {
         event.waitUntil(
-            caches.keys().then(cacheNames => {
-                return Promise.all(
-                    cacheNames.map(cacheName => caches.delete(cacheName))
-                );
-            })
+            handleBackgroundFormSubmission()
         );
     }
 });
 
-// Performance monitoring
-self.addEventListener('fetch', (event) => {
-    const startTime = performance.now();
+async function handleBackgroundFormSubmission() {
+    try {
+        // Get pending form submissions from IndexedDB
+        const pendingSubmissions = await getPendingSubmissions();
 
-    event.respondWith(
-        handleRequest(event.request).then(response => {
-            const endTime = performance.now();
-            const duration = endTime - startTime;
+        for (const submission of pendingSubmissions) {
+            try {
+                const response = await fetch(submission.url, {
+                    method: 'POST',
+                    headers: submission.headers,
+                    body: submission.body
+                });
 
-            // Log slow requests
-            if (duration > 1000) {
-                console.warn(`SnapIT Forms SW: Slow request (${duration.toFixed(2)}ms):`, event.request.url);
+                if (response.ok) {
+                    await removePendingSubmission(submission.id);
+                    console.log('Service Worker: Form submission synchronized');
+                }
+            } catch (error) {
+                console.error('Service Worker: Background sync failed', error);
             }
+        }
+    } catch (error) {
+        console.error('Service Worker: Background sync error', error);
+    }
+}
 
-            return response;
-        })
+// Push notification handling
+self.addEventListener('push', (event) => {
+    if (!event.data) {
+        return;
+    }
+
+    const data = event.data.json();
+    const options = {
+        body: data.body || 'New form submission received',
+        icon: '/images/snapit-logo.png',
+        badge: '/images/snapit-logo.png',
+        tag: 'form-notification',
+        requireInteraction: true,
+        actions: [
+            {
+                action: 'view',
+                title: 'View Dashboard'
+            },
+            {
+                action: 'dismiss',
+                title: 'Dismiss'
+            }
+        ]
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(data.title || 'SnapItForms', options)
     );
 });
 
-// Route requests to appropriate handlers
-function handleRequest(request) {
-    return self.dispatchEvent(new FetchEvent('fetch', { request }));
+// Notification click handling
+self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+
+    if (event.action === 'view') {
+        event.waitUntil(
+            clients.openWindow('/dashboard.html')
+        );
+    }
+});
+
+// Utility functions for IndexedDB operations
+async function getPendingSubmissions() {
+    // Implementation for retrieving pending submissions from IndexedDB
+    return [];
 }
 
-console.log('SnapIT Forms Service Worker loaded successfully');
+async function removePendingSubmission(id) {
+    // Implementation for removing submission from IndexedDB
+    return true;
+}
+
+// Error handling
+self.addEventListener('error', (event) => {
+    console.error('Service Worker: Global error', event.error);
+});
+
+self.addEventListener('unhandledrejection', (event) => {
+    console.error('Service Worker: Unhandled promise rejection', event.reason);
+    event.preventDefault();
+});

@@ -4,43 +4,40 @@ Allow: /
 # Sitemap
 Sitemap: https://snapitforms.com/sitemap.xml
 
-# Crawl-delay for better server performance
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_internal/
+Disallow: /dashboard/private/
+Disallow: /user/settings/
+
+# Allow important pages for SEO
+Allow: /
+Allow: /pricing
+Allow: /features
+Allow: /templates
+Allow: /docs
+Allow: /support
+Allow: /blog
+Allow: /vs/
+Allow: /integrations/
+
+# Crawl delay (optional, in seconds)
 Crawl-delay: 1
 
-# Allow all major search engines
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 2
 
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /private/
-Disallow: /.env
-Disallow: /api/
-Disallow: /aws/
-
-# Allow important pages
-Allow: /form-generator.html
-Allow: /templates.html
-Allow: /dashboard.html
-Allow: /pricing.html
-Allow: /about.html
-Allow: /contact.html
-Allow: /help.html
-Allow: /documentation.html
-
-# CSS and JS files
-Allow: /css/
-Allow: /js/
-Allow: /images/
-Allow: /fonts/
-
-# Favicon and manifest
-Allow: /favicon.ico
-Allow: /site.webmanifest
-Allow: /apple-touch-icon.png
+# SnapIT Forms - Professional Form Builder Service
+# Last updated: 2025-09-21

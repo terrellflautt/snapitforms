@@ -1,105 +1,2569 @@
-{
-  "name": "SnapitForms - Professional Form Builder",
-  "short_name": "SnapitForms",
-  "description": "Create professional forms without code. Drag & drop form builder with 500 free monthly submissions.",
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait-primary",
-  "theme_color": "#aa336a",
-  "background_color": "#ffcddf",
-  "lang": "en",
-  "scope": "/",
-  "icons": [
-    {
-      "src": "/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://js.stripe.com https://unpkg.com https://www.googletagmanager.com https://snapitsaas.com https://accounts.google.com; script-src-elem 'self' 'unsafe-inline' https://*.google.com https://*.googleapis.com https://*.gstatic.com https://js.stripe.com https://unpkg.com https://www.googletagmanager.com https://snapitsaas.com https://accounts.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://accounts.google.com; connect-src 'self' https://api.snapitforms.com https://api.snapitanalytics.com https://api.snapitagent.com https://api.snapitqr.com https://api.snapiturl.com https://api.urlstatuschecker.com https://dnxslxuth3.execute-api.us-east-1.amazonaws.com https://6cbwon5xd0.execute-api.us-east-1.amazonaws.com https://*.execute-api.us-east-1.amazonaws.com https://*.google.com https://*.googleapis.com https://js.stripe.com https://www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google.com https://*.gstatic.com; frame-src 'self' https://*.google.com https://js.stripe.com; frame-ancestors 'self' https://*.google.com https://accounts.google.com;">
+    
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), payment=(self), usb=()">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- SEO-Optimized Meta Tags for Maximum Organic Traffic -->
+<meta name="title" content="Free Form Submission Service - 500 Monthly Submissions | SnapItForms - Better Than Formspree & Netlify Forms">
+
+<meta name="description" content="SnapItForms: The #1 free form submission service with 500 monthly submissions, instant email notifications, advanced analytics, and webhook integrations. 
+No backend coding required! Cheaper and more powerful than Formspree, Netlify Forms, and TypeForm. Start with our generous free tier - includes contact forms, surveys, and order forms. 
+9 pricing plans from $0 to enterprise. Perfect for developers, agencies, and businesses. Setup in 2 minutes with our drag-and-drop form builder.">
+
+<meta name="keywords" content="free form submission service, form backend API, no code forms, contact form handler, form processing service, HTML form backend, JavaScript form submission, serverless forms, static site forms, 
+form to email service, webhook forms, form analytics, best Formspree alternative, Netlify Forms alternative, TypeForm alternative, JotForm alternative, Wufoo alternative, Google Forms alternative, free contact form, form builder, 
+drag and drop forms, survey forms, order forms, feedback forms, lead generation forms, email capture forms, newsletter signup forms, event registration forms, job application forms, customer feedback forms, product order forms, 
+appointment booking forms, contact us forms, inquiry forms, quote request forms, demo request forms, trial signup forms, webinar registration forms, form validation, form security, spam protection, GDPR compliant forms, mobile responsive forms, 
+custom form styling, form integrations, Zapier integration, Slack integration, email automation, form notifications, real-time analytics, form conversion tracking, A/B testing forms, multi-step forms, conditional logic forms, file upload forms, payment forms, 
+subscription forms, marketing forms, sales forms, support forms, HR forms, application forms, registration forms, booking forms, reservation forms, evaluation forms, assessment forms, poll forms, voting forms, petition forms, donation forms, volunteer forms, membership forms, 
+contest forms, giveaway forms, quiz forms, calculator forms, estimate forms, pricing forms, custom forms, white label forms, branded forms, embed forms, popup forms, modal forms, inline forms, floating forms, sticky forms, exit intent forms, timed forms, geo-targeted forms, device-specific forms, 
+browser-specific forms, campaign forms, landing page forms, website forms, blog forms, e-commerce forms, CMS forms, WordPress forms, Shopify forms, Squarespace forms, Wix forms, Webflow forms, React forms, Vue forms, Angular forms, jQuery forms, Bootstrap forms, 
+HTML5 forms, CSS3 forms, responsive design forms, mobile-first forms, progressive web app forms, single page application forms, headless forms, API-first forms, microservice forms, cloud forms, secure forms, encrypted forms, PCI compliant forms, HIPAA compliant forms, SOC 2 compliant forms, 
+enterprise forms, business forms, startup forms, agency forms, freelancer forms, developer forms, designer forms, marketer forms, sales team forms, support team forms, HR team forms, operations team forms, product team forms, engineering team forms, finance team forms, legal team forms, compliance team forms, 
+security team forms, IT team forms, customer success forms, account management forms, project management forms, task management forms, workflow forms, automation forms, integration forms, collaboration forms, communication forms, reporting forms, dashboard forms, admin forms, user forms, customer forms, client forms, vendor forms, partner forms, 
+affiliate forms, referral forms">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://snapitforms.com">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snapitforms.com">
+    <meta property="og:title" content="Free Form Submission Service | SnapItForms - No Backend Required">
+    <meta property="og:description" content="Free form submission handling for HTML forms. Get 500 free submissions monthly. No backend coding required. Set up in 2 minutes with email notifications and analytics.">
+    <meta property="og:image" content="https://snapitforms.com/snapit-forms-og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="SnapItForms">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://snapitforms.com">
+    <meta property="twitter:title" content="Free Form Submission Service | SnapItForms - No Backend Required">
+    <meta property="twitter:description" content="Free form submission handling for HTML forms. Get 500 free submissions monthly. No backend coding required. Set up in 2 minutes with email notifications and analytics.">
+    <meta property="twitter:image" content="https://snapitforms.com/images/snapitforms-twitter-og-banner.png">
+    <meta property="twitter:creator" content="@SnapItForms">
+    <meta property="twitter:site" content="@SnapItForms">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="General">
+    <meta name="distribution" content="global">
+    <meta name="copyright" content="SnapItForms">
+    
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US">
+    <meta name="geo.placename" content="United States">
+    <meta name="ICBM" content="39.8283, -98.5795">
+    
+    <!-- Article/Business Meta Tags -->
+    <meta name="author" content="SnapItForms">
+    <meta name="publisher" content="SnapItForms">
+    <meta name="application-name" content="SnapItForms">
+    <meta name="theme-color" content="#aa336a">
+    <meta name="msapplication-TileColor" content="#aa336a">
+    
+    <!-- Mobile Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="SnapItForms">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://accounts.google.com">
+    <link rel="dns-prefetch" href="https://dnxslxuth3.execute-api.us-east-1.amazonaws.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Identity Services -->
+    
+<script>
+// Ensure SnapITAuth is defined before use
+window.SnapITAuth = window.SnapITAuth || {
+    init: function() {
+        console.log('SnapIT Auth initialized');
     },
-    {
-      "src": "/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
+    getToken: function() {
+        return localStorage.getItem('snapit_auth_token') || sessionStorage.getItem('snapit_auth_token') || null;
     },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "maskable any"
+    setToken: function(token) {
+        localStorage.setItem('snapit_auth_token', token);
+        sessionStorage.setItem('snapit_auth_token', token);
     },
-    {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
+    clearToken: function() {
+        localStorage.removeItem('snapit_auth_token');
+        sessionStorage.removeItem('snapit_auth_token');
     },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
+    isAuthenticated: function() {
+        return !!this.getToken();
     }
-  ],
-  "screenshots": [
+};
+</script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <!-- SnapIT Unified Authentication System -->
+    <script src="/js/unified-system.js"></script>
+    <script src="/js/auth-fix.js"></script>
+    <script src="/js/auth-fix-universal.js"></script>
+    <!-- CRITICAL FIX: API Interceptor for Authentication -->
+    <script src="https://snapitsaas.com/shared/auth/api-interceptor.js"></script>
+    <link rel="stylesheet" href="/css/unified-styles.css">
+        
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://accounts.google.com">
+    <link rel="preconnect" href="https://dnxslxuth3.execute-api.us-east-1.amazonaws.com">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/landingstyles.css">
+    <link rel="stylesheet" href="css/formsmain.css">
+    <link rel="stylesheet" href="css/formsstyles.css">
+    <link rel="stylesheet" href="css/formsui.css">
+    <link rel="stylesheet" href="css/formslanding.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/formsmobile.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/formstemplatecards.css">
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
     {
-      "src": "/images/screenshots/mobile-form-builder.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "platform": "narrow",
-      "label": "Mobile form builder interface"
-    },
-    {
-      "src": "/images/screenshots/desktop-dashboard.png",
-      "sizes": "1280x800",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Desktop dashboard view"
-    }
-  ],
-  "categories": ["business", "productivity", "utilities"],
-  "shortcuts": [
-    {
-      "name": "Create New Form",
-      "short_name": "New Form",
-      "description": "Create a new form using the drag & drop builder",
-      "url": "/form-generator.html",
-      "icons": [
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SnapItForms",
+      "url": "https://snapitforms.com",
+      "description": "Free form submission handling service for HTML forms. No backend coding required. Set up in 2 minutes with email notifications and analytics.",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web Browser",
+      "offers": [
         {
-          "src": "/apple-touch-icon.png",
-          "sizes": "180x180"
+          "@type": "Offer",
+          "name": "Free Plan",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free plan with 500 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Starter Plan",
+          "price": "2.99",
+          "priceCurrency": "USD",
+          "description": "Starter plan with 1,000 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Basic Plan",
+          "price": "4.99",
+          "priceCurrency": "USD",
+          "description": "Basic plan with 2,500 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Plan",
+          "price": "9.99",
+          "priceCurrency": "USD",
+          "description": "Premium plan with 5,000 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro Plan",
+          "price": "14.99",
+          "priceCurrency": "USD",
+          "description": "Pro plan with 25,000 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Business Plan",
+          "price": "29.99",
+          "priceCurrency": "USD",
+          "description": "Business plan with 75,000 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Enterprise Plan",
+          "price": "59.99",
+          "priceCurrency": "USD",
+          "description": "Enterprise plan with 300,000 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Scale Plan",
+          "price": "99.99",
+          "priceCurrency": "USD",
+          "description": "Scale plan with 1,000,000 submissions per month"
+        },
+        {
+          "@type": "Offer",
+          "name": "Unlimited Plan",
+          "price": "199.99",
+          "priceCurrency": "USD",
+          "description": "Unlimited plan with 2,500,000 submissions per month"
+        }
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "SnapItForms",
+        "url": "https://snapitforms.com",
+        "logo": "https://snapitforms.com/images/snapit-logo.png"
+      },
+      "featureList": [
+        "500 free form submissions per month",
+        "Email notifications",
+        "No backend coding required",
+        "2-minute setup",
+        "Form analytics",
+        "Spam protection",
+        "Custom redirect URLs",
+        "9 pricing tiers from free to enterprise",
+        "Up to 2.5 million submissions per month"
+      ],
+      "screenshot": "https://snapitforms.com/images/snapitforms-screenshot.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does SnapItForms cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SnapItForms offers a free plan with 500 submissions per month. Paid plans start at $2.99/month for 1,000 submissions (Starter) and scale up to $199.99/month for 2.5 million submissions (Unlimited). We have 9 different plans to fit every need and budget."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need backend coding knowledge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No! SnapItForms requires zero backend coding. Simply add your access key to any HTML form and we handle the rest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can I set up form submission?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Setup takes just 2 minutes. Sign up, get your access key, and add it to your HTML form. No server configuration required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What features are included in the free plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The free plan includes 500 submissions per month, email notifications, basic analytics, and spam protection."
+          }
         }
       ]
-    },
-    {
-      "name": "Browse Templates",
-      "short_name": "Templates",
-      "description": "Choose from 100+ professional form templates",
-      "url": "/templates.html",
-      "icons": [
-        {
-          "src": "/apple-touch-icon.png",
-          "sizes": "180x180"
-        }
-      ]
-    },
-    {
-      "name": "Dashboard",
-      "short_name": "Dashboard",
-      "description": "View your forms and submissions",
-      "url": "/dashboard.html",
-      "icons": [
-        {
-          "src": "/apple-touch-icon.png",
-          "sizes": "180x180"
-        }
-      ]
     }
-  ],
-  "prefer_related_applications": false,
-  "related_applications": [],
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
-  "launch_handler": {
-    "client_mode": "navigate-existing"
-  }
+    </script>
+    
+    <!-- Fixed CSP Headers for SnapIT Universal Compatibility -->
+    \n    
+    <!-- Cross-Origin-Opener-Policy for Google OAuth -->
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+
+
+
+<!-- SnapIT Unified Analytics & Performance Monitoring -->
+<script>
+(function() {
+    // Core Analytics Configuration
+    window.snapitAnalytics = {
+        config: {
+            apiEndpoint: 'https://api.snapitanalytics.com/events',
+            userId: null,
+            sessionId: generateSessionId(),
+            environment: 'production',
+            version: '2.0.0'
+        },
+        
+        // Initialize tracking
+        init: function() {
+            this.trackPageView();
+            this.setupPerformanceMonitoring();
+            this.setupErrorTracking();
+            this.setupUserBehavior();
+        },
+        
+        // Enhanced event tracking
+        trackEvent: function(event, properties = {}) {
+            const eventData = {
+                event: event,
+                properties: {
+                    ...properties,
+                    timestamp: Date.now(),
+                    url: window.location.href,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    sessionId: this.config.sessionId,
+                    userId: this.config.userId
+                }
+            };
+            
+            // Send to multiple endpoints
+            this.sendToAnalytics(eventData);
+            this.sendToGoogleAnalytics(event, properties);
+        },
+        
+        // Page view tracking with performance
+        trackPageView: function() {
+            const pageData = {
+                page: window.location.pathname,
+                title: document.title,
+                loadTime: performance.timing.loadEventEnd - performance.timing.navigationStart,
+                timestamp: Date.now()
+            };
+            
+            this.trackEvent('page_view', pageData);
+        },
+        
+        // Conversion tracking
+        trackConversion: function(value, currency = 'USD', event = 'purchase') {
+            this.trackEvent('conversion', {
+                value: value,
+                currency: currency,
+                event_type: event
+            });
+            
+            // Send to Google Analytics Enhanced Ecommerce
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'purchase', {
+                    transaction_id: generateTransactionId(),
+                    value: value,
+                    currency: currency
+                });
+            }
+        },
+        
+        // Performance monitoring
+        setupPerformanceMonitoring: function() {
+            // Core Web Vitals
+            new PerformanceObserver((entryList) => {
+                for (const entry of entryList.getEntries()) {
+                    this.trackEvent('core_web_vitals', {
+                        metric: entry.name,
+                        value: entry.value,
+                        rating: this.getWebVitalRating(entry.name, entry.value)
+                    });
+                }
+            }).observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'cumulative-layout-shift'] });
+        },
+        
+        // Error tracking
+        setupErrorTracking: function() {
+            window.addEventListener('error', (error) => {
+                this.trackEvent('javascript_error', {
+                    message: error.message,
+                    filename: error.filename,
+                    lineno: error.lineno,
+                    colno: error.colno,
+                    stack: error.error ? error.error.stack : null
+                });
+            });
+            
+            window.addEventListener('unhandledrejection', (event) => {
+                this.trackEvent('promise_rejection', {
+                    reason: event.reason,
+                    stack: event.reason ? event.reason.stack : null
+                });
+            });
+        },
+        
+        // User behavior tracking
+        setupUserBehavior: function() {
+            // Scroll tracking
+            let maxScroll = 0;
+            window.addEventListener('scroll', () => {
+                const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                if (scrollPercent > maxScroll) {
+                    maxScroll = scrollPercent;
+                    if (maxScroll % 25 === 0) {
+                        this.trackEvent('scroll_depth', { depth: maxScroll });
+                    }
+                }
+            });
+            
+            // Click tracking
+            document.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A' || event.target.closest('button')) {
+                    this.trackEvent('click', {
+                        element: event.target.tagName,
+                        text: event.target.textContent.substring(0, 100),
+                        href: event.target.href || null
+                    });
+                }
+            });
+        },
+        
+        // Send data to analytics API
+        sendToAnalytics: function(data) {
+            fetch(this.config.apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }).catch(console.error);
+        },
+        
+        // Google Analytics integration
+        sendToGoogleAnalytics: function(event, properties) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', event, properties);
+            }
+        },
+        
+        // Web Vitals rating
+        getWebVitalRating: function(metric, value) {
+            const thresholds = {
+                'largest-contentful-paint': [2500, 4000],
+                'first-input': [100, 300],
+                'cumulative-layout-shift': [0.1, 0.25]
+            };
+            
+            const [good, poor] = thresholds[metric] || [0, 0];
+            return value <= good ? 'good' : value <= poor ? 'needs-improvement' : 'poor';
+        }
+    };
+    
+    // Utility functions
+    function generateSessionId() {
+        return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    }
+    
+    function generateTransactionId() {
+        return 'trans_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => window.snapitAnalytics.init());
+    } else {
+        window.snapitAnalytics.init();
+    }
+})();
+</script>
+
+<!-- Enhanced Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SNAPIT001"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SNAPIT001', {
+    enhanced_ecommerce: true,
+    custom_parameters_enabled: true
+  });
+</script>
+
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+class SnapITStripeManager {
+    constructor(publishableKey) {
+        this.stripe = Stripe(publishableKey);
+        this.elements = null;
+        this.card = null;
+        this.currentPlan = null;
+    }
+    
+    // Initialize payment elements
+    initializePayment(plan) {
+        this.currentPlan = plan;
+        this.elements = this.stripe.elements({
+            appearance: {
+                theme: 'stripe',
+                variables: {
+                    colorPrimary: '#aa336a',
+                    colorBackground: '#ffffff',
+                    colorText: '#1f2937',
+                    colorDanger: '#dc2626',
+                    fontFamily: '"Inter", system-ui, sans-serif',
+                    spacingUnit: '4px',
+                    borderRadius: '8px'
+                }
+            }
+        });
+        
+        this.card = this.elements.create('payment', {
+            layout: 'tabs'
+        });
+        
+        this.card.mount('#payment-element');
+        this.setupEventListeners();
+    }
+    
+    // Enhanced subscription creation
+    async createSubscription(priceId, customerId = null) {
+        try {
+            window.snapitAnalytics.trackEvent('subscription_attempt', {
+                plan: this.currentPlan,
+                priceId: priceId
+            });
+            
+            const response = await fetch('/api/create-subscription', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    priceId: priceId,
+                    customerId: customerId,
+                    metadata: {
+                        source: 'snapit_web',
+                        plan: this.currentPlan,
+                        timestamp: Date.now()
+                    }
+                })
+            });
+            
+            const { clientSecret, subscriptionId } = await response.json();
+            
+            const { error, paymentIntent } = await this.stripe.confirmPayment({
+                elements: this.elements,
+                clientSecret: clientSecret,
+                confirmParams: {
+                    return_url: window.location.origin + '/success'
+                }
+            });
+            
+            if (error) {
+                window.snapitAnalytics.trackEvent('subscription_failed', {
+                    error: error.message,
+                    code: error.code
+                });
+                throw error;
+            } else {
+                window.snapitAnalytics.trackConversion(
+                    this.getPlanPrice(this.currentPlan),
+                    'USD',
+                    'subscription'
+                );
+                return { subscriptionId, paymentIntent };
+            }
+        } catch (error) {
+            console.error('Subscription creation failed:', error);
+            throw error;
+        }
+    }
+    
+    // Usage-based billing
+    async recordUsage(subscriptionItemId, quantity, action = 'increment') {
+        try {
+            const response = await fetch('/api/record-usage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    subscriptionItemId: subscriptionItemId,
+                    quantity: quantity,
+                    action: action,
+                    timestamp: Math.floor(Date.now() / 1000)
+                })
+            });
+            
+            return await response.json();
+        } catch (error) {
+            console.error('Usage recording failed:', error);
+            throw error;
+        }
+    }
+    
+    // Customer portal redirect
+    redirectToPortal(customerId) {
+        window.snapitAnalytics.trackEvent('portal_redirect', { customerId });
+        fetch('/api/create-portal-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ customerId })
+        })
+        .then(response => response.json())
+        .then(({ url }) => {
+            window.location.href = url;
+        });
+    }
+    
+    // Event listeners
+    setupEventListeners() {
+        this.card.on('ready', () => {
+            window.snapitAnalytics.trackEvent('payment_form_ready');
+        });
+        
+        this.card.on('change', (event) => {
+            if (event.error) {
+                window.snapitAnalytics.trackEvent('payment_form_error', {
+                    error: event.error.message
+                });
+            }
+        });
+    }
+    
+    // Helper functions
+    getPlanPrice(plan) {
+        const prices = {
+            'starter': 9,
+            'professional': 29,
+            'enterprise': 99
+        };
+        return prices[plan] || 0;
+    }
 }
+
+// Global Stripe manager instance
+window.snapitStripe = null;
+</script>
+
+
+
+<script>
+class SnapITAuthManager {
+    constructor() {
+        this.currentUser = null;
+        this.listeners = [];
+        this.initializeAuth();
+    }
+    
+    initializeAuth() {
+        // Check for existing session
+        const storedUser = localStorage.getItem('snapit_user');
+        const storedToken = localStorage.getItem('snapit_jwt_token');
+        
+        if (storedUser && storedToken) {
+            try {
+                this.currentUser = JSON.parse(storedUser);
+                this.validateSession();
+            } catch (error) {
+                this.clearSession();
+            }
+        }
+        
+        // Initialize Google Auth
+        this.initializeGoogleAuth();
+    }
+    
+    initializeGoogleAuth() {
+        if (typeof google !== 'undefined' && google.accounts) {
+            google.accounts.id.initialize({
+                client_id: '242648112266-iglul54tuis9mhucsp1pmpqg0a48l8i0.apps.googleusercontent.com',
+                callback: this.handleCredentialResponse.bind(this),
+                auto_select: false,
+                cancel_on_tap_outside: false
+            });
+        }
+    }
+    
+    handleCredentialResponse(response) {
+        try {
+            const userInfo = this.decodeJWT(response.credential);
+            
+            this.currentUser = {
+                id: userInfo.sub,
+                email: userInfo.email,
+                name: userInfo.name,
+                picture: userInfo.picture,
+                verified: userInfo.email_verified,
+                loginTime: Date.now()
+            };
+            
+            // Store session
+            localStorage.setItem('snapit_user', JSON.stringify(this.currentUser));
+            localStorage.setItem('snapit_jwt_token', response.credential);
+            
+            // Track login
+            window.snapitAnalytics.trackEvent('user_login', {
+                method: 'google',
+                email: this.currentUser.email,
+                verified: this.currentUser.verified
+            });
+            
+            // Update analytics user ID
+            window.snapitAnalytics.config.userId = this.currentUser.id;
+            
+            // Notify listeners
+            this.notifyAuthChange('login', this.currentUser);
+            
+            // Sync across domains
+            this.syncAuthAcrossDomains();
+            
+        } catch (error) {
+            console.error('Authentication failed:', error);
+            window.snapitAnalytics.trackEvent('auth_error', {
+                error: error.message
+            });
+        }
+    }
+    
+    async validateSession() {
+        try {
+            const response = await fetch('/api/validate-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('snapit_jwt_token')}`
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Session invalid');
+            }
+            
+            const data = await response.json();
+            if (!data.valid) {
+                this.clearSession();
+            }
+        } catch (error) {
+            console.error('Session validation failed:', error);
+            this.clearSession();
+        }
+    }
+    
+    signOut() {
+        window.snapitAnalytics.trackEvent('user_logout', {
+            email: this.currentUser?.email,
+            sessionDuration: Date.now() - (this.currentUser?.loginTime || Date.now())
+        });
+        
+        this.clearSession();
+        this.notifyAuthChange('logout', null);
+        
+        // Sign out from Google
+        if (typeof google !== 'undefined' && google.accounts) {
+            google.accounts.id.disableAutoSelect();
+        }
+    }
+    
+    clearSession() {
+        this.currentUser = null;
+        localStorage.removeItem('snapit_user');
+        localStorage.removeItem('snapit_jwt_token');
+        window.snapitAnalytics.config.userId = null;
+    }
+    
+    syncAuthAcrossDomains() {
+        const domains = [
+            'snapitagent.com',
+            'snapitforms.com', 
+            'snapitanalytics.com',
+            'snapitqr.com',
+            'snapiturl.com',
+            'urlstatuschecker.com',
+            'snapitsoftware.com',
+            'snapitsaas.com'
+        ];
+        
+        domains.forEach(domain => {
+            if (window.location.hostname !== domain) {
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = `https://${domain}/auth-sync?user=${encodeURIComponent(JSON.stringify(this.currentUser))}`;
+                document.body.appendChild(iframe);
+                
+                setTimeout(() => {
+                    document.body.removeChild(iframe);
+                }, 3000);
+            }
+        });
+    }
+    
+    onAuthChange(callback) {
+        this.listeners.push(callback);
+        return () => {
+            const index = this.listeners.indexOf(callback);
+            if (index > -1) this.listeners.splice(index, 1);
+        };
+    }
+    
+    notifyAuthChange(event, user) {
+        this.listeners.forEach(callback => {
+            try {
+                callback(event, user);
+            } catch (error) {
+                console.error('Auth callback error:', error);
+            }
+        });
+    }
+    
+    decodeJWT(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    }
+    
+    getCurrentUser() {
+        return this.currentUser;
+    }
+    
+    isAuthenticated() {
+        return !!this.currentUser;
+    }
+}
+
+// Global auth manager instance
+window.snapitAuth = new SnapITAuthManager();
+</script>
+
+
+<!-- Performance Optimization -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.snapitagent.com">
+<link rel="dns-prefetch" href="https://js.stripe.com">
+<link rel="dns-prefetch" href="https://accounts.google.com">
+
+<!-- Enhanced SEO Meta Tags -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<!-- Open Graph Enhanced -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SnapIT Ecosystem">
+<meta property="article:publisher" content="https://www.facebook.com/snapit">
+
+<!-- Twitter Card Enhanced -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@snapit">
+<meta name="twitter:creator" content="@snapit">
+<meta name="twitter:label1" content="Est. reading time">
+<meta name="twitter:data1" content="3 minutes">
+
+<!-- Additional Performance Hints -->
+<link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+
+        
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SNAPIT001"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SNAPIT001');
+</script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>SnapItForms</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="form-generator.html" class="nav-link">Form Generator</a>
+                <a href="templates.html" class="nav-link">Templates</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <button id="signInBtn" class="btn btn-primary" aria-label="Sign in to get started">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 id="hero-title" class="hero-title">Build forms that work, without all the work</h1>
+                <p class="hero-subtitle">SnapItForms handles your form submissions, email notifications, and data storage automatically. Just add your access key and you're done.</p>
+                <div class="hero-cta">
+                    <div id="googleSignInButton" class="google-signin-wrapper" aria-label="Sign up with Google"></div>
+                    <p class="cta-text">Get started free • No credit card required</p>
+                </div>
+                <div class="hero-actions">
+                    <button id="browseTemplatesBtn" class="btn btn-outline" onclick="openTemplateGallery()">
+                        <span class="icon">🎨</span>
+                        Browse Templates
+                    </button>
+                    <button id="createFormBtn" class="btn btn-secondary" onclick="openFormGenerator()" style="display: none;">
+                        <span class="icon">✏️</span>
+                        Create Form
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="code-title">Your form in seconds</span>
+                    </div>
+                    <div class="code-content">
+                        <code>&lt;form action="https://api.snapitforms.com/submit" method="POST"&gt;
+  &lt;input type="hidden" name="access_key" value="YOUR_KEY"&gt;
+  &lt;input type="text" name="name" required&gt;
+  &lt;input type="email" name="email" required&gt;
+  &lt;textarea name="message" required&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features" aria-labelledby="features-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="features-title">Built for scale</h2>
+                <h3>Everything you need for form handling</h3>
+                <p>SnapItForms fits seamlessly into your workflow — make building and scaling forms easier without learning new frameworks or tools.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔧</div>
+                    <h4>No Backend Required</h4>
+                    <p>Point your form to our endpoint and start collecting submissions immediately. No server setup needed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📧</div>
+                    <h4>Email Notifications</h4>
+                    <p>Get instant email notifications when someone submits your form. Custom templates and subjects supported.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📊</div>
+                    <h4>Analytics Dashboard</h4>
+                    <p>Track submissions, monitor usage, and analyze form performance with our comprehensive dashboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔒</div>
+                    <h4>Secure & Reliable</h4>
+                    <p>Enterprise-grade security with spam protection, data validation, and 99.9% uptime guarantee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works" aria-labelledby="how-it-works-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="how-it-works-title">How it works</h2>
+                <p>Get your forms working in three simple steps</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">1</div>
+                    <h4>Sign up & get your key</h4>
+                    <p>Create your free account and get your unique access key instantly.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">2</div>
+                    <h4>Choose a template or build from scratch</h4>
+                    <p>Select from 15+ professional templates or create your own custom form.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">3</div>
+                    <h4>Start receiving submissions</h4>
+                    <p>That's it! Your forms now work automatically with email notifications and data storage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section with 9 Tiers -->
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="pricing-title">PRICING</h2>
+                <h3>Choose Your Perfect Plan</h3>
+                <p>Start free and scale as you grow. No hidden fees, cancel anytime.</p>
+                <div class="competitive-advantage">
+                    <div class="advantage-item">
+                        <span class="advantage-icon">🚀</span>
+                        <span><strong>500 free submissions</strong> vs competitors' 100-300</span>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">⚡</span>
+                        <span><strong>AI-powered optimization</strong> coming soon</span>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">🔒</span>
+                        <span><strong>Enterprise security</strong> with SOC 2 compliance</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Usage Alert Banner (shows when approaching limit) -->
+            <div id="usageAlert" class="usage-alert hidden">
+                <div class="alert-content">
+                    <span class="alert-icon">⚠️</span>
+                    <div class="alert-text">
+                        <strong>You're approaching your limit!</strong>
+                        <span id="usageText">450/500 submissions used this month</span>
+                    </div>
+                    <button id="upgradeNowBtn" class="upgrade-btn">Upgrade Now</button>
+                </div>
+            </div>
+            
+            <div class="pricing-grid-all" id="pricingGrid">
+                <!-- Pricing cards will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Templates Section -->
+    <section class="form-templates" aria-labelledby="templates-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="templates-title">Professional Form Templates</h2>
+                <p>Start with professionally designed templates and customize them to match your brand. All templates are mobile-responsive and include your access key automatically.</p>
+            </div>
+            
+            <!-- Quick Template Preview -->
+            <div class="templates-preview">
+                <div class="template-card featured-template" onclick="useTemplate('contact')" role="button" tabindex="0" aria-label="Contact Form Template">
+                    <div class="template-header">
+                        <div class="template-icon" aria-hidden="true">📧</div>
+                        <div class="template-badge popular">Most Popular</div>
+                    </div>
+                    <div class="template-content">
+                        <h3>Contact Form</h3>
+                        <p>Perfect for customer inquiries and support requests</p>
+                        <div class="template-features">
+                            <span>Name & Email</span>
+                            <span>Message Area</span>
+                            <span>Mobile Ready</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="template-card featured-template" onclick="useTemplate('survey')" role="button" tabindex="0" aria-label="Survey Form Template">
+                    <div class="template-header">
+                        <div class="template-icon" aria-hidden="true">📊</div>
+                        <div class="template-badge">Popular</div>
+                    </div>
+                    <div class="template-content">
+                        <h3>Customer Survey</h3>
+                        <p>Gather valuable customer feedback and insights</p>
+                        <div class="template-features">
+                            <span>Rating Fields</span>
+                            <span>Multiple Choice</span>
+                            <span>Analytics Ready</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="template-card featured-template" onclick="useTemplate('order')" role="button" tabindex="0" aria-label="Order Form Template">
+                    <div class="template-header">
+                        <div class="template-icon" aria-hidden="true">🛒</div>
+                        <div class="template-badge">E-commerce</div>
+                    </div>
+                    <div class="template-content">
+                        <h3>Order Form</h3>
+                        <p>Simple product ordering and e-commerce form</p>
+                        <div class="template-features">
+                            <span>Product Selection</span>
+                            <span>Quantities</span>
+                            <span>Order Tracking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="template-card featured-template" onclick="useTemplate('registration')" role="button" tabindex="0" aria-label="Event Registration Template">
+                    <div class="template-header">
+                        <div class="template-icon" aria-hidden="true">🎫</div>
+                        <div class="template-badge">Events</div>
+                    </div>
+                    <div class="template-content">
+                        <h3>Event Registration</h3>
+                        <p>Perfect for events, workshops, and conferences</p>
+                        <div class="template-features">
+                            <span>Personal Details</span>
+                            <span>Event Preferences</span>
+                            <span>Payment Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Browse All Templates Button -->
+            <div class="template-gallery-cta">
+                <div class="template-card template-gallery-card" onclick="openTemplateGallery()" role="button" tabindex="0">
+                    <div class="template-icon">🎨</div>
+                    <div class="template-content">
+                        <h3>Browse All Templates</h3>
+                        <p>15+ professional templates across all categories</p>
+                        <div class="template-count">Business • Marketing • E-commerce • Events & More</div>
+                    </div>
+                    <div class="template-arrow">→</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" aria-labelledby="cta-title">
+        <div class="container">
+            <div class="cta-content">
+                <h2 id="cta-title">Ready to start receiving form submissions?</h2>
+                <p>Join thousands of developers who trust SnapItForms for their form handling needs.</p>
+                <div id="ctaSignInButton" class="google-signin-wrapper" aria-label="Sign up to get started"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern SnapIT Footer -->
+    <footer style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); padding: 3rem 0 1rem; margin-top: 4rem; border-top: 1px solid rgba(170, 51, 106, 0.1);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div class="footer-section">
+                    <h4 style="color: #aa336a; font-weight: 600; margin-bottom: 1rem;">Services</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitagent.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">AI Agents</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitforms.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Forms</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitqr.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">QR Codes</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapiturl.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">URL Shortener</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitanalytics.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Analytics</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://urlstatuschecker.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Status Checker</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 style="color: #aa336a; font-weight: 600; margin-bottom: 1rem;">Customer Portal</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitsoftware.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Unified Dashboard</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitsoftware.com#services" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Service Management</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitsoftware.com#support" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 style="color: #aa336a; font-weight: 600; margin-bottom: 1rem;">Company</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://snapitsoftware.com" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">About</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="/privacy.html" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Privacy</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="/terms.html" style="color: #666; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#aa336a'" onmouseout="this.style.color='#666'">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(170, 51, 106, 0.1); color: #666;">
+                <p>&copy; 2025 SnapIT Software. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+<div id="successModal" class="modal" role="dialog" aria-labelledby="success-modal-title" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="success-modal-title">Success! Your account is ready</h3>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Your access key: <strong id="accessKeyDisplay">YOUR_ACCESS_KEY</strong></p>
+            <div class="code-example">
+                <pre><code id="generatedCode"><!-- Code will be generated here --></code></pre>
+            </div>
+            <div class="modal-actions">
+                <button id="copyCodeBtn" class="btn btn-secondary">Copy Code</button>
+                <button id="dashboardBtn" class="btn btn-primary">Go to Dashboard</button>
+                <!-- Fixed: Changed ID and added onclick handler -->
+                <button id="createFormModalBtn" class="btn btn-outline" onclick="openFormGenerator()">Create Form</button>
+                <button id="browseTemplatesModalBtn" class="btn btn-outline">Browse Templates</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Feedback Survey Modal -->
+    <div id="feedbackSurveyModal" class="modal" role="dialog" aria-labelledby="feedback-modal-title" aria-hidden="true">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 id="feedback-modal-title">Help Us Improve SnapITForms</h3>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-600 mb-4">Your feedback helps us build better tools for you!</p>
+                <form action="https://api.snapitforms.com/submit" method="POST" class="space-y-4">
+                    <input type="hidden" name="access_key" value="sa_ac6e0311d49b41f88f049692239e80f6">
+                    <input type="hidden" name="subject" value="User Feedback Survey - SnapITForms">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">How did you find us?</label>
+                        <select name="how_found_us" required class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                            <option value="">Please select...</option>
+                            <option value="Google Search">Google Search</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Referral">Friend/Colleague Referral</option>
+                            <option value="Advertisement">Advertisement</option>
+                            <option value="Blog/Article">Blog/Article</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">What did you want to accomplish?</label>
+                        <select name="goal" required class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                            <option value="">Please select...</option>
+                            <option value="Create Contact Form">Create a contact form</option>
+                            <option value="Collect Lead Data">Collect lead data</option>
+                            <option value="Survey/Feedback">Create survey or feedback form</option>
+                            <option value="Event Registration">Event registration</option>
+                            <option value="Newsletter Signup">Newsletter signup</option>
+                            <option value="Other Forms">Other form type</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">How easy was it to accomplish?</label>
+                        <div class="grid grid-cols-5 gap-2">
+                            <label class="text-center">
+                                <input type="radio" name="ease_rating" value="1" required class="sr-only">
+                                <div class="border rounded p-2 cursor-pointer hover:bg-gray-50 transition-colors ease-radio" data-value="1">
+                                    <div>😫</div>
+                                    <div class="text-xs">Very Hard</div>
+                                </div>
+                            </label>
+                            <label class="text-center">
+                                <input type="radio" name="ease_rating" value="2" required class="sr-only">
+                                <div class="border rounded p-2 cursor-pointer hover:bg-gray-50 transition-colors ease-radio" data-value="2">
+                                    <div>😕</div>
+                                    <div class="text-xs">Hard</div>
+                                </div>
+                            </label>
+                            <label class="text-center">
+                                <input type="radio" name="ease_rating" value="3" required class="sr-only">
+                                <div class="border rounded p-2 cursor-pointer hover:bg-gray-50 transition-colors ease-radio" data-value="3">
+                                    <div>😐</div>
+                                    <div class="text-xs">Okay</div>
+                                </div>
+                            </label>
+                            <label class="text-center">
+                                <input type="radio" name="ease_rating" value="4" required class="sr-only">
+                                <div class="border rounded p-2 cursor-pointer hover:bg-gray-50 transition-colors ease-radio" data-value="4">
+                                    <div>😊</div>
+                                    <div class="text-xs">Easy</div>
+                                </div>
+                            </label>
+                            <label class="text-center">
+                                <input type="radio" name="ease_rating" value="5" required class="sr-only">
+                                <div class="border rounded p-2 cursor-pointer hover:bg-gray-50 transition-colors ease-radio" data-value="5">
+                                    <div>🤩</div>
+                                    <div class="text-xs">Very Easy</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">What features would you like to see added?</label>
+                        <textarea name="feature_requests" placeholder="Tell us about features you'd love to see..." class="w-full px-3 py-2 border border-gray-300 rounded text-sm" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button type="button" class="modal-close flex-1 py-2 px-4 border border-gray-300 rounded text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            Maybe Later
+                        </button>
+                        <button type="submit" class="flex-1 text-white py-2 px-4 rounded text-sm font-medium transition-colors" style="background-color: #aa336a;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                            Send Feedback
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal" role="dialog" aria-labelledby="error-modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="error-modal-title">Something went wrong</h3>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="errorModalMessage">Please try again or contact support if the problem persists.</p>
+                <div class="modal-actions">
+                    <button class="modal-close btn btn-secondary">Close</button>
+                    <button id="retryBtn" class="btn btn-primary">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Production JavaScript -->
+    <script>
+        // Configuration - Production settings
+        const CONFIG = {
+            API_BASE_URL: 'https://api.snapitforms.com',
+            FALLBACK_API_URL: 'https://dnxslxuth3.execute-api.us-east-1.amazonaws.com/production',
+            BACKUP_API_URL: 'https://dnxslxuth3.execute-api.us-east-1.amazonaws.com/dev',
+            GOOGLE_CLIENT_ID: "242648112266-iglul54tuis9mhucsp1pmpqg0a48l8i0.apps.googleusercontent.com",
+            STRIPE_PUBLISHABLE_KEY: "pk_test_51RUcFYEpdWEENcj1aolZN1F2rYi3mz9oq4qZNPAGUrlIlu8LNBKiP1SGGZ048Ee9xCmAPCCfYEhrzof5fX9vPAxU00tmqsZqQd",
+            FRONTEND_URL: 'https://snapitforms.com',
+            PRICING_TIERS: {
+                free: { 
+                    limit: 500, 
+                    price: 0, 
+                    name: 'Free',
+                    description: 'Perfect for getting started - no credit card required',
+                    features: [
+                        '500 submissions per month',
+                        'Email notifications',
+                        'Basic form analytics',
+                        'Community support',
+                        'SSL encryption',
+                        'Spam protection'
+                    ]
+                },
+                starter: { 
+                    limit: 5000, 
+                    price: 15, 
+                    name: 'Starter',
+                    description: 'Essential features for growing businesses',
+                    featured: true,
+                    features: [
+                        '5,000 submissions per month',
+                        'Remove SnapItForms branding',
+                        'Advanced form analytics',
+                        'CSV data export',
+                        'Email support',
+                        'Custom thank you pages',
+                        'Form validation rules',
+                        'Webhook integrations'
+                    ]
+                },
+                pro: { 
+                    limit: 25000, 
+                    price: 45, 
+                    name: 'Pro',
+                    description: 'Advanced features for professional teams',
+                    features: [
+                        '25,000 submissions per month',
+                        'Everything in Starter',
+                        'API access (unlimited)',
+                        'Advanced integrations',
+                        'Custom domains',
+                        'Priority support',
+                        'Team collaboration',
+                        'White-label options',
+                        'SLA guarantee',
+                        'Advanced security features'
+                    ]
+                }
+            }
+        };
+
+        // State management
+        let appState = {
+            isLoading: false,
+            currentUser: null,
+            retryCount: 0,
+            maxRetries: 3
+        };
+
+        // Utility functions
+        const utils = {
+            showLoading: (show = true) => {
+                const overlay = document.getElementById('loadingOverlay');
+                overlay.style.display = show ? 'flex' : 'none';
+                appState.isLoading = show;
+            },
+
+            showModal: (modalId) => {
+                const modal = document.getElementById(modalId);
+                modal.style.display = 'flex';
+                modal.setAttribute('aria-hidden', 'false');
+                // Focus management for accessibility
+                const firstButton = modal.querySelector('button');
+                if (firstButton) firstButton.focus();
+            },
+
+            hideModal: (modalId) => {
+                const modal = document.getElementById(modalId);
+                // Remove focus from any element in the modal before hiding
+                const focusedElement = modal.querySelector(':focus');
+                if (focusedElement) {
+                    focusedElement.blur();
+                }
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            },
+
+            showNotification: (message, type = 'info', duration = 5000) => {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 16px 20px;
+                    border-radius: 8px;
+                    color: white;
+                    font-weight: 500;
+                    z-index: 10000;
+                    max-width: 400px;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                `;
+                
+                const colors = {
+                    success: '#10b981',
+                    error: '#ef4444',
+                    warning: '#f59e0b',
+                    info: '#3b82f6'
+                };
+                
+                notification.style.background = colors[type] || colors.info;
+                notification.textContent = message;
+                notification.setAttribute('role', 'alert');
+                notification.setAttribute('aria-live', 'assertive');
+                
+                document.body.appendChild(notification);
+                
+                // Animate in
+                requestAnimationFrame(() => {
+                    notification.style.transform = 'translateX(0)';
+                });
+                
+                // Auto remove
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, duration);
+                
+                return notification;
+            },
+
+            copyToClipboard: async (text, button) => {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.disabled = true;
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                    return true;
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-9999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    
+                    try {
+                        const successful = document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        if (successful) {
+                            const originalText = button.textContent;
+                            button.textContent = 'Copied!';
+                            setTimeout(() => button.textContent = originalText, 2000);
+                        }
+                        return successful;
+                    } catch (fallbackErr) {
+                        document.body.removeChild(textArea);
+                        utils.showNotification('Copy failed. Please select and copy manually.', 'error');
+                        return false;
+                    }
+                }
+            },
+
+            debounce: (func, wait) => {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        };
+
+        // API functions
+        const api = {
+            async register(token) {
+                // Try primary API first, then fallback
+                try {
+                    const response = await fetch(`${CONFIG.API_BASE_URL}/auth/google`, {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ token })
+                    });
+                    
+                    if (response.ok) {
+                        return await response.json();
+                    }
+                    
+                    // If primary fails, try fallback
+                    console.log('Primary API failed, trying fallback...');
+                    throw new Error('Primary API failed');
+                } catch (error) {
+                    console.log('Trying fallback API URL...');
+                    try {
+                        const fallbackResponse = await fetch(`${CONFIG.FALLBACK_API_URL}/auth/google`, {
+                            method: 'POST',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({ token })
+                        });
+                        
+                        if (fallbackResponse.ok) {
+                            const result = await fallbackResponse.json();
+                            console.log('Fallback API authentication successful');
+                            return result;
+                        }
+                        
+                        console.log('Fallback API failed, trying backup...');
+                        
+                        // Try backup API
+                        const backupResponse = await fetch(`${CONFIG.BACKUP_API_URL}/auth/google`, {
+                            method: 'POST',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({ token })
+                        });
+                        
+                        if (backupResponse.ok) {
+                            const result = await backupResponse.json();
+                            console.log('Backup API authentication successful');
+                            return result;
+                        }
+                        
+                        const errorText = await backupResponse.text();
+                        console.error('All APIs failed. Last error:', errorText);
+                        throw new Error(`Authentication failed: All endpoints unavailable`);
+                        
+                    } catch (fallbackError) {
+                        console.error('Authentication completely failed:', fallbackError);
+                        throw new Error(`Authentication failed: ${fallbackError.message}`);
+                    }
+                }
+            },
+
+            async createCheckoutSession(accessKey, tier) {
+                // Try multiple endpoints for backward compatibility
+                const endpoints = [
+                    `${CONFIG.API_BASE_URL}/stripe/checkout`,
+                    `${CONFIG.API_BASE_URL}/create-checkout-session`,
+                    `${CONFIG.FALLBACK_API_URL}/create-checkout-session`
+                ];
+                
+                for (const endpoint of endpoints) {
+                    try {
+                        const response = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ accessKey, tier })
+                        });
+                        
+                        if (response.ok) {
+                            return response.json();
+                        } else if (response.status !== 403 && response.status !== 404) {
+                            // If not a missing endpoint error, try to parse error
+                            const errorData = await response.json().catch(() => ({}));
+                            throw new Error(errorData.message || `Checkout failed: ${response.status}`);
+                        }
+                    } catch (error) {
+                        console.log(`Endpoint ${endpoint} failed:`, error.message);
+                        if (endpoints.indexOf(endpoint) === endpoints.length - 1) {
+                            throw error; // Throw on last endpoint
+                        }
+                    }
+                }
+                
+                throw new Error('All checkout endpoints failed');
+            }
+        };
+
+        // Template and Form Generator functions
+        function openTemplateGallery() {
+            const accessKey = localStorage.getItem('accessKey') || 
+                             new URLSearchParams(window.location.search).get('key');
+            
+            if (accessKey) {
+                utils.showNotification('Opening template gallery...', 'info');
+                window.location.href = `/templates.html?key=${accessKey}`;
+            } else {
+                utils.showNotification('Please sign in first to access templates!', 'info');
+                setTimeout(() => {
+                    if (typeof google !== 'undefined') {
+                        google.accounts.id.prompt();
+                    } else {
+                        utils.showNotification('Google Sign-In not available. Please refresh and try again.', 'error');
+                    }
+                }, 1500);
+            }
+        }
+
+        function openFormGenerator(template = null) {
+            const accessKey = localStorage.getItem('accessKey') || 
+                             new URLSearchParams(window.location.search).get('key');
+            
+            if (accessKey) {
+                utils.showNotification('Opening form generator...', 'info');
+                const url = template ? 
+                    `/form-generator.html?key=${accessKey}&template=${template}` : 
+                    `/form-generator.html?key=${accessKey}`;
+                window.location.href = url;
+            } else {
+                utils.showNotification('Please sign in first to use the form generator!', 'info');
+                setTimeout(() => {
+                    if (typeof google !== 'undefined') {
+                        google.accounts.id.prompt();
+                    } else {
+                        utils.showNotification('Google Sign-In not available. Please refresh and try again.', 'error');
+                    }
+                }, 1500);
+            }
+        }
+
+        function useTemplate(templateKey) {
+            const accessKey = localStorage.getItem('accessKey') || 
+                             new URLSearchParams(window.location.search).get('key');
+            
+            if (accessKey) {
+                utils.showNotification(`Loading ${templateKey} template...`, 'info');
+                window.location.href = `/form-generator.html?key=${accessKey}&template=${templateKey}`;
+            } else {
+                utils.showNotification('Please sign in first to use templates!', 'info');
+                setTimeout(() => {
+                    if (typeof google !== 'undefined') {
+                        google.accounts.id.prompt();
+                    } else {
+                        utils.showNotification('Google Sign-In not available. Please refresh and try again.', 'error');
+                    }
+                }, 1500);
+            }
+        }
+
+        // Feedback Survey Functions
+        function openFeedbackSurvey() {
+            utils.showModal('feedbackSurveyModal');
+            setupEaseRatingInteraction();
+        }
+        
+        function setupEaseRatingInteraction() {
+            // Add click handlers for ease rating radio buttons
+            document.querySelectorAll('.ease-radio').forEach(radio => {
+                radio.addEventListener('click', function() {
+                    // Clear previous selections
+                    document.querySelectorAll('.ease-radio').forEach(r => {
+                        r.style.backgroundColor = '';
+                        r.style.borderColor = '#d1d5db';
+                    });
+                    
+                    // Highlight selected
+                    this.style.backgroundColor = '#f3e8ff';
+                    this.style.borderColor = '#aa336a';
+                    
+                    // Set the actual radio input
+                    const value = this.getAttribute('data-value');
+                    const radioInput = document.querySelector(`input[name="ease_rating"][value="${value}"]`);
+                    if (radioInput) {
+                        radioInput.checked = true;
+                    }
+                });
+            });
+        }
+
+        // Google Sign-In handling
+        function handleGoogleSignIn(response) {
+            if (!response || !response.credential) {
+                utils.showNotification('Google sign-in failed. Please try again.', 'error');
+                return;
+            }
+
+            utils.showLoading(true);
+            
+            api.register(response.credential)
+                .then(data => {
+                    utils.showLoading(false);
+                    const accessKey = data.user?.accessKey || data.accessKey;
+                    if (accessKey) {
+                        localStorage.setItem('accessKey', accessKey);
+                        showSuccessModal(accessKey);
+                        utils.showNotification('Account created successfully!', 'success');
+                        updateUIForSignedInUser(accessKey);
+                    } else {
+                        throw new Error('No access key received');
+                    }
+                })
+                .catch(error => {
+                    utils.showLoading(false);
+                    console.error('Registration error:', error);
+                    
+                    let errorMessage = 'Registration failed. Please try again.';
+                    if (error.message.includes('Network') || error.message.includes('fetch')) {
+                        errorMessage = 'Network error. Please check your connection and try again.';
+                    } else if (error.message.includes('401') || error.message.includes('403')) {
+                        errorMessage = 'Authentication failed. Please try signing in again.';
+                    }
+                    
+                    utils.showNotification(errorMessage, 'error');
+                    
+                    // Show error modal for persistent errors
+                    const errorModal = document.getElementById('errorModalMessage');
+                    if (errorModal) {
+                        errorModal.textContent = errorMessage;
+                        utils.showModal('errorModal');
+                    }
+                });
+        }
+
+        // Update UI when user is signed in
+        function updateUIForSignedInUser(accessKey) {
+            // Update navigation
+            const signInBtn = document.getElementById('signInBtn');
+            if (signInBtn) {
+                signInBtn.textContent = 'Dashboard';
+                signInBtn.onclick = () => {
+                    window.location.href = `/dashboard.html?key=${accessKey}`;
+                };
+            }
+
+            // Show create form button in hero
+            const createFormBtn = document.getElementById('createFormBtn');
+            if (createFormBtn) {
+                createFormBtn.style.display = 'inline-flex';
+            }
+
+            // Add templates navigation
+            const navMenu = document.querySelector('.nav-menu');
+            if (navMenu && !document.querySelector('.nav-link[href="templates.html"]')) {
+                const templatesLink = document.createElement('a');
+                templatesLink.href = `templates.html?key=${accessKey}`;
+                templatesLink.className = 'nav-link';
+                templatesLink.textContent = 'Templates';
+                navMenu.insertBefore(templatesLink, signInBtn);
+            }
+        }
+
+        // Pricing functions
+        async function handlePricingClick(tier) {
+            if (appState.isLoading) return;
+
+            const accessKey = localStorage.getItem('accessKey');
+            
+            if (tier === 'free') {
+                if (!accessKey) {
+                    // Trigger Google sign-in for free tier
+                    if (typeof google !== 'undefined') {
+                        google.accounts.id.prompt();
+                    } else {
+                        utils.showNotification('Google Sign-In not available. Please refresh and try again.', 'error');
+                    }
+                } else {
+                    // Already have account, go to dashboard
+                    window.location.href = `/dashboard.html?key=${accessKey}`;
+                }
+                return;
+            }
+
+            // For paid tiers
+            if (!accessKey) {
+                utils.showNotification('Please sign up first to choose a paid plan.', 'info');
+                setTimeout(() => {
+                    if (typeof google !== 'undefined') {
+                        google.accounts.id.prompt();
+                    }
+                }, 1500);
+                return;
+            }
+
+            // Create checkout session for other paid tiers
+            try {
+                utils.showLoading(true);
+                const data = await api.createCheckoutSession(accessKey, tier);
+                utils.showLoading(false);
+                
+                if (data.url) {
+                    utils.showNotification('Redirecting to checkout...', 'info');
+                    window.location.href = data.url;
+                } else {
+                    throw new Error('No checkout URL received');
+                }
+            } catch (error) {
+                utils.showLoading(false);
+                console.error('Checkout error:', error);
+                utils.showNotification(error.message || 'Failed to start checkout. Please try again.', 'error');
+            }
+        }
+
+        // Success modal
+        function showSuccessModal(accessKey) {
+            const modal = document.getElementById('successModal');
+            const accessKeyDisplay = document.getElementById('accessKeyDisplay');
+            const generatedCode = document.getElementById('generatedCode');
+
+            accessKeyDisplay.textContent = accessKey;
+            
+            const codeSnippet = `<form action="${CONFIG.API_BASE_URL}/submit" method="POST">
+  <input type="hidden" name="access_key" value="${accessKey}">
+  <input type="text" name="name" placeholder="Your Name" required autocomplete="name">
+  <input type="email" name="email" placeholder="Your Email" required autocomplete="email">
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Submit</button>
+</form>`;
+
+            generatedCode.textContent = codeSnippet;
+            utils.showModal('successModal');
+        }
+
+        // Generate pricing cards
+        function generatePricingCards() {
+            const pricingGrid = document.getElementById('pricingGrid');
+            if (!pricingGrid) return;
+
+            pricingGrid.innerHTML = '';
+            
+            const tierOrder = ['free', 'starter', 'pro'];
+            
+            tierOrder.forEach(tierKey => {
+                const tier = CONFIG.PRICING_TIERS[tierKey];
+                if (!tier) return;
+
+                const card = document.createElement('div');
+                card.className = 'pricing-card';
+                
+                if (tier.featured) {
+                    card.classList.add('featured');
+                }
+
+                let buttonText = 'Get Started';
+                let buttonClass = 'pricing-btn btn-primary';
+                
+                if (tierKey === 'free') {
+                    buttonText = 'Start Free';
+                }
+
+                card.innerHTML = `
+                    ${tier.featured ? '<div class="pricing-badge">Most Popular</div>' : ''}
+                    <div class="pricing-header">
+                        <h4>${tier.name}</h4>
+                        <div class="price">${tier.price === 0 ? 'Free' : `$${tier.price}`}<span>${tier.price > 0 ? '/month' : ''}</span></div>
+                        <p class="pricing-description">${tier.description}</p>
+                    </div>
+                    <ul class="pricing-features">
+                        ${tier.features.map(feature => `<li><span class="text-green-500 mr-2">✓</span>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="${buttonClass}" 
+                            onclick="handlePricingClick('${tierKey}')"
+                            data-tier="${tierKey}"
+                            aria-label="Choose ${tier.name} plan">
+                        ${buttonText}
+                    </button>
+                `;
+
+                pricingGrid.appendChild(card);
+            });
+        }
+
+        // Event listeners setup
+        function setupEventListeners() {
+            // Modal close handlers
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-close')) {
+                    const modal = e.target.closest('.modal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                        modal.setAttribute('aria-hidden', 'true');
+                    }
+                }
+                
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                    e.target.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            // Copy code button
+            const copyCodeBtn = document.getElementById('copyCodeBtn');
+            if (copyCodeBtn) {
+                copyCodeBtn.addEventListener('click', () => {
+                    const code = document.getElementById('generatedCode').textContent;
+                    utils.copyToClipboard(code, copyCodeBtn);
+                });
+            }
+
+            // Dashboard button
+            const dashboardBtn = document.getElementById('dashboardBtn');
+            if (dashboardBtn) {
+                dashboardBtn.addEventListener('click', () => {
+                    const accessKey = localStorage.getItem('accessKey');
+                    if (accessKey) {
+                        window.location.href = `/dashboard.html?key=${accessKey}`;
+                    }
+                });
+            }
+
+            // Create form button in modal
+ const createFormModalBtn = document.getElementById('createFormModalBtn');
+    if (createFormModalBtn) {
+        createFormModalBtn.addEventListener('click', () => {
+            openFormGenerator();
+        });
+    }
+
+            // Browse templates button in modal
+            const browseTemplatesModalBtn = document.getElementById('browseTemplatesModalBtn');
+            if (browseTemplatesModalBtn) {
+                browseTemplatesModalBtn.addEventListener('click', () => {
+                    openTemplateGallery();
+                });
+            }
+
+            // Retry button
+            const retryBtn = document.getElementById('retryBtn');
+            if (retryBtn) {
+                retryBtn.addEventListener('click', () => {
+                    utils.hideModal('errorModal');
+                    if (appState.retryCount < appState.maxRetries) {
+                        appState.retryCount++;
+                        // Retry last action
+                        if (typeof google !== 'undefined') {
+                            google.accounts.id.prompt();
+                        }
+                    }
+                });
+            }
+
+            // Navigation sign-in button
+            const signInBtn = document.getElementById('signInBtn');
+            if (signInBtn) {
+                signInBtn.addEventListener('click', () => {
+                    if (typeof google !== 'undefined') {
+                        google.accounts.id.prompt();
+                    } else {
+                        utils.showNotification('Google Sign-In not available. Please refresh the page.', 'error');
+                    }
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', utils.debounce(() => {
+                    if (window.scrollY > 100) {
+                        navbar.style.background = 'rgba(255, 248, 240, 0.98)';
+                        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                        navbar.style.backdropFilter = 'blur(10px)';
+                    } else {
+                        navbar.style.background = 'rgba(255, 248, 240, 0.95)';
+                        navbar.style.boxShadow = 'none';
+                        navbar.style.backdropFilter = 'none';
+                    }
+                }, 16));
+            }
+
+            // Template cards keyboard accessibility
+            document.querySelectorAll('.template-card, .featured-template').forEach(card => {
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.click();
+                    }
+                });
+            });
+
+            // Error handling for images and external resources
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', () => {
+                    img.style.display = 'none';
+                });
+            });
+
+            // Accessibility improvements
+            document.addEventListener('keydown', (e) => {
+                // Escape key closes modals
+                if (e.key === 'Escape') {
+                    const openModal = document.querySelector('.modal[style*="flex"]');
+                    if (openModal) {
+                        openModal.style.display = 'none';
+                        openModal.setAttribute('aria-hidden', 'true');
+                    }
+                }
+            });
+        }
+
+        // Google Sign-In initialization
+        function initializeGoogleSignIn() {
+            if (typeof google !== 'undefined') {
+                try {
+                    google.accounts.id.initialize({
+                        client_id: CONFIG.GOOGLE_CLIENT_ID,
+                        callback: handleGoogleSignIn,
+                        auto_select: false,
+                        cancel_on_tap_outside: true
+                    });
+
+                    // Render sign-in buttons
+                    const googleSignInButton = document.getElementById("googleSignInButton");
+                    const ctaSignInButton = document.getElementById("ctaSignInButton");
+                    
+                    if (googleSignInButton) {
+                        google.accounts.id.renderButton(
+                            googleSignInButton,
+                            { 
+                                theme: "filled_blue", 
+                                size: "large", 
+                                text: "signup_with", 
+                                width: 250,
+                                logo_alignment: "left"
+                            }
+                        );
+                    }
+
+                    if (ctaSignInButton) {
+                        google.accounts.id.renderButton(
+                            ctaSignInButton,
+                            { 
+                                theme: "filled_blue", 
+                                size: "large", 
+                                text: "signup_with", 
+                                width: 250,
+                                logo_alignment: "left"
+                            }
+                        );
+                    }
+                } catch (error) {
+                    console.error('Google Sign-In initialization error:', error);
+                    utils.showNotification('Sign-in service temporarily unavailable. Please try again later.', 'warning');
+                }
+            } else {
+                console.warn('Google Sign-In library not loaded');
+                // Retry loading after a delay
+                setTimeout(initializeGoogleSignIn, 2000);
+            }
+        }
+
+        // Performance optimizations
+        function optimizePerformance() {
+            // Lazy load images below the fold
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                imageObserver.unobserve(img);
+                            }
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Prefetch critical resources
+            const prefetchLinks = [
+                '/dashboard.html',
+                '/form-generator.html',
+                '/templates.html',
+                '/css/billing-styles.css'
+            ];
+
+            prefetchLinks.forEach(href => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = href;
+                document.head.appendChild(link);
+            });
+        }
+
+        // Analytics and tracking (placeholder)
+        function initializeAnalytics() {
+            // Track pricing card interactions
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.pricing-btn')) {
+                    const tier = e.target.getAttribute('data-tier');
+                    console.log('Pricing interaction:', tier);
+                    // Add your analytics tracking here
+                }
+            });
+
+            // Track form template interactions
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.template-card') || e.target.closest('.featured-template')) {
+                    console.log('Template card clicked');
+                    // Add your analytics tracking here
+                }
+            });
+        }
+
+        // Error boundary and global error handling
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+            if (!appState.isLoading) {
+                utils.showNotification('Something went wrong. Please refresh the page if the problem persists.', 'error');
+            }
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+            if (!appState.isLoading) {
+                utils.showNotification('A network error occurred. Please check your connection.', 'error');
+            }
+        });
+
+        // Main initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('SnapItForms initialized');
+            
+            // Initialize all components
+            generatePricingCards();
+            setupEventListeners();
+            optimizePerformance();
+            initializeAnalytics();
+            
+            // Check for existing user
+            const existingKey = localStorage.getItem('accessKey');
+            if (existingKey) {
+                updateUIForSignedInUser(existingKey);
+            }
+
+            // Set loading state to false
+            appState.isLoading = false;
+        });
+
+        // Initialize Google Sign-In when the library loads
+        window.onload = initializeGoogleSignIn;
+
+        // Enhanced form submission handler with fallbacks
+        async function handleFormSubmission(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            // Convert FormData to URL encoded string
+            const urlEncoded = new URLSearchParams(formData).toString();
+            
+            // Try multiple submission endpoints
+            const endpoints = [
+                'https://api.snapitforms.com/submit',
+                'https://dnxslxuth3.execute-api.us-east-1.amazonaws.com/production/submit',
+                'https://dnxslxuth3.execute-api.us-east-1.amazonaws.com/dev/submit'
+            ];
+            
+            for (let i = 0; i < endpoints.length; i++) {
+                try {
+                    console.log(`Trying form submission endpoint ${i + 1}: ${endpoints[i]}`);
+                    const response = await fetch(endpoints[i], {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: urlEncoded
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log('Form submission successful with endpoint:', endpoints[i]);
+                        utils.showNotification('Message sent successfully!', 'success');
+                        form.reset();
+                        return;
+                    }
+                    
+                    console.log(`Endpoint ${i + 1} failed with status:`, response.status);
+                } catch (error) {
+                    console.log(`Endpoint ${i + 1} error:`, error.message);
+                }
+            }
+            
+            // If all endpoints fail, show error
+            utils.showNotification('Unable to send message. Please try again later.', 'error');
+        }
+        
+        // Attach form handlers to all forms on the page
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form[action*="snapitforms.com/submit"]');
+            forms.forEach(form => {
+                form.addEventListener('submit', handleFormSubmission);
+            });
+        });
+
+        // Make functions globally available
+        window.handlePricingClick = handlePricingClick;
+        window.handleGoogleSignIn = handleGoogleSignIn;
+        window.showSuccessModal = showSuccessModal;
+        window.openTemplateGallery = openTemplateGallery;
+        window.openFormGenerator = openFormGenerator;
+        window.useTemplate = useTemplate;
+        window.openFeedbackSurvey = openFeedbackSurvey;
+        window.handleFormSubmission = handleFormSubmission;
+        
+        // Service Worker registration for PWA capabilities (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SnapItForms",
+        "description": "No-code form submission service with 9 pricing tiers, email notifications, and advanced analytics",
+        "url": "https://snapitforms.com",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "0",
+            "highPrice": "199.99",
+            "priceCurrency": "USD",
+            "offerCount": "9"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "SnapItForms"
+        }
+    }
+    </script>
+    
+    <!-- Enhanced CSS for new features -->
+    <style>
+    .competitive-advantage {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 1.5rem 0;
+        flex-wrap: wrap;
+    }
+    
+    .advantage-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #667eea;
+    }
+    
+    .advantage-icon {
+        font-size: 1.2rem;
+    }
+    
+    .usage-alert {
+        background: linear-gradient(135deg, #ff9500, #ff6b35);
+        color: white;
+        padding: 1rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    .usage-alert.hidden {
+        display: none;
+    }
+    
+    .alert-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .alert-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .upgrade-btn {
+        background: white;
+        color: #ff6b35;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .upgrade-btn:hover {
+        background: #f8f9fa;
+        transform: translateY(-1px);
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .competitive-advantage {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .alert-content {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    </style>
+    
+    <!-- Enhanced JavaScript for usage tracking and upgrade prompts -->
+    <script>
+    // Usage tracking and upgrade prompt system
+    class UsageTracker {
+        constructor() {
+            this.currentUsage = 0;
+            this.monthlyLimit = 500; // Free tier limit
+            this.checkUsage();
+        }
+        
+        async checkUsage() {
+            try {
+                const accessKey = localStorage.getItem('accessKey');
+                if (!accessKey) return;
+                
+                const response = await fetch(`https://api.snapitforms.com/usage/${accessKey}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('snapit_jwt_token')}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    this.currentUsage = data.submissions_used || 0;
+                    this.updateUsageDisplay();
+                }
+            } catch (error) {
+                console.log('Usage check failed:', error);
+            }
+        }
+        
+        updateUsageDisplay() {
+            const usageAlert = document.getElementById('usageAlert');
+            const usageText = document.getElementById('usageText');
+            const upgradeBtn = document.getElementById('upgradeNowBtn');
+            
+            if (this.currentUsage >= this.monthlyLimit * 0.8) { // Show when 80% used
+                usageAlert.classList.remove('hidden');
+                usageText.textContent = `${this.currentUsage}/${this.monthlyLimit} submissions used this month`;
+                
+                upgradeBtn.addEventListener('click', () => {
+                    this.showUpgradeModal();
+                });
+            }
+        }
+        
+        showUpgradeModal() {
+            // Scroll to pricing section
+            document.getElementById('pricing').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            // Highlight the most popular plan
+            setTimeout(() => {
+                const featuredCard = document.querySelector('.pricing-card.featured');
+                if (featuredCard) {
+                    featuredCard.style.transform = 'scale(1.05)';
+                    featuredCard.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.3)';
+                }
+            }, 500);
+            
+            // Track upgrade prompt view
+            if (window.snapitAnalytics) {
+                window.snapitAnalytics.trackEvent('upgrade_prompt_shown', {
+                    current_usage: this.currentUsage,
+                    limit: this.monthlyLimit
+                });
+            }
+        }
+    }
+    
+    // Enhanced pricing click handler with competitive messaging
+    function enhancedPricingClick(tier, priceId) {
+        // Show competitive advantage messaging
+        const messages = {
+            'Free': 'Start with 500 free submissions - 5x more than Typeform!',
+            'Starter': 'Perfect for small businesses - 40% cheaper than competitors!',
+            'Premium': 'Most popular - includes AI optimization coming soon!',
+            'Enterprise': 'Enterprise security with SOC 2 compliance included!'
+        };
+        
+        if (messages[tier]) {
+            const notification = document.createElement('div');
+            notification.className = 'competitive-notification';
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                    animation: slideInRight 0.3s ease-out;
+                ">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Great Choice! 🎉</div>
+                    <div style="font-size: 0.9rem;">${messages[tier]}</div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
+        
+        // Track pricing interaction
+        if (window.snapitAnalytics) {
+            window.snapitAnalytics.trackEvent('pricing_tier_selected', {
+                tier: tier,
+                price_id: priceId,
+                page: 'landing'
+            });
+        }
+        
+        // Call original pricing handler
+        if (window.handlePricingClick) {
+            window.handlePricingClick(tier, priceId);
+        }
+    }
+    
+    // Initialize enhanced features when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize usage tracker
+        window.usageTracker = new UsageTracker();
+        
+        // Enhance pricing buttons with competitive messaging
+        setTimeout(() => {
+            const pricingBtns = document.querySelectorAll('.pricing-btn');
+            pricingBtns.forEach(btn => {
+                const originalOnClick = btn.getAttribute('onclick');
+                if (originalOnClick && originalOnClick.includes('handlePricingClick')) {
+                    const tier = btn.getAttribute('data-tier');
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        enhancedPricingClick(tier, btn.getAttribute('data-price-id'));
+                    });
+                }
+            });
+        }, 1000);
+        
+        // Add conversion optimization
+        const ctaButtons = document.querySelectorAll('.cta-button, .get-started-btn');
+        ctaButtons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-2px)';
+                btn.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0)';
+                btn.style.boxShadow = '';
+            });
+        });
+    });
+    
+    // Add competitive comparison tooltips
+    function addCompetitiveTooltips() {
+        const features = document.querySelectorAll('.feature-item');
+        features.forEach((feature, index) => {
+            if (feature.textContent.includes('500 submissions')) {
+                feature.title = 'Typeform Free: only 10 responses/month | Jotform Free: only 100 submissions/month';
+            }
+        });
+    }
+    
+    // Initialize tooltips
+    setTimeout(addCompetitiveTooltips, 2000);
+    </script>
+</body>
+</html>

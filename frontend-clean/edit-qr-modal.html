@@ -1,0 +1,430 @@
+<!-- /components/edit-qr-modal.html -->
+<div id="editQRModal" class="modal">
+  <div class="modal-overlay" onclick="closeEditQRModal()"></div>
+  <div class="modal-container edit-qr-modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Edit QR Code</h2>
+      <button class="modal-close" onclick="closeEditQRModal()">
+        <span class="btn-icon">✕</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form id="editQRForm" onsubmit="saveQRChanges(event)">
+        <!-- Basic Information -->
+        <div class="form-section">
+          <h3>Basic Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="editQRTitle">Title *</label>
+              <input type="text" id="editQRTitle" class="form-input" placeholder="Enter QR code title" required>
+            </div>
+            <div class="form-group">
+              <label for="editQRType">Type</label>
+              <select id="editQRType" class="form-select" onchange="handleQRTypeChange()">
+                <option value="url">Website URL</option>
+                <option value="text">Plain Text</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone Number</option>
+                <option value="sms">SMS</option>
+                <option value="wifi">WiFi</option>
+                <option value="vcard">Contact Card</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="form-section">
+          <h3>Content</h3>
+
+          <!-- URL Content -->
+          <div id="editUrlContent" class="content-section">
+            <div class="form-group">
+              <label for="editQRUrl">Destination URL *</label>
+              <input type="url" id="editQRUrl" class="form-input" placeholder="https://example.com">
+              <div class="form-hint">Note: Changing this URL will update the QR code destination</div>
+            </div>
+          </div>
+
+          <!-- Text Content -->
+          <div id="editTextContent" class="content-section" style="display: none;">
+            <div class="form-group">
+              <label for="editQRText">Text Content *</label>
+              <textarea id="editQRText" class="form-textarea" rows="4" placeholder="Enter your text content"></textarea>
+            </div>
+          </div>
+
+          <!-- Email Content -->
+          <div id="editEmailContent" class="content-section" style="display: none;">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="editEmailTo">Email Address *</label>
+                <input type="email" id="editEmailTo" class="form-input" placeholder="contact@example.com">
+              </div>
+              <div class="form-group">
+                <label for="editEmailSubject">Subject</label>
+                <input type="text" id="editEmailSubject" class="form-input" placeholder="Email subject">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="editEmailBody">Message</label>
+              <textarea id="editEmailBody" class="form-textarea" rows="3" placeholder="Email message"></textarea>
+            </div>
+          </div>
+
+          <!-- Phone Content -->
+          <div id="editPhoneContent" class="content-section" style="display: none;">
+            <div class="form-group">
+              <label for="editQRPhone">Phone Number *</label>
+              <input type="tel" id="editQRPhone" class="form-input" placeholder="+1 (555) 123-4567">
+            </div>
+          </div>
+
+          <!-- SMS Content -->
+          <div id="editSmsContent" class="content-section" style="display: none;">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="editSmsNumber">Phone Number *</label>
+                <input type="tel" id="editSmsNumber" class="form-input" placeholder="+1 (555) 123-4567">
+              </div>
+              <div class="form-group">
+                <label for="editSmsMessage">Message</label>
+                <input type="text" id="editSmsMessage" class="form-input" placeholder="SMS message">
+              </div>
+            </div>
+          </div>
+
+          <!-- WiFi Content -->
+          <div id="editWifiContent" class="content-section" style="display: none;">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="editWifiSSID">Network Name (SSID) *</label>
+                <input type="text" id="editWifiSSID" class="form-input" placeholder="WiFi network name">
+              </div>
+              <div class="form-group">
+                <label for="editWifiPassword">Password</label>
+                <input type="password" id="editWifiPassword" class="form-input" placeholder="WiFi password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="editWifiSecurity">Security Type</label>
+              <select id="editWifiSecurity" class="form-select">
+                <option value="WPA">WPA/WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">None</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- vCard Content -->
+          <div id="editVcardContent" class="content-section" style="display: none;">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="editVcardFirstName">First Name *</label>
+                <input type="text" id="editVcardFirstName" class="form-input" placeholder="John">
+              </div>
+              <div class="form-group">
+                <label for="editVcardLastName">Last Name *</label>
+                <input type="text" id="editVcardLastName" class="form-input" placeholder="Doe">
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="editVcardEmail">Email</label>
+                <input type="email" id="editVcardEmail" class="form-input" placeholder="john@example.com">
+              </div>
+              <div class="form-group">
+                <label for="editVcardPhone">Phone</label>
+                <input type="tel" id="editVcardPhone" class="form-input" placeholder="+1 (555) 123-4567">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="editVcardOrganization">Organization</label>
+              <input type="text" id="editVcardOrganization" class="form-input" placeholder="Company name">
+            </div>
+          </div>
+        </div>
+
+        <!-- Design Customization -->
+        <div class="form-section">
+          <h3>Design Customization</h3>
+          <div class="design-grid">
+            <div class="design-group">
+              <label>Foreground Color</label>
+              <div class="color-picker-group">
+                <input type="color" id="editForegroundColor" class="color-input" value="#000000">
+                <input type="text" id="editForegroundHex" class="color-hex" value="#000000" onchange="updateColorPicker('editForegroundColor', this.value)">
+              </div>
+            </div>
+            <div class="design-group">
+              <label>Background Color</label>
+              <div class="color-picker-group">
+                <input type="color" id="editBackgroundColor" class="color-input" value="#ffffff">
+                <input type="text" id="editBackgroundHex" class="color-hex" value="#ffffff" onchange="updateColorPicker('editBackgroundColor', this.value)">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="editQRSize">Size (pixels)</label>
+              <select id="editQRSize" class="form-select">
+                <option value="200">200x200</option>
+                <option value="300">300x300</option>
+                <option value="400">400x400</option>
+                <option value="500" selected>500x500</option>
+                <option value="800">800x800</option>
+                <option value="1000">1000x1000</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="editErrorCorrection">Error Correction</label>
+              <select id="editErrorCorrection" class="form-select">
+                <option value="L">Low (~7%)</option>
+                <option value="M" selected>Medium (~15%)</option>
+                <option value="Q">Quartile (~25%)</option>
+                <option value="H">High (~30%)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo Upload -->
+        <div class="form-section">
+          <h3>Logo (Optional)</h3>
+          <div class="logo-upload-section">
+            <div class="logo-preview" id="editLogoPreview">
+              <div class="logo-placeholder">
+                <span class="btn-icon">🖼️</span>
+                <div>No logo selected</div>
+              </div>
+            </div>
+            <div class="logo-controls">
+              <input type="file" id="editLogoFile" accept="image/*" onchange="handleEditLogoUpload()" style="display: none;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('editLogoFile').click()">
+                <span class="btn-icon">📁</span>
+                Choose Logo
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="removeEditLogo()" id="editRemoveLogoBtn" style="display: none;">
+                <span class="btn-icon">🗑️</span>
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Settings -->
+        <div class="form-section">
+          <h3>Advanced Settings</h3>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="editTrackingEnabled" checked>
+              <span class="checkbox-custom"></span>
+              Enable analytics tracking
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Description (Internal)</label>
+            <textarea id="editDescription" class="form-textarea" rows="2" placeholder="Internal description for organization"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeEditQRModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="previewQRChanges()">
+        <span class="btn-icon">👁️</span>
+        Preview
+      </button>
+      <button class="btn btn-primary" onclick="saveQRChanges(event)">
+        <span class="btn-icon">💾</span>
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentEditingQR = null;
+
+// Close edit QR modal
+function closeEditQRModal() {
+  document.getElementById('editQRModal').style.display = 'none';
+  currentEditingQR = null;
+}
+
+// Open edit modal with QR data
+function openEditQRModal(qrData) {
+  currentEditingQR = qrData;
+  populateEditForm(qrData);
+  document.getElementById('editQRModal').style.display = 'block';
+}
+
+// Populate edit form with existing data
+function populateEditForm(qrData) {
+  document.getElementById('editQRTitle').value = qrData.title || '';
+  document.getElementById('editQRType').value = qrData.type || 'url';
+  document.getElementById('editQRUrl').value = qrData.content || '';
+  document.getElementById('editForegroundColor').value = qrData.foregroundColor || '#000000';
+  document.getElementById('editBackgroundColor').value = qrData.backgroundColor || '#ffffff';
+  document.getElementById('editForegroundHex').value = qrData.foregroundColor || '#000000';
+  document.getElementById('editBackgroundHex').value = qrData.backgroundColor || '#ffffff';
+  document.getElementById('editQRSize').value = qrData.size || '500';
+  document.getElementById('editErrorCorrection').value = qrData.errorCorrection || 'M';
+  document.getElementById('editTrackingEnabled').checked = qrData.trackingEnabled !== false;
+  document.getElementById('editDescription').value = qrData.description || '';
+
+  // Handle logo
+  if (qrData.logo) {
+    document.getElementById('editLogoPreview').innerHTML = `<img src="${qrData.logo}" alt="Logo" class="logo-img">`;
+    document.getElementById('editRemoveLogoBtn').style.display = 'inline-flex';
+  }
+
+  handleQRTypeChange();
+}
+
+// Handle QR type change
+function handleQRTypeChange() {
+  const type = document.getElementById('editQRType').value;
+
+  // Hide all content sections
+  document.querySelectorAll('.content-section').forEach(section => {
+    section.style.display = 'none';
+  });
+
+  // Show relevant section
+  document.getElementById(`edit${type.charAt(0).toUpperCase() + type.slice(1)}Content`).style.display = 'block';
+}
+
+// Handle logo upload
+function handleEditLogoUpload() {
+  const file = document.getElementById('editLogoFile').files[0];
+  if (!file) return;
+
+  if (file.size > 2 * 1024 * 1024) {
+    showToast('Logo file must be less than 2MB', 'error');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('editLogoPreview').innerHTML = `<img src="${e.target.result}" alt="Logo" class="logo-img">`;
+    document.getElementById('editRemoveLogoBtn').style.display = 'inline-flex';
+  };
+  reader.readAsDataURL(file);
+}
+
+// Remove logo
+function removeEditLogo() {
+  document.getElementById('editLogoPreview').innerHTML = `
+    <div class="logo-placeholder">
+      <span class="btn-icon">🖼️</span>
+      <div>No logo selected</div>
+    </div>
+  `;
+  document.getElementById('editLogoFile').value = '';
+  document.getElementById('editRemoveLogoBtn').style.display = 'none';
+}
+
+// Update color picker
+function updateColorPicker(pickerId, hexValue) {
+  document.getElementById(pickerId).value = hexValue;
+}
+
+// Preview QR changes
+function previewQRChanges() {
+  const formData = collectEditFormData();
+  // Implementation would generate preview
+  console.log('Preview QR with data:', formData);
+  showToast('Preview generated', 'success');
+}
+
+// Collect form data
+function collectEditFormData() {
+  const type = document.getElementById('editQRType').value;
+  let content = '';
+
+  switch(type) {
+    case 'url':
+      content = document.getElementById('editQRUrl').value;
+      break;
+    case 'text':
+      content = document.getElementById('editQRText').value;
+      break;
+    case 'email':
+      const email = document.getElementById('editEmailTo').value;
+      const subject = document.getElementById('editEmailSubject').value;
+      const body = document.getElementById('editEmailBody').value;
+      content = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      break;
+    case 'phone':
+      content = `tel:${document.getElementById('editQRPhone').value}`;
+      break;
+    case 'sms':
+      const smsNumber = document.getElementById('editSmsNumber').value;
+      const smsMessage = document.getElementById('editSmsMessage').value;
+      content = `sms:${smsNumber}?body=${encodeURIComponent(smsMessage)}`;
+      break;
+    case 'wifi':
+      const ssid = document.getElementById('editWifiSSID').value;
+      const password = document.getElementById('editWifiPassword').value;
+      const security = document.getElementById('editWifiSecurity').value;
+      content = `WIFI:T:${security};S:${ssid};P:${password};;`;
+      break;
+    case 'vcard':
+      const firstName = document.getElementById('editVcardFirstName').value;
+      const lastName = document.getElementById('editVcardLastName').value;
+      const vcardEmail = document.getElementById('editVcardEmail').value;
+      const vcardPhone = document.getElementById('editVcardPhone').value;
+      const organization = document.getElementById('editVcardOrganization').value;
+      content = `BEGIN:VCARD\nVERSION:3.0\nFN:${firstName} ${lastName}\nN:${lastName};${firstName};;;\nEMAIL:${vcardEmail}\nTEL:${vcardPhone}\nORG:${organization}\nEND:VCARD`;
+      break;
+  }
+
+  return {
+    id: currentEditingQR?.id,
+    title: document.getElementById('editQRTitle').value,
+    type: type,
+    content: content,
+    foregroundColor: document.getElementById('editForegroundColor').value,
+    backgroundColor: document.getElementById('editBackgroundColor').value,
+    size: parseInt(document.getElementById('editQRSize').value),
+    errorCorrection: document.getElementById('editErrorCorrection').value,
+    trackingEnabled: document.getElementById('editTrackingEnabled').checked,
+    description: document.getElementById('editDescription').value,
+    logo: document.getElementById('editLogoPreview').querySelector('img')?.src || null
+  };
+}
+
+// Save QR changes
+async function saveQRChanges(event) {
+  if (event) event.preventDefault();
+
+  const formData = collectEditFormData();
+
+  if (!formData.title || !formData.content) {
+    showToast('Please fill in all required fields', 'error');
+    return;
+  }
+
+  try {
+    showToast('Saving changes...', 'info');
+
+    if (qrManager) {
+      await qrManager.updateQRCode(formData.id, formData);
+      showToast('QR code updated successfully!', 'success');
+      closeEditQRModal();
+
+      // Refresh dashboard if visible
+      if (document.getElementById('dashboard').classList.contains('active')) {
+        loadDashboard();
+      }
+    }
+  } catch (error) {
+    console.error('Error saving QR changes:', error);
+    showToast('Failed to save changes', 'error');
+  }
+}
+</script>

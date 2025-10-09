@@ -1,0 +1,789 @@
+<!-- /components/bulk-upload-modal.html -->
+<div id="bulkUploadModal" class="modal">
+  <div class="modal-overlay" onclick="closeBulkUploadModal()"></div>
+  <div class="modal-container bulk-upload-modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Bulk QR Code Upload</h2>
+      <button class="modal-close" onclick="closeBulkUploadModal()">
+        <span class="btn-icon">✕</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="bulk-upload-tabs">
+        <button class="bulk-tab active" onclick="switchBulkTab('csv')" data-tab="csv">
+          <span class="btn-icon">📊</span>
+          CSV Upload
+        </button>
+        <button class="bulk-tab" onclick="switchBulkTab('manual')" data-tab="manual">
+          <span class="btn-icon">✏️</span>
+          Manual Entry
+        </button>
+        <button class="bulk-tab" onclick="switchBulkTab('template')" data-tab="template">
+          <span class="btn-icon">📄</span>
+          Templates
+        </button>
+      </div>
+
+      <!-- CSV Upload Tab -->
+      <div id="csvUploadTab" class="bulk-tab-content active">
+        <div class="upload-section">
+          <div class="upload-instructions">
+            <h3>Upload CSV File</h3>
+            <p>Upload a CSV file with your QR code data. The file should contain columns for title, content, type, and other optional parameters.</p>
+
+            <div class="csv-requirements">
+              <h4>Required Columns:</h4>
+              <ul>
+                <li><strong>title</strong> - QR code title</li>
+                <li><strong>content</strong> - URL or content to encode</li>
+                <li><strong>type</strong> - QR code type (url, text, email, etc.)</li>
+              </ul>
+
+              <h4>Optional Columns:</h4>
+              <ul>
+                <li><strong>description</strong> - Internal description</li>
+                <li><strong>foregroundColor</strong> - Hex color code (e.g., #000000)</li>
+                <li><strong>backgroundColor</strong> - Hex color code (e.g., #ffffff)</li>
+                <li><strong>size</strong> - Size in pixels (200, 300, 400, 500, 800, 1000)</li>
+                <li><strong>errorCorrection</strong> - L, M, Q, or H</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="file-upload-area" id="csvFileUpload" ondrop="handleCSVDrop(event)" ondragover="handleCSVDragOver(event)" ondragleave="handleCSVDragLeave(event)">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">
+              <strong>Drop your CSV file here</strong><br>
+              or <button type="button" class="upload-link" onclick="document.getElementById('csvFileInput').click()">browse to choose a file</button>
+            </div>
+            <div class="upload-hint">Maximum file size: 10MB</div>
+            <input type="file" id="csvFileInput" accept=".csv" onchange="handleCSVFileSelect()" style="display: none;">
+          </div>
+
+          <div id="csvPreview" class="csv-preview" style="display: none;">
+            <h4>File Preview</h4>
+            <div class="csv-stats">
+              <span id="csvFileName"></span> • <span id="csvRowCount"></span> rows • <span id="csvFileSize"></span>
+            </div>
+            <div class="csv-table-container">
+              <table id="csvPreviewTable" class="csv-table">
+                <thead id="csvTableHead"></thead>
+                <tbody id="csvTableBody"></tbody>
+              </table>
+            </div>
+            <div class="csv-actions">
+              <button class="btn btn-outline" onclick="clearCSVPreview()">
+                <span class="btn-icon">🗑️</span>
+                Clear
+              </button>
+              <button class="btn btn-primary" onclick="processBulkCSV()">
+                <span class="btn-icon">⚡</span>
+                Generate QR Codes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual Entry Tab -->
+      <div id="manualEntryTab" class="bulk-tab-content">
+        <div class="manual-entry-section">
+          <div class="manual-entry-header">
+            <h3>Manual Bulk Entry</h3>
+            <p>Add multiple QR codes manually using the form below.</p>
+            <button class="btn btn-outline btn-sm" onclick="downloadCSVTemplate()">
+              <span class="btn-icon">📥</span>
+              Download CSV Template
+            </button>
+          </div>
+
+          <div class="bulk-entry-form">
+            <div class="entry-item" id="entryTemplate">
+              <div class="entry-header">
+                <span class="entry-number">1</span>
+                <button class="btn-icon-only remove-entry" onclick="removeEntry(this)" title="Remove entry">
+                  <span class="btn-icon">✕</span>
+                </button>
+              </div>
+              <div class="entry-form">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" class="form-input bulk-title" placeholder="QR code title">
+                  </div>
+                  <div class="form-group">
+                    <label>Type</label>
+                    <select class="form-select bulk-type" onchange="updateBulkContentField(this)">
+                      <option value="url">Website URL</option>
+                      <option value="text">Plain Text</option>
+                      <option value="email">Email</option>
+                      <option value="phone">Phone</option>
+                      <option value="sms">SMS</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Content *</label>
+                  <input type="url" class="form-input bulk-content" placeholder="https://example.com">
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Colors</label>
+                    <div class="color-picker-mini">
+                      <input type="color" class="color-input-mini bulk-fg-color" value="#000000" title="Foreground">
+                      <input type="color" class="color-input-mini bulk-bg-color" value="#ffffff" title="Background">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Size</label>
+                    <select class="form-select bulk-size">
+                      <option value="300">300px</option>
+                      <option value="500" selected>500px</option>
+                      <option value="800">800px</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bulk-actions">
+            <button class="btn btn-outline" onclick="addManualEntry()">
+              <span class="btn-icon">➕</span>
+              Add Another
+            </button>
+            <button class="btn btn-primary" onclick="processBulkManual()">
+              <span class="btn-icon">⚡</span>
+              Generate All QR Codes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Templates Tab -->
+      <div id="templatesTab" class="bulk-tab-content">
+        <div class="templates-section">
+          <h3>QR Code Templates</h3>
+          <p>Use pre-built templates to quickly generate multiple QR codes for common use cases.</p>
+
+          <div class="templates-grid">
+            <div class="template-card" onclick="useTemplate('restaurant-menu')">
+              <div class="template-icon">🍽️</div>
+              <div class="template-info">
+                <h4>Restaurant Menu</h4>
+                <p>Generate QR codes for menu items, table numbers, and contact info</p>
+              </div>
+              <div class="template-action">
+                <span class="btn-icon">▶️</span>
+              </div>
+            </div>
+
+            <div class="template-card" onclick="useTemplate('event-registration')">
+              <div class="template-icon">🎫</div>
+              <div class="template-info">
+                <h4>Event Registration</h4>
+                <p>Create QR codes for event check-in, session links, and feedback forms</p>
+              </div>
+              <div class="template-action">
+                <span class="btn-icon">▶️</span>
+              </div>
+            </div>
+
+            <div class="template-card" onclick="useTemplate('business-cards')">
+              <div class="template-icon">💼</div>
+              <div class="template-info">
+                <h4>Business Cards</h4>
+                <p>Generate vCard QR codes for team members and contact information</p>
+              </div>
+              <div class="template-action">
+                <span class="btn-icon">▶️</span>
+              </div>
+            </div>
+
+            <div class="template-card" onclick="useTemplate('social-media')">
+              <div class="template-icon">📱</div>
+              <div class="template-info">
+                <h4>Social Media</h4>
+                <p>Create QR codes for social media profiles and campaign links</p>
+              </div>
+              <div class="template-action">
+                <span class="btn-icon">▶️</span>
+              </div>
+            </div>
+
+            <div class="template-card" onclick="useTemplate('wifi-sharing')">
+              <div class="template-icon">📶</div>
+              <div class="template-info">
+                <h4>WiFi Sharing</h4>
+                <p>Generate WiFi QR codes for different locations and networks</p>
+              </div>
+              <div class="template-action">
+                <span class="btn-icon">▶️</span>
+              </div>
+            </div>
+
+            <div class="template-card" onclick="useTemplate('product-catalog')">
+              <div class="template-icon">🛍️</div>
+              <div class="template-info">
+                <h4>Product Catalog</h4>
+                <p>Create QR codes for product pages, specifications, and reviews</p>
+              </div>
+              <div class="template-action">
+                <span class="btn-icon">▶️</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Section -->
+      <div id="bulkProgress" class="bulk-progress" style="display: none;">
+        <div class="progress-header">
+          <h3>Generating QR Codes...</h3>
+          <div class="progress-stats">
+            <span id="progressCurrent">0</span> / <span id="progressTotal">0</span> completed
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-details" id="progressDetails">
+          Starting generation...
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeBulkUploadModal()">Close</button>
+      <button class="btn btn-outline" onclick="downloadCSVTemplate()">
+        <span class="btn-icon">📥</span>
+        Download Template
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+let bulkEntryCount = 1;
+let csvData = null;
+
+// Close bulk upload modal
+function closeBulkUploadModal() {
+  document.getElementById('bulkUploadModal').style.display = 'none';
+  clearBulkData();
+}
+
+// Switch bulk tabs
+function switchBulkTab(tabName) {
+  // Update tab buttons
+  document.querySelectorAll('.bulk-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+  // Update tab content
+  document.querySelectorAll('.bulk-tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  document.getElementById(`${tabName}${tabName === 'csv' ? 'Upload' : tabName === 'manual' ? 'Entry' : ''}Tab`).classList.add('active');
+}
+
+// Handle CSV drag and drop
+function handleCSVDragOver(event) {
+  event.preventDefault();
+  event.currentTarget.classList.add('drag-over');
+}
+
+function handleCSVDragLeave(event) {
+  event.currentTarget.classList.remove('drag-over');
+}
+
+function handleCSVDrop(event) {
+  event.preventDefault();
+  event.currentTarget.classList.remove('drag-over');
+
+  const files = event.dataTransfer.files;
+  if (files.length > 0) {
+    processCSVFile(files[0]);
+  }
+}
+
+// Handle CSV file selection
+function handleCSVFileSelect() {
+  const file = document.getElementById('csvFileInput').files[0];
+  if (file) {
+    processCSVFile(file);
+  }
+}
+
+// Process CSV file
+function processCSVFile(file) {
+  if (!file.name.toLowerCase().endsWith('.csv')) {
+    showToast('Please select a CSV file', 'error');
+    return;
+  }
+
+  if (file.size > 10 * 1024 * 1024) {
+    showToast('File size must be less than 10MB', 'error');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      parseCSVData(e.target.result, file);
+    } catch (error) {
+      showToast('Error reading CSV file', 'error');
+      console.error('CSV parse error:', error);
+    }
+  };
+  reader.readAsText(file);
+}
+
+// Parse CSV data
+function parseCSVData(csvText, file) {
+  const lines = csvText.split('\n').filter(line => line.trim());
+  if (lines.length < 2) {
+    showToast('CSV file must contain at least a header and one data row', 'error');
+    return;
+  }
+
+  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+  const rows = lines.slice(1).map(line => {
+    const values = line.split(',').map(v => v.trim().replace(/"/g, ''));
+    const row = {};
+    headers.forEach((header, index) => {
+      row[header] = values[index] || '';
+    });
+    return row;
+  });
+
+  csvData = { headers, rows };
+  displayCSVPreview(file, rows);
+}
+
+// Display CSV preview
+function displayCSVPreview(file, rows) {
+  document.getElementById('csvFileName').textContent = file.name;
+  document.getElementById('csvRowCount').textContent = rows.length;
+  document.getElementById('csvFileSize').textContent = formatFileSize(file.size);
+
+  const table = document.getElementById('csvPreviewTable');
+  const thead = document.getElementById('csvTableHead');
+  const tbody = document.getElementById('csvTableBody');
+
+  // Create header
+  thead.innerHTML = `<tr>${csvData.headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
+
+  // Create rows (show first 5)
+  tbody.innerHTML = rows.slice(0, 5).map(row =>
+    `<tr>${csvData.headers.map(h => `<td>${row[h] || ''}</td>`).join('')}</tr>`
+  ).join('');
+
+  if (rows.length > 5) {
+    tbody.innerHTML += `<tr class="more-rows"><td colspan="${csvData.headers.length}">... and ${rows.length - 5} more rows</td></tr>`;
+  }
+
+  document.getElementById('csvPreview').style.display = 'block';
+}
+
+// Clear CSV preview
+function clearCSVPreview() {
+  document.getElementById('csvPreview').style.display = 'none';
+  document.getElementById('csvFileInput').value = '';
+  csvData = null;
+}
+
+// Process bulk CSV
+async function processBulkCSV() {
+  if (!csvData) {
+    showToast('Please upload a CSV file first', 'error');
+    return;
+  }
+
+  const requiredFields = ['title', 'content', 'type'];
+  const missingFields = requiredFields.filter(field => !csvData.headers.includes(field));
+
+  if (missingFields.length > 0) {
+    showToast(`Missing required columns: ${missingFields.join(', ')}`, 'error');
+    return;
+  }
+
+  await processBulkGeneration(csvData.rows);
+}
+
+// Add manual entry
+function addManualEntry() {
+  bulkEntryCount++;
+  const template = document.getElementById('entryTemplate');
+  const newEntry = template.cloneNode(true);
+  newEntry.id = `entry${bulkEntryCount}`;
+  newEntry.querySelector('.entry-number').textContent = bulkEntryCount;
+
+  // Clear form values
+  newEntry.querySelectorAll('input, select, textarea').forEach(input => {
+    if (input.type === 'color') {
+      input.value = input === newEntry.querySelector('.bulk-fg-color') ? '#000000' : '#ffffff';
+    } else if (input.tagName === 'SELECT') {
+      input.selectedIndex = 0;
+    } else {
+      input.value = '';
+    }
+  });
+
+  template.parentNode.appendChild(newEntry);
+}
+
+// Remove manual entry
+function removeEntry(button) {
+  const entry = button.closest('.entry-item');
+  if (document.querySelectorAll('.entry-item').length > 1) {
+    entry.remove();
+    updateEntryNumbers();
+  }
+}
+
+// Update entry numbers
+function updateEntryNumbers() {
+  document.querySelectorAll('.entry-item').forEach((entry, index) => {
+    entry.querySelector('.entry-number').textContent = index + 1;
+  });
+  bulkEntryCount = document.querySelectorAll('.entry-item').length;
+}
+
+// Update bulk content field based on type
+function updateBulkContentField(selectElement) {
+  const contentInput = selectElement.closest('.entry-form').querySelector('.bulk-content');
+  const type = selectElement.value;
+
+  switch(type) {
+    case 'url':
+      contentInput.type = 'url';
+      contentInput.placeholder = 'https://example.com';
+      break;
+    case 'text':
+      contentInput.type = 'text';
+      contentInput.placeholder = 'Enter your text content';
+      break;
+    case 'email':
+      contentInput.type = 'email';
+      contentInput.placeholder = 'contact@example.com';
+      break;
+    case 'phone':
+      contentInput.type = 'tel';
+      contentInput.placeholder = '+1 (555) 123-4567';
+      break;
+    case 'sms':
+      contentInput.type = 'tel';
+      contentInput.placeholder = '+1 (555) 123-4567';
+      break;
+  }
+}
+
+// Process bulk manual entries
+async function processBulkManual() {
+  const entries = [];
+  const entryElements = document.querySelectorAll('.entry-item');
+
+  entryElements.forEach((entry, index) => {
+    const title = entry.querySelector('.bulk-title').value.trim();
+    const type = entry.querySelector('.bulk-type').value;
+    const content = entry.querySelector('.bulk-content').value.trim();
+    const fgColor = entry.querySelector('.bulk-fg-color').value;
+    const bgColor = entry.querySelector('.bulk-bg-color').value;
+    const size = entry.querySelector('.bulk-size').value;
+
+    if (title && content) {
+      entries.push({
+        title,
+        type,
+        content,
+        foregroundColor: fgColor,
+        backgroundColor: bgColor,
+        size: parseInt(size),
+        errorCorrection: 'M'
+      });
+    }
+  });
+
+  if (entries.length === 0) {
+    showToast('Please fill in at least one complete entry', 'error');
+    return;
+  }
+
+  await processBulkGeneration(entries);
+}
+
+// Process bulk generation
+async function processBulkGeneration(entries) {
+  showBulkProgress(entries.length);
+
+  const results = {
+    success: 0,
+    failed: 0,
+    errors: []
+  };
+
+  for (let i = 0; i < entries.length; i++) {
+    const entry = entries[i];
+    updateBulkProgress(i + 1, entries.length, `Generating: ${entry.title}`);
+
+    try {
+      if (qrManager) {
+        await qrManager.saveQRCode({
+          ...entry,
+          isDynamic: true,
+          trackingEnabled: true
+        });
+      }
+      results.success++;
+    } catch (error) {
+      results.failed++;
+      results.errors.push(`${entry.title}: ${error.message}`);
+      console.error('Bulk generation error:', error);
+    }
+
+    // Small delay to prevent overwhelming the API
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  hideBulkProgress();
+  showBulkResults(results);
+}
+
+// Show bulk progress
+function showBulkProgress(total) {
+  document.getElementById('progressTotal').textContent = total;
+  document.getElementById('progressCurrent').textContent = '0';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('bulkProgress').style.display = 'block';
+}
+
+// Update bulk progress
+function updateBulkProgress(current, total, details) {
+  const percentage = (current / total) * 100;
+  document.getElementById('progressCurrent').textContent = current;
+  document.getElementById('progressFill').style.width = `${percentage}%`;
+  document.getElementById('progressDetails').textContent = details;
+}
+
+// Hide bulk progress
+function hideBulkProgress() {
+  document.getElementById('bulkProgress').style.display = 'none';
+}
+
+// Show bulk results
+function showBulkResults(results) {
+  const message = `Generated ${results.success} QR codes successfully. ${results.failed > 0 ? `${results.failed} failed.` : ''}`;
+  showToast(message, results.failed > 0 ? 'warning' : 'success');
+
+  if (results.failed > 0) {
+    console.log('Bulk generation errors:', results.errors);
+  }
+
+  // Refresh dashboard
+  if (document.getElementById('dashboard').classList.contains('active')) {
+    loadDashboard();
+  }
+
+  closeBulkUploadModal();
+}
+
+// Use template
+function useTemplate(templateType) {
+  switch(templateType) {
+    case 'restaurant-menu':
+      populateRestaurantTemplate();
+      break;
+    case 'event-registration':
+      populateEventTemplate();
+      break;
+    case 'business-cards':
+      populateBusinessTemplate();
+      break;
+    case 'social-media':
+      populateSocialTemplate();
+      break;
+    case 'wifi-sharing':
+      populateWiFiTemplate();
+      break;
+    case 'product-catalog':
+      populateProductTemplate();
+      break;
+  }
+
+  switchBulkTab('manual');
+}
+
+// Template populations
+function populateRestaurantTemplate() {
+  const templates = [
+    { title: 'Main Menu', content: 'https://yourrestaurant.com/menu', type: 'url' },
+    { title: 'Table 1', content: 'https://yourrestaurant.com/order?table=1', type: 'url' },
+    { title: 'Table 2', content: 'https://yourrestaurant.com/order?table=2', type: 'url' },
+    { title: 'WiFi Access', content: 'WIFI:T:WPA;S:RestaurantWiFi;P:password123;;', type: 'wifi' },
+    { title: 'Feedback Form', content: 'https://yourrestaurant.com/feedback', type: 'url' }
+  ];
+
+  populateManualEntries(templates);
+}
+
+function populateEventTemplate() {
+  const templates = [
+    { title: 'Event Registration', content: 'https://yourevent.com/register', type: 'url' },
+    { title: 'Check-in QR', content: 'https://yourevent.com/checkin', type: 'url' },
+    { title: 'Session 1', content: 'https://yourevent.com/session1', type: 'url' },
+    { title: 'Session 2', content: 'https://yourevent.com/session2', type: 'url' },
+    { title: 'Feedback', content: 'https://yourevent.com/feedback', type: 'url' }
+  ];
+
+  populateManualEntries(templates);
+}
+
+function populateBusinessTemplate() {
+  const templates = [
+    { title: 'CEO Contact', content: 'BEGIN:VCARD\nVERSION:3.0\nFN:John Doe\nORG:Your Company\nTEL:+1-555-123-4567\nEMAIL:john@company.com\nEND:VCARD', type: 'vcard' },
+    { title: 'Sales Team', content: 'BEGIN:VCARD\nVERSION:3.0\nFN:Jane Smith\nORG:Your Company\nTEL:+1-555-123-4568\nEMAIL:jane@company.com\nEND:VCARD', type: 'vcard' },
+    { title: 'Support Contact', content: 'mailto:support@company.com', type: 'email' },
+    { title: 'Company Website', content: 'https://yourcompany.com', type: 'url' }
+  ];
+
+  populateManualEntries(templates);
+}
+
+function populateSocialTemplate() {
+  const templates = [
+    { title: 'Facebook Page', content: 'https://facebook.com/yourpage', type: 'url' },
+    { title: 'Instagram Profile', content: 'https://instagram.com/yourprofile', type: 'url' },
+    { title: 'Twitter Profile', content: 'https://twitter.com/yourprofile', type: 'url' },
+    { title: 'LinkedIn Company', content: 'https://linkedin.com/company/yourcompany', type: 'url' },
+    { title: 'YouTube Channel', content: 'https://youtube.com/yourchannel', type: 'url' }
+  ];
+
+  populateManualEntries(templates);
+}
+
+function populateWiFiTemplate() {
+  const templates = [
+    { title: 'Office WiFi', content: 'WIFI:T:WPA;S:OfficeNetwork;P:office123;;', type: 'wifi' },
+    { title: 'Guest WiFi', content: 'WIFI:T:WPA;S:GuestNetwork;P:guest123;;', type: 'wifi' },
+    { title: 'Conference Room A', content: 'WIFI:T:WPA;S:ConferenceA;P:confA123;;', type: 'wifi' },
+    { title: 'Conference Room B', content: 'WIFI:T:WPA;S:ConferenceB;P:confB123;;', type: 'wifi' }
+  ];
+
+  populateManualEntries(templates);
+}
+
+function populateProductTemplate() {
+  const templates = [
+    { title: 'Product A Details', content: 'https://yourstore.com/product-a', type: 'url' },
+    { title: 'Product B Details', content: 'https://yourstore.com/product-b', type: 'url' },
+    { title: 'Product C Details', content: 'https://yourstore.com/product-c', type: 'url' },
+    { title: 'Customer Reviews', content: 'https://yourstore.com/reviews', type: 'url' },
+    { title: 'Support Contact', content: 'mailto:support@yourstore.com', type: 'email' }
+  ];
+
+  populateManualEntries(templates);
+}
+
+// Populate manual entries with template data
+function populateManualEntries(templates) {
+  // Clear existing entries
+  const entryContainer = document.querySelector('.bulk-entry-form');
+  entryContainer.innerHTML = '';
+
+  templates.forEach((template, index) => {
+    const entryElement = document.createElement('div');
+    entryElement.className = 'entry-item';
+    entryElement.innerHTML = `
+      <div class="entry-header">
+        <span class="entry-number">${index + 1}</span>
+        <button class="btn-icon-only remove-entry" onclick="removeEntry(this)" title="Remove entry">
+          <span class="btn-icon">✕</span>
+        </button>
+      </div>
+      <div class="entry-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Title *</label>
+            <input type="text" class="form-input bulk-title" value="${template.title}">
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select class="form-select bulk-type" onchange="updateBulkContentField(this)">
+              <option value="url" ${template.type === 'url' ? 'selected' : ''}>Website URL</option>
+              <option value="text" ${template.type === 'text' ? 'selected' : ''}>Plain Text</option>
+              <option value="email" ${template.type === 'email' ? 'selected' : ''}>Email</option>
+              <option value="phone" ${template.type === 'phone' ? 'selected' : ''}>Phone</option>
+              <option value="sms" ${template.type === 'sms' ? 'selected' : ''}>SMS</option>
+              <option value="wifi" ${template.type === 'wifi' ? 'selected' : ''}>WiFi</option>
+              <option value="vcard" ${template.type === 'vcard' ? 'selected' : ''}>Contact Card</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Content *</label>
+          <input type="text" class="form-input bulk-content" value="${template.content}">
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Colors</label>
+            <div class="color-picker-mini">
+              <input type="color" class="color-input-mini bulk-fg-color" value="#000000" title="Foreground">
+              <input type="color" class="color-input-mini bulk-bg-color" value="#ffffff" title="Background">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Size</label>
+            <select class="form-select bulk-size">
+              <option value="300">300px</option>
+              <option value="500" selected>500px</option>
+              <option value="800">800px</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    `;
+
+    entryContainer.appendChild(entryElement);
+  });
+
+  bulkEntryCount = templates.length;
+}
+
+// Download CSV template
+function downloadCSVTemplate() {
+  const csvContent = [
+    'title,content,type,description,foregroundColor,backgroundColor,size,errorCorrection',
+    'Example Website,https://example.com,url,Example description,#000000,#ffffff,500,M',
+    'Contact Info,mailto:contact@example.com,email,Email contact,#000000,#ffffff,500,M',
+    'Phone Number,tel:+1-555-123-4567,phone,Support phone,#000000,#ffffff,500,M'
+  ].join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'qr-bulk-template.csv';
+  link.click();
+  URL.revokeObjectURL(url);
+
+  showToast('CSV template downloaded', 'success');
+}
+
+// Format file size
+function formatFileSize(bytes) {
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  if (bytes === 0) return '0 Bytes';
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i];
+}
+
+// Clear bulk data
+function clearBulkData() {
+  clearCSVPreview();
+  bulkEntryCount = 1;
+  csvData = null;
+}
+</script>

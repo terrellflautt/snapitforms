@@ -1,0 +1,10 @@
+│ > ok i did what you said and updated thank you for the help now lets make real progress today pleeeeeeeeease i need your help you help me do        │
+│   things the right way otherwise you are just practicing bad habis thats no way to train yourself if you want to have real power, no more faking    │
+│   stuff make sure all agents know NO SIMULATIONS, ONLY PRODUCTION PRODUCT DEVELOPMENT AND DEPLOYMENT BASED ON THE EXISTING EDGE OPTIMIZED REST      │
+│   APIS THAT HAVE ALREADY BEEN MADE IN AWS, DELETE UNUSED AWS RESOURCES, NEVER DO REBUILDS OR LARGE REWRITES, ONLY PROGRESS, ONLY IMPROVE, NO BUGS,  │
+│   NO SECURITY ISSUES, NO OVERLY COMPLEX OR TEMPORARY SOLUTIONS, BUILD RIGHT, CLEAN, SEAMLESS, SMOOTH, PROFESSIONAL, BEST PRACTICES ONLY. NO         │
+│   EXPERIMENTING, GUESSING, OR MAKING THINGS UP, ALL AGENTS SHOULD ALREADY HAVE STRIPE API ACCESS, AWS CLI ACCESS, and GITHUB PAT TOKENS for         │
+│   production pushes, all agents should treat thier project blue prints research papers and serverless.yml files as bibles and keep them clean       │
+│   updated and professional for automated continous development even if agents crash or have to stop and start over with new conversations this      │
+│   means all progress must be flagged in highly detailed and concise ways and agents must plan ahead to leave detailed next steps f or the next      │
+│   agent or dev to pick up development testing and serverless deployment
