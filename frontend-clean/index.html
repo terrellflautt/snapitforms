@@ -586,125 +586,105 @@ affiliate forms, referral forms">
         const CONFIG = {
             API_BASE_URL: 'https://api.snapitforms.com',
             GOOGLE_CLIENT_ID: "242648112266-3oepgrf25h8dak6sg01vq5kbsrkjo3s9.apps.googleusercontent.com",
-            STRIPE_PUBLISHABLE_KEY: "pk_test_51RUcFYEpdWEENcj1aolZN1F2rYi3mz9oq4qZNPAGUrlIlu8LNBKiP1SGGZ048Ee9xCmAPCCfYEhrzof5fX9vPAxU00tmqsZqQd",
+            STRIPE_PUBLISHABLE_KEY: "pk_live_51RZK4aRE8RY21XQRpweG5ctPcGaRzShfajNWraIKOCLg4vYpqS88EqhpTGfj2joQbTjRK3spfP6uA6pGp2F4vRD700dBUbZ4aV",
             FRONTEND_URL: 'https://snapitforms.com',
             PRICING_TIERS: {
-                free: { 
-                    limit: 500, 
-                    price: 0, 
-                    name: 'Free',
-                    description: 'Get started in seconds at NO cost',
+                free: {
+                    limit: 50,
+                    price: 0,
+                    name: 'FREE',
+                    description: 'Unlock all SnapIT apps with Google sign-in',
                     features: [
-                        '500 submissions per month',
-                        'Email notifications',
-                        'Basic analytics',
-                        'Community support',
-                        'SnapItForms branding'
+                        '3 Dynamic QR Codes',
+                        '10 Short URLs/month',
+                        '1 Form (50 submissions)',
+                        'Unlimited Basic Polls',
+                        'Basic Analytics'
                     ]
                 },
-                starter: { 
-                    limit: 1000, 
-                    price: 2.99, 
-                    name: 'Starter',
-                    description: 'Personal projects and startups',
+                personal: {
+                    limit: 500,
+                    price: 9.99,
+                    name: 'Personal',
+                    description: 'Perfect for individuals',
+                    priceId: 'price_1SKiKkRE8RY21XQRngjn0Xzb',
                     features: [
-                        '1,000 submissions per month',
-                        'Remove SnapItForms branding',
-                        'Email notifications',
-                        'Form analytics',
-                        'Email support'
+                        '50 Dynamic QR Codes',
+                        '250 Short URLs/month',
+                        '5 Forms (500 submissions)',
+                        'Basic Polls',
+                        'Basic Analytics'
                     ]
                 },
-                basic: { 
-                    limit: 2500, 
-                    price: 4.99, 
-                    name: 'Basic',
-                    description: 'Perfect for small businesses',
-                    features: [
-                        '2,500 submissions per month',
-                        'Everything in Starter',
-                        'Priority support',
-                        'Custom thank you pages',
-                        'Form validation'
-                    ]
-                },
-                premium: { 
-                    limit: 5000, 
-                    price: 9.99, 
-                    name: 'Premium',
-                    description: 'Ideal for small, medium,growing businesses',
+                small: {
+                    limit: 2000,
+                    price: 29.99,
+                    name: 'Small Business',
+                    description: 'For small teams and startups',
                     featured: true,
+                    priceId: 'price_1SKiKlRE8RY21XQRzRedBJ1S',
                     features: [
-                        '5,000 submissions per month',
-                        'Everything in Basic',
-                        'Webhook integrations',
-                        'CSV export',
-                        'Custom email templates'
+                        '150 Dynamic QR Codes',
+                        '750 Short URLs/month',
+                        '15 Forms (2,000 submissions)',
+                        'Advanced Polls (50)',
+                        '1 Custom Domain',
+                        'Advanced Analytics',
+                        'CSV Export'
                     ]
                 },
-                pro: { 
-                    limit: 25000, 
-                    price: 14.99, 
-                    name: 'Pro',
-                    description: 'For established businesses',
+                medium: {
+                    limit: 10000,
+                    price: 69.99,
+                    name: 'Medium Business',
+                    description: 'For growing businesses',
+                    priceId: 'price_1SKiKmRE8RY21XQR3brcJ2tf',
                     features: [
-                        '25,000 submissions per month',
-                        'Everything in Premium',
-                        'Advanced analytics',
-                        'API access',
+                        '500 Dynamic QR Codes',
+                        '2,500 Short URLs/month',
+                        '50 Forms (10,000 submissions)',
+                        'Advanced Polls (200)',
+                        '3 Custom Domains',
+                        'Team Collaboration (5 users)',
+                        'API Access (5K requests/month)',
+                        'Priority Email Support'
                     ]
                 },
-                business: { 
-                    limit: 75000, 
-                    price: 29.99, 
-                    name: 'Business',
-                    description: 'For large organizations',
+                large: {
+                    limit: 50000,
+                    price: 149.99,
+                    name: 'Large Business',
+                    description: 'For established enterprises',
+                    priceId: 'price_1SKiKmRE8RY21XQRSPox4Z75',
                     features: [
-                        '75,000 submissions per month',
-                        'Everything in Pro',
-                        'Custom domains',
-                        'Advanced integrations'
+                        '2,000 Dynamic QR Codes',
+                        '10,000 Short URLs/month',
+                        '200 Forms (50,000 submissions)',
+                        'Advanced Polls (1,000)',
+                        '10 Custom Domains',
+                        'Team Collaboration (10 users)',
+                        'API Access (50K requests/month)',
+                        'White-label Options',
+                        'Priority Support'
                     ]
                 },
-                enterprise: { 
-                    limit: 300000, 
-                    price: 59.99, 
+                enterprise: {
+                    limit: -1,
+                    price: 299.99,
                     name: 'Enterprise',
-                    description: 'For enterprise scale',
+                    description: 'Unlimited everything for large organizations',
+                    priceId: 'price_1SKiKnRE8RY21XQRx6LMuYC7',
                     features: [
-                        '300,000 submissions per month',
-                        'Everything in Business',
-                        'White-label options',
-                        'SLA guarantee',
-                        'Dedicated account manager'
-                    ]
-                },
-                scale: { 
-                    limit: 1000000, 
-                    price: 99.99, 
-                    name: 'Scale',
-                    description: 'High-volume operations',
-                    features: [
-                        '1,000,000 submissions per month',
-                        'Everything in Enterprise',
-                        'Priority infrastructure',
-                        'Advanced analytics',
-                        'Custom integrations',
-                        'Performance monitoring'
-                    ]
-                },
-                unlimited: { 
-                    limit: 2500000, 
-                    price: 199.99, 
-                    name: 'Unlimited',
-                    description: 'Maximum capacity',
-                    features: [
-                        '2,500,000 submissions per month',
-                        'Everything in Scale',
-                        '24/7 phone support',
-                        'Custom SLA agreements',
-                        'Advanced compliance features',
-                        'Dedicated infrastructure'
+                        'UNLIMITED Dynamic QR Codes',
+                        'UNLIMITED Short URLs',
+                        'UNLIMITED Forms & Submissions',
+                        'UNLIMITED Polls',
+                        'UNLIMITED Custom Domains',
+                        'UNLIMITED Team Members',
+                        'UNLIMITED API Access',
+                        'Dedicated Account Manager',
+                        '24/7 Priority Support',
+                        'White-labeling & SLA'
                     ]
                 }
             }
